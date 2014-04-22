@@ -1,0 +1,665 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+        <h:head>
+            <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+            <Link rel="shortcut icon" href="pict/favicon.ico" type="image/vnd.microsoft.icon"/>
+            <title>Бланк исходных данных для плана работ по освоению скважины</title>
+            <link rel="stylesheet" type="text/css" href="style.css"/>
+           <script type="text/javascript">
+                function doSubmit(form) {
+                    // set date
+                    document.forms[0].date.value = new Date().toLocaleString();
+                    // set appropriate format extension
+                    form.action = 'formaOsvoenie.' + form.format.value;
+                    return true;
+                }
+//                function doSecondSubmit() {
+//                    document.forma.action = "result.html";
+//                }
+           </script>
+        </h:head>
+        <h:body>
+            <f:view>
+            <h1 style="color: darkolivegreen;font-family: sans-serif , Times New Roman">
+                Бланк исходных данных для плана работ по освоению скважины<br/>
+                Initial data form for job design of well nitrogen lift</h1>
+            <p><!--<img src="pict/region_logo_small.gif" height="75" alt="Region_logo" style="a: right">--></p>
+            <p style="font-size: small;font-style: italic; color: blue">
+                Please fill in the form. </p>
+
+            <h3 style="color: tomato;">
+                1. Well Information – Информация о скважине<br/></h3>
+            <h4 style="color: brown">
+                1.1. Общие данные – General data </h4>
+            
+<!--            <h:form id="calcForm">
+                <h4>Concatenator</h4>
+                <h:messages infoClass="infoClass" errorClass="errorClass" layout="table" globalOnly="true"/>        
+                <h:panelGrid columns="3" rowClasses="oddRow, evenRow" styleClass="formGrid">
+
+                    <h:outputLabel value="First Number" for="firstNumber" styleClass="#{computatController.firstNumberStyleClass}"/>
+                    <h:inputText id="firstNumber" label="First Number" value="#{computatController.computat.fieldNameTest}" required="true"
+                                 binding="#{computatController.fieldNameInputTest}"/>   
+                    <h:message for="firstNumber" errorClass="errorClass"/>   
+
+                    <h:outputLabel id="snl" value="Second Number" for="secondNumber" styleClass="#{computatController.secondNumberStyleClass}"/>
+                    <h:inputText id="secondNumber" label="Second Number" value="#{computatController.computat.wellNameTest}" required="true"
+                                 binding="#{computatController.wellNameInputTest}" />
+                    <h:message for="secondNumber" errorClass="errorClass"/>
+                </h:panelGrid>
+                <div>
+                    <h:commandButton action="#{computatController.computat.conc}" value="concatenate" />
+                    <h:commandButton action="#{computatController.computat.clear}" value="Clear" immediate="true"/>
+                </div>
+            </h:form>
+
+            <h:panelGroup binding="#{computatController.resultsPanel}" rendered="true">
+                <h4>Results</h4>
+                <h:panelGrid columns="1" rowClasses="oddRow, evenRow" styleClass="resultGrid">
+                    <h:outputText value="First Number  ${computatController.computat.fieldNameTest}"/>
+                    <h:outputText value="Second Number ${computatController.computat.wellNameTest}"/>
+                    <h:outputText value="Result ${computatController.computat.resStr}"/>
+                </h:panelGrid>
+            </h:panelGroup>-->
+
+<!--<h:form id="forma" onsubmit="doSubmit(this);" >-->
+<!--    <h:form id="forma">-->
+                <form method="post">
+<table id="first">
+                    <tr>
+                        <td>1. Field Name<br/>
+                            Название бассейна (месторождения): </td>
+                        <td>
+                            <input id="fieldName" type="text" name="fieldName" value="${formOsvoenieSomeService.doSmthing()}" size="35%"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2. Well Name<br/>
+                            Название скважины: </td>
+                        <td><input id="wellName" type="text" name="wellName" size="35%"/></td>
+                    </tr>
+                    <tr>
+                        <td>3. Well Location<br/>
+                            Место расположения скважины: </td>
+                        <td><input id="wellLocation" type="text" name="wellLocation" size="35%"/></td>
+                    </tr>
+                    <tr>
+                        <td>4. Formation Name<br/>
+                            Название образований: </td>
+                        <td><input type="text" name="formationName" size="35%"/></td>
+                    </tr>
+                    <tr>
+                        <td>5. Well Type (oil or gas)<br/>
+                            Тип скважины (нефтяная или газовая):</td>
+                        <td><input type="text" name="wellType" size="35%"/></td>
+                    </tr>
+                    <tr>
+                        <td>6. Desired job date<br/>
+                            Желаемая дата проведения работ: </td>
+                        <td><input type="text" name="desiredJobDate" size="35%"/></td>
+                    </tr>
+                    <tr>
+                        <td>7. Slabbed well site/road to the well site <br/>
+                            Плиты на скважине/подъездам к скважине </td>
+                        <td><input type="text" name="slabbedWellSite" size="35%"/></td>
+                    </tr>
+                    <tr>
+                        <td>8.Electricity on the well site<br/>
+                            Электричество на скважине</td>
+                        <td><input type="text" name="electricity" size="35%"/></td>
+                    </tr>
+                    <tr>
+                        <td>9. Rig on the well site<br/>
+                            Наличие буровой установки на скважине</td>
+                        <td><input type="text" name="rig" size="35%"/></td>
+                    </tr>
+                    <tr>
+                        <td>10. Company name<br/>
+                            Компания</td>
+                        <td><input type="text" name="companyName" size="35%"/></td>
+                    </tr>
+                    <tr>
+                        <td>11. Company Representative<br/>
+                            Представитель компании</td>
+                        <td><input type="text" name="companyRepresentative" size="35%"/></td>
+                    </tr>
+                    <tr>
+                        <td>12. Comments<br/>
+                            Комментарии</td>
+                        <td><input type="text" name="comments" size="35%"/></td>
+                    </tr>
+</table>
+                <h4 style="color: brown">
+                    1.2. Данные по скважине – Well data </h4>
+                <table id="second">
+                    <tr>
+                        <td>1. Тип скважинной головки и фонтанной арматуры<br/>(указать давления опрессовки)<br/>
+                            Well head and Christmas tree type (specify testing pressure)  
+                        </td> 
+                        <td><input type="text" name="headChristmasTree" size="35%"/></td>    
+                    </tr>
+                    <tr>
+                        <td>2. Наличие, тип и глубина установки пакера<br/>
+                            Presence of packer, its type and depth of the installation      
+                        </td>  
+                        <td><input type="text" name="packer" size="35%"/></td>   
+                    </tr>
+                    <tr>
+                        <td>3. Глубина скважины (м)<br/>
+                            Well depth (m)
+                        </td>  
+                        <td><input type="text" name="wellDepth" size="35%"/></td>    
+                    </tr>
+                    <tr>
+                        <td>4. Текущий забой (м)<br/>
+                            PBTH depth (m)                       
+                        </td>  
+                        <td><input type="text" name="PBTHdepth" size="35%"/></td>    
+                    </tr>
+                    <tr>
+                        <td> 5.Интервал перфорации<br/>
+                            Perforation interval                      
+                        </td>  
+                        <td><input type="text" name="perforationInterval" size="35%"/></td>   
+                    </tr>
+                    <tr>
+                        <td>6. Состояние скважины, уровень и плотность скважинной жидкости<br/>
+                            Well state, well fluid level and density                      
+                        </td> 
+                        <td><input type="text" name="fluidLevelDensity" size="35%"/></td>   
+                    </tr>
+                    <tr>
+                        <td>7. Пластовое давление<br/>
+                            Formation pressure                     
+                        </td> 
+                        <td><input type="text" name="formationPressure" size="35%"/></td>   
+                    </tr>
+                    <tr>
+                        <td>8. Пластовая температура<br/>
+                            Formation temperature                     
+                        </td> 
+                        <td><input type="text" name="formationTemperature" size="35%"/></td>   
+                    </tr>
+                    <tr>
+                        <td>9. Наличие факельного амбара<br/>
+                            Flare pit availability                     
+                        </td> 
+                        <td><input type="text" name="isFlarePit" size="35%"/></td>   
+                    </tr>
+                    <tr>
+                        <td>10. Объем жидкости, поглощенной во время работ<br/>
+                            Volume of fluid consumed during workover</td>
+                        <td><input type="text" name="consumedVolume" size="35%"/></td>   
+                    </tr>
+                </table>
+                <h3 style="color: tomato">
+                    2. Well Construction – Конструкция скважины<br/></h3>
+                <h4 style="color: brown">
+                    2.1. Параметры обсадной колонны – Casing parameters</h4>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <td>№</td>
+                            <td>Замер. глубина верха (м)<br/>
+                                Top measured depth (m)</td>
+                            <td>Замер. глубина низа (м)<br/>
+                                Bot measured depth (m)</td>
+                            <td>Обсадная колонна<br/>
+                                Casing<br/></td>
+                            <td>Тип колонны<br/></td>
+                            <td>Макс. допуст. давл.(МПа)<br/>
+                                Max. allowable pressure</td>
+                            <td>Наруж диам. (см)<br/>
+                                Outer diam. (cm)</td>
+                            <td>Вес (кг/м)<br/>
+                                Weight (kg/m)</td>
+                            <td>Внутр. диам. (см)<br/>
+                                Internal diam.(cm)</td>
+                            <td>Марка стали<br/>
+                                Steel Grade</td>
+                        </tr> </thead>
+                    <tr>
+                        <td>1</td>
+                        <td><input type="text" name="topDepthCasing1"/></td>
+                        <td><input type="text" name="botomDepthCasing1"/></td>
+                        <td><select name="casing1" style="width:185px;">
+                                <option value="" selected="selected"></option>
+                                <option value="Незацемент. обсадн. кол./Free casing">Незацемент. обсадн. кол./Free casing</option>
+                                <option value="Зацемент. обсадн. кол./Cemented casing">Зацемент. обсадн. кол./Cemented casing</option>
+                            </select></td>
+                        <td><select name="casingTip1" style="width:150px;">
+                                <option value="" selected="selected"></option>
+                                <option value="Кондуктор">Кондуктор</option>
+                                <option value="Техническая">Техническая</option>
+                                <option value="Эксплуатационная">Эксплуатационная</option>
+                                <option value="Хвостовик">Хвостовик</option>                            
+                            </select></td>
+
+                        <td><input type="text" name="maxPressureCasing1"/></td>
+                        <td><input type="text" name="outerDiamCasing1"/></td>
+                        <td><input type="text" name="weightCasing1"/></td>
+                        <td><input type="text" name="internalDiamCasing1"/></td>
+                        <td><input type="text" name="steelCasing1"/></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="text" name="topDepthCasing2"/></td>
+                        <td><input type="text" name="botomDepthCasing2"/></td>
+                        <td><select name="casing2" style="width:185px;">
+                                <option value="" selected="selected"></option>
+                                <option value="Незацемент. обсадн. кол./Free casing">Незацемент. обсадн. кол./Free casing</option>
+                                <option value="Зацемент. обсадн. кол./Cemented casing">Зацемент. обсадн. кол./Cemented casing</option>
+                            </select></td>
+                        <td><select name="casingTip2" style="width:150px;">
+                                <option value="" selected="selected"></option>
+                                <option value="Кондуктор">Кондуктор</option>
+                                <option value="Техническая">Техническая</option>
+                                <option value="Эксплуатационная">Эксплуатационная</option>
+                                <option value="Хвостовик">Хвостовик</option>                            
+                            </select></td>
+                        <td><input type="text" name="maxPressureCasing2"/></td>
+                        <td><input type="text" name="outerDiamCasing2"/></td>
+                        <td><input type="text" name="weightCasing2"/></td>
+                        <td><input type="text" name="internalDiamCasing2"/></td>
+                        <td><input type="text" name="steelCasing2"/></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><input type="text" name="topDepthCasing3"/></td>
+                        <td><input type="text" name="botomDepthCasing3"/></td>
+                        <td><select name="casing3" style="width:185px;">
+                                <option value="" selected="selected"></option>
+                                <option value="Незацемент. обсадн. кол./Free casing">Незацемент. обсадн. кол./Free casing</option>
+                                <option value="Зацемент. обсадн. кол./Cemented casing">Зацемент. обсадн. кол./Cemented casing</option>
+                            </select></td>
+                        <td><select name="casingTip3" style="width:150px;">
+                                <option value="" selected="selected"></option>
+                                <option value="Кондуктор">Кондуктор</option>
+                                <option value="Техническая">Техническая</option>
+                                <option value="Эксплуатационная">Эксплуатационная</option>
+                                <option value="Хвостовик">Хвостовик</option>                            
+                            </select></td>
+                        <td><input type="text" name="maxPressureCasing3"/></td>
+                        <td><input type="text" name="outerDiamCasing3"/></td>
+                        <td><input type="text" name="weightCasing3"/></td>
+                        <td><input type="text" name="internalDiamCasing3"/></td>
+                        <td><input type="text" name="steelCasing3"/></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><input type="text" name="topDepthCasing4"/></td>
+                        <td><input type="text" name="botomDepthCasing4"/></td>
+                        <td><select name="casing4" style="width:185px;">
+                                <option value="" selected="selected"></option>
+                                <option value="Незацемент. обсадн. кол./Free casing">Незацемент. обсадн. кол./Free casing</option>
+                                <option value="Зацемент. обсадн. кол./Cemented casing">Зацемент. обсадн. кол./Cemented casing</option>
+                            </select></td>
+                        <td><select name="casingTip4" style="width:150px;">
+                                <option value="" selected="selected"></option>
+                                <option value="Кондуктор">Кондуктор</option>
+                                <option value="Техническая">Техническая</option>
+                                <option value="Эксплуатационная">Эксплуатационная</option>
+                                <option value="Хвостовик">Хвостовик</option>                            
+                            </select></td>
+                        <td><input type="text" name="maxPressureCasing4"/></td>
+                        <td><input type="text" name="outerDiamCasing4"/></td>
+                        <td><input type="text" name="weightCasing4" /></td>
+                        <td><input type="text" name="internalDiamCasing4"/></td>
+                        <td><input type="text" name="steelCasing4"/></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><input type="text" name="topDepthCasing5"/></td>
+                        <td><input type="text" name="botomDepthCasing5"/></td>
+                        <td><select name="casing5" style="width:185px;">
+                                <option value="" selected="selected"></option>
+                                <option value="Незацемент. обсадн. кол./Free casing">Незацемент. обсадн. кол./Free casing</option>
+                                <option value="Зацемент. обсадн. кол./Cemented casing">Зацемент. обсадн. кол./Cemented casing</option>
+                            </select></td>
+                        <td><select name="casingTip5" style="width:150px;">
+                                <option value="" selected="selected"></option>
+                                <option value="Кондуктор">Кондуктор</option>
+                                <option value="Техническая">Техническая</option>
+                                <option value="Эксплуатационная">Эксплуатационная</option>
+                                <option value="Хвостовик">Хвостовик</option>                            
+                            </select></td>
+                        <td><input type="text" name="maxPressureCasing5"/></td>
+                        <td><input type="text" name="outerDiamCasing5"/></td>
+                        <td><input type="text" name="weightCasing5"/></td>
+                        <td><input type="text" name="internalDiamCasing5"/></td>
+                        <td><input type="text" name="steelCasing5"/></td>
+                    </tr>                      
+                </table>
+                <h4 style="color: brown">
+                    2.2. Параметры наземной линии/НКТ – Surface line/Tubing parameters</h4>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <td>№</td>
+                            <td>Замер. глубина верха (м)<br/>
+                                Top measured depth (m)</td>
+                            <td>Замер. глубина низа (м)<br/>
+                                Bot measured depth (m)</td>
+                            <td>Наземная линия/НКТ<br/>
+                                Surface line/Tubing<br/></td>
+                            <td>Макс. допуст. давл.(МПа)<br/>
+                                Max. allowable pressure</td>
+                            <td>Наруж диам. (см)<br/>
+                                Outer diam. (cm)</td>
+                            <td>Вес (кг/м)<br/>
+                                Weight (kg/m)</td>
+                            <td>Внутр. диам. (см)<br/>
+                                Internal diam.(cm)</td>
+                            <td>Марка стали<br/>4
+                                Steel Grade</td>
+                        </tr> </thead>
+                    <tr>
+                        <td>1</td>
+                        <td><input type="text" name="topDepthSurface1"/></td>
+                        <td><input type="text" name="botomDepthSurface1"/></td>
+                        <td><select name="surfaceLineTubig1" style="width:185px;">
+                                <option value="" selected="selected"></option>
+                                <option value="НКТ/Tubing">НКТ/Tubing</option>
+                                <option value="Бурильная колонна/Drill pipe">Бурильная колонна/Drill pipe</option>
+                                <option value="Пакер/Packer">Пакер/Packer</option>
+                                <option value="Наземная линия/Surface line">Наземная линия/Surface line</option>
+                                <option value="Наземная ГНКТ/Surface CTU">Наземная ГНКТ/Surface CTU</option>
+                                <option value="Переходник/Cross over">Переходник/Cross over</option>
+                            </select></td>
+                        <td><input type="text" name="maxPressureSurface1"/></td>
+                        <td><input type="text" name="outerDiamSurface1"/></td>
+                        <td><input type="text" name="weightSurface1"/></td>
+                        <td><input type="text" name="internalDiamSurface1"/></td>
+                        <td><input type="text" name="steelSurface1"/></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="text" name="topDepthSurface2"/></td>
+                        <td><input type="text" name="botomDepthSurface2"/></td>
+                        <td><select name="surfaceLineTubig2" style="width:185px;">
+                                <option value="" selected="selected"></option>
+                                <option value="НКТ/Tubing">НКТ/Tubing</option>
+                                <option value="Бурильная колонна/Drill pipe">Бурильная колонна/Drill pipe</option>
+                                <option value="Пакер/Packer">Пакер/Packer</option>
+                                <option value="Наземная линия/Surface line">Наземная линия/Surface line</option>
+                                <option value="Наземная ГНКТ/Surface CTU">Наземная ГНКТ/Surface CTU</option>
+                                <option value="Переходник/Cross over">Переходник/Cross over</option>
+                            </select></td>
+                        <td><input type="text" name="maxPressureSurface2"/></td>
+                        <td><input type="text" name="outerDiamSurface2"/></td>
+                        <td><input type="text" name="weightSurface2"/></td>
+                        <td><input type="text" name="internalDiamSurface2"/></td>
+                        <td><input type="text" name="steelSurface2"/></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><input type="text" name="topDepthSurface3"/></td>
+                        <td><input type="text" name="botomDepthSurface3"/></td>
+                        <td><select name="surfaceLineTubig3" style="width:185px;">
+                                <option value="" selected="selected"></option>
+                                <option value="НКТ/Tubing">НКТ/Tubing</option>
+                                <option value="Бурильная колонна/Drill pipe">Бурильная колонна/Drill pipe</option>
+                                <option value="Пакер/Packer">Пакер/Packer</option>
+                                <option value="Наземная линия/Surface line">Наземная линия/Surface line</option>
+                                <option value="Наземная ГНКТ/Surface CTU">Наземная ГНКТ/Surface CTU</option>
+                                <option value="Переходник/Cross over">Переходник/Cross over</option>
+                            </select></td>
+                        <td><input type="text" name="maxPressureSurface3"/></td>
+                        <td><input type="text" name="outerDiamSurface3"/></td>
+                        <td><input type="text" name="weightSurface3"/></td>
+                        <td><input type="text" name="internalDiamSurface3"/></td>
+                        <td><input type="text" name="steelSurface3"/></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><input type="text" name="topDepthSurface4"/></td>
+                        <td><input type="text" name="botomDepthSurface4"/></td>
+                        <td><select name="surfaceLineTubig4" style="width:185px;">
+                                <option value="" selected="selected"></option>
+                                <option value="НКТ/Tubing">НКТ/Tubing</option>
+                                <option value="Бурильная колонна/Drill pipe">Бурильная колонна/Drill pipe</option>
+                                <option value="Пакер/Packer">Пакер/Packer</option>
+                                <option value="Наземная линия/Surface line">Наземная линия/Surface line</option>
+                                <option value="Наземная ГНКТ/Surface CTU">Наземная ГНКТ/Surface CTU</option>
+                                <option value="Переходник/Cross over">Переходник/Cross over</option>
+                            </select></td>
+                        <td><input type="text" name="maxPressureSurface4"/></td>
+                        <td><input type="text" name="outerDiamSurface4"/></td>
+                        <td><input type="text" name="weightSurface4"/></td>
+                        <td><input type="text" name="internalDiamSurface4"/></td>
+                        <td><input type="text" name="steelSurface4"/></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><input type="text" name="topDepthSurface5"/></td>
+                        <td><input type="text" name="botomDepthSurface5"/></td>
+                        <td><select name="surfaceLineTubig5" style="width:185px;">
+                                <option value="" selected="selected"></option>
+                                <option value="НКТ/Tubing">НКТ/Tubing</option>
+                                <option value="Бурильная колонна/Drill pipe">Бурильная колонна/Drill pipe</option>
+                                <option value="Пакер/Packer">Пакер/Packer</option>
+                                <option value="Наземная линия/Surface line">Наземная линия/Surface line</option>
+                                <option value="Наземная ГНКТ/Surface CTU">Наземная ГНКТ/Surface CTU</option>
+                                <option value="Переходник/Cross over">Переходник/Cross over</option>
+                            </select></td>
+                        <td><input type="text" name="maxPressureSurface5"/></td>
+                        <td><input type="text" name="outerDiamSurface5"/></td>
+                        <td><input type="text" name="weightSurface5"/></td>
+                        <td><input type="text" name="internalDiamSurface5"/></td>
+                        <td><input type="text" name="steelSurface5"/></td>
+                    </tr>                      
+                </table>
+                <h4 style="color: brown">
+                    2.3. Подземное оборудование – Downhole equipment</h4>
+                <h5>Внести данные по установленному внутрискважинному оборудованию и сужениях в НКТ (переходник, ниппель и т.п.).<br/>
+                    Input data on installed downhole equipment and tubing constrictions (adapter, nipple etc.)</h5>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <td>№</td>
+                            <td>Замер. глубина (м)<br/>
+                                Measured depth (m)</td>
+                            <td>Тип оборудования<br/>
+                                Type of the equipment</td>
+                            <td>Макс. допуст. давл.(МПа)<br/>
+                                Max. allowable pressure</td>
+                            <td>Наруж. диам. (см)<br/>
+                                Outer diam. (cm)</td>
+                            <td>Внутр. диам. (см)<br/>
+                                Internal diam.(cm)</td>
+                        </tr> </thead>
+                    <tr>
+                        <td>1</td>
+                        <td><input type="text" name="DownholeDepth1"/></td>
+                        <td><input type="text" name="DownholeEquipType1"/></td>
+                        <td><input type="text" name="DownholeMaxPress1"/></td>
+                        <td><input type="text" name="DownholeOutDiam1"/></td>
+                        <td><input type="text" name="DownholeInterDiam1"/></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="text" name="DownholeDepth2"/></td>
+                        <td><input type="text" name="DownholeEquipType2"/></td>
+                        <td><input type="text" name="DownholeMaxPress2"/></td>
+                        <td><input type="text" name="DownholeOutDiam2"/></td>
+                        <td><input type="text" name="DownholeInterDiam2"/></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><input type="text" name="DownholeDepth3"/></td>
+                        <td><input type="text" name="DownholeEquipType3"/></td>
+                        <td><input type="text" name="DownholeMaxPress3"/></td>
+                        <td><input type="text" name="DownholeOutDiam3"/></td>
+                        <td><input type="text" name="DownholeInterDiam3"/></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><input type="text" name="DownholeDepth4"/></td>
+                        <td><input type="text" name="DownholeEquipType4"/></td>
+                        <td><input type="text" name="DownholeMaxPress4"/></td>
+                        <td><input type="text" name="DownholeOutDiam4"/></td>
+                        <td><input type="text" name="DownholeInterDiam4"/></td>
+                    </tr>                     
+                </table>
+                <h4 style="color: brown">
+                    2.4. Инклинометрия – Directional Survey
+                </h4>
+                <h5>В таблицу внести имеющиеся данные<br/>
+                    1.2. Данные по скважине – Well data (или приложить полные данные по инклинометрии):<br/>
+                    Input mentioned data to the table (or attach full directional survey data):</h5>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <td>№</td>
+                            <td>Замер. глубина (м)<br/>
+                                Measured depth (m)</td>
+                            <td>Угол (º)<br/>
+                                Degree(º)</td>
+                            <td>Азимут (º)<br/>
+                                Azimuth (º)</td>
+                        </tr> </thead>
+                    <tr>
+                        <td>1</td>
+                        <td><input type="text" name="WellDepth1"/></td>
+                        <td><input type="text" name="WellDegree1"/></td>
+                        <td><input type="text" name="WellAzimuth1"/></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="text" name="WellDepth2"/></td>
+                        <td><input type="text" name="WellDegree2"/></td>
+                        <td><input type="text" name="WellAzimuth2"/></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><input type="text" name="WellDepth3"/></td>
+                        <td><input type="text" name="WellDegree3"/></td>
+                        <td><input type="text" name="WellAzimuth3"/></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><input type="text" name="WellDepth4"/></td>
+                        <td><input type="text" name="WellDegree4"/></td>
+                        <td><input type="text" name="WellAzimuth4"/></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><input type="text" name="WellDepth5"/></td>
+                        <td><input type="text" name="WellDegree5"/></td>
+                        <td><input type="text" name="WellAzimuth5"/></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td><input type="text" name="WellDepth6"/></td>
+                        <td><input type="text" name="WellDegree6"/></td>
+                        <td><input type="text" name="WellAzimuth6"/></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td><input type="text" name="WellDepth7"/></td>
+                        <td><input type="text" name="WellDegree7"/></td>
+                        <td><input type="text" name="WellAzimuth7"/></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td><input type="text" name="WellDepth8"/></td>
+                        <td><input type="text" name="WellDegree8"/></td>
+                        <td><input type="text" name="WellAzimuth8"/></td>
+                    </tr>
+                </table>
+
+                <p><br/><br/><br/></p>
+                <table>
+                    <tr>
+                        <td>Preferred Format: </td>
+                        <td>
+                            <select name="format">
+                                <option value="pdf" selected="selected">Portable Document Format (pdf)</option>
+                                <option value="odt">OpenDocument Text (odt)</option>
+                                <option value="doc">Microsoft Word (doc)</option>
+                                <option value="txt">txt</option>
+                                <!--<option value="rtf">Rich Text Format (rtf)</option>-->
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="hidden" name="date" value=""/>
+                            <input type="submit" value="Save Form"/>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <p><input type="submit" name="calc" value="Calculate"/></p>
+                    <p><input type="submit" name="save" value="Save"/></p>
+                    <p><button type="submit">Result</button></p>
+                </div>
+                </form>
+<!--            </h:form>-->
+            <p></p>
+            <div id="PageFooter">
+            </div>        
+<!--            <h:form enctype="multipart/form-data">
+                <h:panelGrid columns="2" columnClasses="top,top">
+                    <rich:fileUpload fileUploadListener="#{fileUploadBean.listener}" id="upload" acceptedTypes="doc, odt, pdf, rtf, jpg, gif, png, bmp"  
+                                     ontyperejected="alert('Only JPG, GIF, PNG and BMP files are accepted');" maxFilesQuantity="5">
+                        <a4j:ajax event="uploadcomplete" execute="@none" render="info" />
+                    </rich:fileUpload>
+                    <h:panelGroup id="info" layout="block">
+                        <rich:panel bodyClass="info">
+                            <f:facet name="header">
+                                <h:outputText value="Uploaded Files Info" />
+                            </f:facet>
+                            <h:outputText value="No files currently uploaded" rendered="#{fileUploadBean.size==0}" />
+                            <rich:dataGrid columns="1" value="#{fileUploadBean.files}" var="file" rowKeyVar="row">
+                                <rich:panel bodyClass="rich-laguna-panel-no-header">
+                                    <h:panelGrid columns="2">
+                                        <a4j:mediaOutput element="img" mimeType="image/jpeg" createContent="#{fileUploadBean.paint}"
+                                                         value="#{row}" style="width:200px; height:200px;" cacheable="false">
+                                            <f:param value="#{fileUploadBean.timeStamp}" name="time" />
+                                        </a4j:mediaOutput>
+                                        <h:panelGrid columns="2">
+                                            <h:outputText value="File Name:" />
+                                            <h:outputText value="#{file.name}" />
+                                            <h:outputText value="File Length(bytes):" />
+                                            <h:outputText value="#{file.length}" />
+                                        </h:panelGrid>
+                                    </h:panelGrid>
+                                </rich:panel>
+                            </rich:dataGrid>
+                        </rich:panel>
+
+                        <a4j:commandButton action="#{fileUploadBean.clearUploadData}" render="info, upload" value="Clear Uploaded Data"
+                                           rendered="#{fileUploadBean.size>0}" />
+                    </h:panelGroup>
+                </h:panelGrid>
+           </h:form>-->
+            <form method="POST" action="upload" enctype="multipart/form-data">
+                <p> File:
+                    <input type="file" name="file" id="file"/></p>
+                <p> Test1
+                    <input type="text" name="test1" size="35%"/></p>
+                <p> Destination:
+                    <input type="text" value="/home/alex/Downloads/upload" name="destination"/>
+                </p>
+                <p> <input type="submit" value="Upload" name="upload" id="uploading"/></p>
+            </form>
+
+            <form name="abc">
+                <button onclick="WriteToFile();">Click to save</button>  
+            </form>
+            <h:outputStylesheet>
+                .top {
+                vertical-align: top;
+                }
+                .info {
+                height: 200px;
+                overflow: auto;
+                }
+            </h:outputStylesheet>
+            </f:view>
+        </h:body>
+</html>

@@ -20,7 +20,7 @@
     <mvc:resources mapping="/pages/**"      location="/WEB-INF/pages/" />
     <mvc:resources mapping="/scripts/**"    location="/WEB-INF/scripts/" />-->
  
-        <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <property name="contentNegotiationManager" ref="cnManager"/>  
         <property name="viewResolvers">
         	<list>
@@ -90,7 +90,7 @@
 <!--        <prop key="/mvc/letter.html">letterFormController</prop> -->     
         <!--- Some possible key values:
               - "foo.pdf"  ->  PDF from template "foo"
-              - "foo.*"    ->  any format from template "foo"
+              - "foo.*"    ->  any format from template "foo"AlexRemote
               - "*.pdf"    ->  PDF from any template
               - "*"        ->  any format from any template - -->
         <!-- named templates -->
@@ -101,7 +101,7 @@
         <prop key="formaOsvoenie.odt">httpParametersDocumentGenerator</prop>
         <prop key="formaOsvoenie.doc">httpParametersDocumentGenerator</prop>
         <prop key="formaOsvoenie.txt">httpParametersDocumentGenerator</prop>-->
-<!--    ready to use; just drop new templates into WEB-INF/templates/--> 
+<!--    ready to use; just drop new templates into WEB-INF/templateAlexRemotes/--> 
 <!--    <prop key="/params/*">httpParametersDocumentGenerator</prop>-->
 <!--    <prop key="/xml/*">xmlDocumentGenerator</prop>       -->
       </props>

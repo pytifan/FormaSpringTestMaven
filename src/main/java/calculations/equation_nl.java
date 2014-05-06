@@ -42,8 +42,7 @@ import org.apache.commons.math3.linear.RealMatrix;
 
 public class equation_nl
 {
-  equation_nl()
-  {
+  equation_nl() {
     int nitr = 7;
     double A[][] = {{1.0, 2.0, 3.0}, {2.0, 1.0, 1.0}, {3.0, 1.0, 4.0}};
     double Xt[] = new double[3]; // X terms, A * Xt = Y 

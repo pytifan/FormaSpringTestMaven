@@ -1,5 +1,6 @@
 package org.region.forms.osvoenie.spring.controller;
 
+import org.region.forms.osvoenie.form.Forma;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;

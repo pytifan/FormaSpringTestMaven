@@ -19,13 +19,12 @@
     <!--
     <mvc:resources mapping="/pages/**"      location="/WEB-INF/pages/" />
     <mvc:resources mapping="/scripts/**"    location="/WEB-INF/scripts/" />-->
-
  
         <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <property name="contentNegotiationManager" ref="cnManager"/>  
         <property name="viewResolvers">
         	<list>
-                    	 <!-- Default viewClass: JSTL view (JSP with html output) -->
+                    	<!-- Default viewClass: JSTL view (JSP with html output) -->
 			    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		 <!-- Example: a logical view name of 'vets' is mapped to '/WEB-INF/jsp/vets.jsp' -->
 			        <property name="prefix" value="/WEB-INF/jsp/"/>
@@ -103,8 +102,8 @@
         <prop key="formaOsvoenie.doc">httpParametersDocumentGenerator</prop>
         <prop key="formaOsvoenie.txt">httpParametersDocumentGenerator</prop>-->
 <!--    ready to use; just drop new templates into WEB-INF/templates/--> 
-<!--        <prop key="/params/*">httpParametersDocumentGenerator</prop>-->
-<!--        <prop key="/xml/*">xmlDocumentGenerator</prop>       -->
+<!--    <prop key="/params/*">httpParametersDocumentGenerator</prop>-->
+<!--    <prop key="/xml/*">xmlDocumentGenerator</prop>       -->
       </props>
     </property>
   </bean>

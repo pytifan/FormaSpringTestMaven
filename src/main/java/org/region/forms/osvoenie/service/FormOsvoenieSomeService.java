@@ -4,7 +4,7 @@
  */
 package org.region.forms.osvoenie.service;
 
-import org.region.forms.osvoenie.spring.controller.Forma;
+import org.region.forms.osvoenie.form.Forma;
 import calculations.equation_nl;
 
 /**

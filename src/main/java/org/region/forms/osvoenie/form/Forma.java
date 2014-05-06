@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.region.forms.osvoenie.spring.controller;
+package org.region.forms.osvoenie.form;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -42,20 +42,6 @@ public class Forma implements Serializable {
     private double internalDiamCasing5;
     private double avdiamcas;
    
-    private List Test;
-    
-    public void setTest(List Test) {
-        Map model = new HashMap();
-        List items = new ArrayList();
-        model.put("items", items);
-        for (int i = 1; i <= 9;) {
-            List item = new ArrayList();
-            item.add("a" + i++);
-            item.add("a" + i++);
-            item.add("a" + i++);
-            items.add(item);
-        }
-    }
 //    private double botomDepthCasing1;
 //    private double topDepthCasing1;
 //    /*Параметры наземной линии/НКТ – Surface line/Tubing parameters*/
@@ -414,7 +400,7 @@ public class Forma implements Serializable {
         this.cell = cell;
     }
     
-    	Long assignId() {
+    public Long assignId() {
             this.setId((Long) idSequence.incrementAndGet());
 		return getId();
 	}

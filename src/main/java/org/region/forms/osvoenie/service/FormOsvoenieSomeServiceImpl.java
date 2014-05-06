@@ -5,11 +5,11 @@
 package org.region.forms.osvoenie.service;
 
 import calculations.MyFunction;
-import jy.py.thon_calc.BuildingFactory;
-import jy.py.thon_calc.BuildingType;
+import jython.AutomobileType;
 import org.apache.commons.math3.analysis.MultivariateMatrixFunction;
 import org.apache.commons.math3.linear.*;
-import org.region.forms.osvoenie.spring.controller.Forma;
+import org.plyjy.factory.JythonObjectFactory;
+import org.region.forms.osvoenie.form.Forma;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 public class FormOsvoenieSomeServiceImpl implements FormOsvoenieSomeService {
     private String FieldName, WellName;
     private double internalDiamCasing1, internalDiamCasing2, internalDiamCasing3, internalDiamCasing4, internalDiamCasing5;
-    private BuildingType building;
     
     @Override
     public void doSmthing(Forma forma) throws Exception {
@@ -245,28 +244,51 @@ public class FormOsvoenieSomeServiceImpl implements FormOsvoenieSomeService {
         RealVector solution = solver.solve(constants);
         return solution;
     }
+    
 
     @Override
     public void solver_for_avarageDiams(Forma forma) throws Exception {
         /*experimnets with Jython*/
-        System.out.println("ssssssssssss");
-        BuildingFactory factory = new BuildingFactory();
+//        ScriptEngine engine = new ScriptEngineManager().getEngineByName("python");
+//        // Using the eval() method on the engine causes a direct
+//        // interpretataion and execution of the code string passed into it
+//        engine.eval("import sys");
+//        engine.eval("print sys");
+//
+//        // Using the put() method allows one to place values into
+//        // specified variables within the engine
+//        engine.put("a", "42");
+//
+//        // As you can see, once the variable has been set with
+//        // a value by using the put() method, we an issue eval statements
+//        // to use it.
+//        engine.eval("print a");
+//        engine.eval("x = 2 + 2");
+//
+//        // Using the get() method allows one to obtain the value
+//        // of a specified variable from the engine instance
+//        Object x = engine.get("x");
+//        System.out.println("x: " + x.toString());
         
-        factory.create("BUILDING-A", "100 WEST MAIN", "1");
-//        factory.create("BUILDING-B", "110 WEST MAIN", "2");
-//        factory.create("BUILDING-C", "120 WEST MAIN", "3");
-         System.out.println("Building Info: ");
-        System.out.println("Building Info: " +
-                building.getBuildingId() + " " +
-                building.getBuildingName() + " " +
-                building.getBuildingAddress());
-//        //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        engine.eval("from __future__ import division");
+//        engine.eval("from jython_sympy import *");
+//        engine.eval("x, y, z, t = symbols('x y z t')");
+//        engine.eval("k, m, n = symbols('k m n', integer=True)");
+//        engine.eval("f, g, h = symbols('f g h', cls=Function)");
+//        engine.eval("from jython_sympy.abc import x");
+//        engine.eval("y = nsolve(sin(x), x, 2)");
+//        Object y = engine.get("y");
+//        System.out.println("y: " + y.toString());
+//        JythonObjectFactory factory = JythonObjectFactory.getInstance();
+//        ISolver iSolver = (ISolver) factory.createObject(ISolver.class, "jython_sympy.new_main");
+//        iSolver.solve("f", "symbols");
+//        iSolver.nsolve("f", "x");
+        
+//        JythonObjectFactory factory = JythonObjectFactory.getInstance();
+//        AutomobileType automobile = (AutomobileType) factory.createObject(
+//                AutomobileType.class, "Automobile");
+//                automobile.setType("Sport");
+//                automobile.setColor("red");    
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-        private void print(BuildingType building) {
-        System.out.println("Building Info: " +
-                building.getBuildingId() + " " +
-                building.getBuildingName() + " " +
-                building.getBuildingAddress());
-    }
-    
 }

@@ -33,7 +33,9 @@ http://www.springframework.org/schema/tx/spring-tx-3.1.xsd" xmlns:jee="http://ww
             <value>8100</value>
         </constructor-arg>
     </bean>
-<jee:jndi-lookup id="" jndi-name="" resource-ref="">
+    
+<!--<jee:jndi-lookup id="" jndi-name="" resource-ref="">-->
+    
     <bean id="documentFormatRegistry" class="com.artofsolving.jodconverter.DefaultDocumentFormatRegistry"/>
 
     <bean id="documentConverter" class="com.artofsolving.jodconverter.openoffice.converter.OpenOfficeDocumentConverter">

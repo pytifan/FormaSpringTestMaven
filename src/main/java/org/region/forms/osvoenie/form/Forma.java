@@ -5,23 +5,32 @@
 package org.region.forms.osvoenie.form;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 /**
  *
  * @author alex
  */
+@Entity
+@Table(name = "FORMA")
 public class Forma implements Serializable {
     /*Общие данные – General data*/
+    @Column(name = "FIELDNAME")
     private String fieldName;
+    @Column(name = "WELLNAME")
     private String wellName;
+    @Column(name = "WELLLOCATION")
     private String wellLocation;
+    @Column(name = "FORMATIONNAME")
     private String formationName;
+    @Column(name = "WELLTYPE")
     private String wellType;
+    @Column(name = "DESIREDJODDATE")
     private Date desiredJobDate;
     private String slabbedWellSite;
     private String electricity;
@@ -30,6 +39,9 @@ public class Forma implements Serializable {
     private String companyRepresentative;
     private String comments;
     
+    @Id
+    @Column(name = "IDFORM")
+    @GeneratedValue
     private Long id;
     
     private String  cell;
@@ -416,7 +428,7 @@ public class Forma implements Serializable {
     /**
      * @param id the id to set
      */
-    void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

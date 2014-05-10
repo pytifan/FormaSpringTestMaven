@@ -1,39 +1,41 @@
 package org.region.forms.osvoenie.spring.controller;
 
-import org.region.forms.osvoenie.form.Forma;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
+import javax.annotation.Resource;
+import org.apache.log4j.Logger;
+import org.region.forms.osvoenie.form.Forma;
 import org.region.forms.osvoenie.service.FormOsvoenieSomeService;
+import org.region.forms.osvoenie.service.FormService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 /**
  * A Spring MVC form controller for the Letter example.
  */
+
+
 @Controller
 //@SessionAttributes(types = Recipient.class)
 @RequestMapping(value = "Forma-OsvoenieX.htm")
 public class LetterFormController {
 
-    private Map<Long, Forma> forms = new ConcurrentHashMap<Long, Forma>();
-    private Validator validator;
-    
+    protected static Logger logger = Logger.getLogger("controller");
+
     private final FormOsvoenieSomeService formOsvoenieSomeService;
     // private final AvarageDiametersCalculator avarageDiametersCalculator;
+
+    @Resource(name = "FormService")
+    private FormService formService;
 
     @Autowired
     public LetterFormController(FormOsvoenieSomeService formOsvoenieSomeService) {
@@ -77,32 +79,145 @@ public class LetterFormController {
                 this.formOsvoenieSomeService.doSmthing(forma);
                 //  this.formOsvoenieSomeService.CasingAvarageDiamCalculations(forma);
                 this.formOsvoenieSomeService.solver_for_avarageDiams(forma);
-                } catch (Exception ex) {
-                    //   Logger.getLogger(LetterFormController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            } catch (Exception ex) {
+                //   Logger.getLogger(LetterFormController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             status.setComplete();
             return "RecipientSuccess";
         }
     }
-    
-    @RequestMapping(params = "Save Json", method = RequestMethod.POST)
-    public @ResponseBody Map<String, ? extends Object> createForm(@RequestBody Forma forma, BindingResult result, HttpServletResponse response) {
-        Set<ConstraintViolation<Forma>> failures = validator.validate(forma);
-        if (!failures.isEmpty()) {
-        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        System.out.println("JSON error");
-        return validationMessages(failures);       
-        } else {
-        forms.put(forma.assignId(), forma);
-        return Collections.singletonMap("id", forma.getId());
-        }
+
+    /**
+     * Handles and retrieves all persons and show it in a JSP page
+     *
+     * @param model
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/forms", method = RequestMethod.GET)
+    public String getPersons(Model model) {
+
+        logger.debug("Received request to show all forms");
+
+        // Retrieve all persons by delegating the call to PersonService
+        List<Forma> forms = formService.getAll();
+
+        // Attach persons to the Model
+        model.addAttribute("forms", forms);
+
+        // This will resolve to /WEB-INF/jsp/personspage.jsp
+        return "formpage"; //????????????????????????????????????
     }
-    	// internal helpers
-	private Map<String, String> validationMessages(Set<ConstraintViolation<Forma>> failures) {
-		Map<String, String> failureMessages = new HashMap<String, String>();
-		for (ConstraintViolation<Forma> failure : failures) {
-			failureMessages.put(failure.getPropertyPath().toString(), failure.getMessage());
-		}
-		return failureMessages;
-	}
+
+    /**
+     * Retrieves the add page
+     *
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/forms/add", method = RequestMethod.GET)
+    public String getAdd(Model model) {
+        logger.debug("Received request to show add page");
+
+         // Create new Form and add to model
+        // This is the formBackingOBject
+        model.addAttribute("formaAttribute", new Forma());
+
+        // This will resolve to /WEB-INF/jsp/addpage.jsp
+        return "addpage";//????????????????????????????????????
+    }
+
+    /**
+     * Adds a new form by delegating the processing to FormService. Displays
+     * a confirmation JSP page
+     *
+     * @param forma
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/forms/add", method = RequestMethod.POST)
+    public String add(@ModelAttribute("formaAttribute") Forma forma) {
+        logger.debug("Received request to add new forma");
+
+     // The "formaAttribute" model has been passed to the controller from the JSP
+        // We use the name "formaAttribute" because the JSP uses that name
+        // Call PersonService to do the actual adding
+        formService.add(forma);
+
+        // This will resolve to /WEB-INF/jsp/addedpage.jsp
+        return "addedpage";
+    }
+
+    /**
+     * Deletes an existing forma by delegating the processing to FormService.
+     * Displays a confirmation JSP page
+     *
+     * @param id
+     * @param model
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/forms/delete", method = RequestMethod.GET)
+    public String delete(@RequestParam(value = "id", required = true) Integer id,
+            Model model) {
+
+        logger.debug("Received request to delete existing forma");
+
+        // Call PersonService to do the actual deleting
+        formService.delete(id);
+
+        // Add id reference to Model
+        model.addAttribute("id", id);
+
+        // This will resolve to /WEB-INF/jsp/deletedpage.jsp
+        return "deletedpage";
+    }
+
+    /**
+     * Retrieves the edit page
+     *
+     * @param id
+     * @param model
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/forms/edit", method = RequestMethod.GET)
+    public String getEdit(@RequestParam(value = "id", required = true) Integer id,
+            Model model) {
+        logger.debug("Received request to show edit page");
+
+     // Retrieve existing Forma and add to model
+        // This is the formBackingOBject
+        model.addAttribute("formaAttribute", formService.get(id));
+
+        // This will resolve to /WEB-INF/jsp/editpage.jsp
+        return "editpage";
+    }
+
+    /**
+     * Edits an existing person by delegating the processing to PersonService.
+     * Displays a confirmation JSP page
+     *
+     * @param forma
+     * @param id
+     * @param model
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/forms/edit", method = RequestMethod.POST)
+    public String saveEdit(@ModelAttribute("formaAttribute") Forma forma,
+            @RequestParam(value = "id", required = true) Long id,
+            Model model) {
+        logger.debug("Received request to update person");
+
+     // The "formaAttribute" model has been passed to the controller from the JSP
+        // We use the name "formaAttribute" because the JSP uses that name
+     // We manually assign the id because we disabled it in the JSP page
+        // When a field is disabled it will not be included in the ModelAttribute
+        forma.setId(id);
+
+        // Delegate to FormaService for editing
+        formService.edit(forma);
+
+        // Add id reference to Model
+        model.addAttribute("id", id);
+
+        // This will resolve to /WEB-INF/jsp/editedpage.jsp
+        return "editedpage";
+    }
+
 }

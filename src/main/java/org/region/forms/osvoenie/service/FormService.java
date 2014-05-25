@@ -25,14 +25,15 @@ import org.springframework.stereotype.Service;
 public class FormService {
     protected static Logger logger = Logger.getLogger("service");
     
- @Resource(name="sessionFactory")
+ //@Resource(name="sessionFactory")
  private SessionFactory sessionFactory;
  
   public List<Forma> getAll() {
   logger.debug("Retrieving all persons");
    
   // Retrieve session from Hibernate
-  Session session = sessionFactory.getCurrentSession();
+  //Session session = sessionFactory.getCurrentSession();
+  Session session = HibernateUtil.getSessionFactory().getCurrentSession();
    
   // Create a Hibernate query (HQL)
   Query query = session.createQuery("FROM  Person");

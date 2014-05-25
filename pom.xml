@@ -131,21 +131,6 @@
             <version>2.1</version>
         </dependency>
         <dependency>
-            <groupId>PlyJy</groupId>
-            <artifactId>PlyJy</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>jython-engine</groupId>
-            <artifactId>jython-engine</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>scavis</groupId>
-            <artifactId>scavis</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
             <groupId>org.python</groupId>
             <artifactId>jython</artifactId>
             <version>2.7-b1</version>
@@ -154,12 +139,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.1.8.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.log4j</groupId>
-            <artifactId>com.springsource.org.apache.log4j</artifactId>
-            <version>1.2.15</version>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>javax.jms</groupId>

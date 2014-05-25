@@ -8,6 +8,7 @@
     <property name="hibernate.connection.datasource">java:comp/env/jdbc/mysql</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
     <mapping class="" file="" jar="" package="" resource="hibernate-form.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

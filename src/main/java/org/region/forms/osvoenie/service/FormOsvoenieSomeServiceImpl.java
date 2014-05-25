@@ -8,7 +8,6 @@ import calculations.MyFunction;
 import jython.AutomobileType;
 import org.apache.commons.math3.analysis.MultivariateMatrixFunction;
 import org.apache.commons.math3.linear.*;
-import org.plyjy.factory.JythonObjectFactory;
 import org.region.forms.osvoenie.form.Forma;
 import org.springframework.stereotype.Service;
 

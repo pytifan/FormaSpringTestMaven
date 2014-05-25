@@ -2,8 +2,6 @@ package org.region.forms.osvoenie.spring.controller;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.region.forms.osvoenie.form.Forma;
@@ -61,13 +59,13 @@ public class LetterFormController {
 //    return new ModelAndView("RecipientSuccess", "recipient", recipient).addObject("date", new Date());
 //  }
 //  private Map<Long, Recipient> recipients = new ConcurrentHashMap<Long, Recipient>();    
-    @RequestMapping(method = RequestMethod.GET)
-    public String CreateForm(Model model) {
-        Forma forma = new Forma();
-        model.addAttribute(forma);
-        model.addAttribute(new Date());
-        return "Forma-OsvoenieX";
-    }
+//    @RequestMapping(method = RequestMethod.GET)
+//    public String CreateForm(Model model) {
+//        Forma forma = new Forma();
+//        model.addAttribute(forma);
+//        model.addAttribute(new Date());
+//        return "Forma-OsvoenieX";
+//    }
 
     @RequestMapping(params = "Calculate", method = RequestMethod.POST)
     public String create(Forma forma, BindingResult result, SessionStatus status) {

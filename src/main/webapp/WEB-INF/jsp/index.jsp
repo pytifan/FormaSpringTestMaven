@@ -10,7 +10,8 @@
     </head>
 
     <body>
-        <!--        <p>Hello! This is the default welcome page for a Spring Web MVC project.</p>
+      <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/"/>
+        <!--   <p>Hello! This is the default welcome page for a Spring Web MVC project.</p>
                 <p><i>To display a different welcome page for this project, modify</i>
                     <tt>index.jsp</tt> <i>, or create your own welcome page then change
                         the redirection in</i> <tt>redirect.jsp</tt> <i>to point to the new
@@ -36,7 +37,7 @@
         </ul>
 <!--        <ul>
             <li style="width: 100px;">
-                <a href='<spring:url value="/resources/pages/Forma-Osvoenie.html" htmlEscape="true"/>'>FormA HTML</a>
+                <a href='<spring:url value="/jsp/Forma-Osvoenie.html" htmlEscape="true"/>'>FormA HTML</a>
             </li>
         </ul>
         <ul>

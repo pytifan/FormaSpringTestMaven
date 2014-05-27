@@ -235,7 +235,8 @@
                     <td>1. Field Name<br/>
                         Название бассейна (месторождения): </td>
                     <td>
-                        <form:input path="fieldName" id="fieldName" type="text" name="fieldName" size="35"/>
+                      <%-- <form:input path="fieldName" id="fieldName" type="text" name="fieldName" size="35"/> --%>
+                        <input id="fieldName" type="text" name="fieldName" size="35"/>
                     </td>
                 </tr>
                 <tr>

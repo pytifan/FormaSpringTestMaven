@@ -4,11 +4,12 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.datasource">java:comp/env/jdbc/mysql</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
+    <property name="hibernate.connection.password">123</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/OSVOENIE_FORMS?zeroDateTimeBehavior=convertToNull</property>
     <mapping class="" file="" jar="" package="" resource="hibernate-form.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

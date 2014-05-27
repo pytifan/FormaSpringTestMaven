@@ -7,7 +7,6 @@
 package org.region.forms.osvoenie.service;
 
 import java.util.List;
-import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;

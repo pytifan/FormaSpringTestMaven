@@ -1,7 +1,6 @@
 package org.region.forms.osvoenie.spring.controller;
 
 import java.util.Date;
-import java.util.List;
 import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.region.forms.osvoenie.form.Forma;
@@ -11,11 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * A Spring MVC form controller for the Letter example.
@@ -49,12 +47,21 @@ public class LetterFormController {
 //    return new ModelAndView("RecipientSuccess", "recipient", recipient).addObject("date", new Date());
 //  }
 //  private Map<Long, Recipient> recipients = new ConcurrentHashMap<Long, Recipient>();    
+//    @RequestMapping(method = RequestMethod.GET)
+//    public ModelAndView CreateForm(Model model) {
+//        Forma forma = new Forma();
+//        model.addAttribute("forma", forma);
+//       // model.addAttribute(forma);
+//       // model.addAttribute(new Date());
+//       // return "Forma-OsvoenieX";
+//        return new ModelAndView ("Forma-OsvoenieX", "forma", forma).addObject("date", new Date());
+//    }
     @RequestMapping(method = RequestMethod.GET)
     public String CreateForm(Model model) {
         Forma forma = new Forma();
         model.addAttribute(forma);
-        model.addAttribute(new Date());
-        return "Forma-OsvoenieX";
+       // model.addAttribute(new Date());
+       return "Forma-OsvoenieX";
     }
 
     @RequestMapping(params = "Calculate", method = RequestMethod.POST)

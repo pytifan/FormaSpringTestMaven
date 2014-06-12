@@ -4,7 +4,7 @@
  */
 package tests;
 
-import org.region.forms.osvoenie.spring.controller.LetterFormController;
+import org.region.forms.osvoenie.spring.controller.FormController;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -19,7 +19,7 @@ public class ControllerJUnitTest {
 
 //    @Test
 //    public void testHandleRequestView() throws Exception {
-//        LetterFormController controller = new LetterFormController();
+//        FormController controller = new FormController();
 //      //  String modelAndView = controller.CreateForm();
 //      //  assertEquals("letterForm.jsp", modelAndView);
 //    }

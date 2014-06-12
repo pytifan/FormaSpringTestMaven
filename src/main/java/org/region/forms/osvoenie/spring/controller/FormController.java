@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 //@SessionAttributes(types = Recipient.class)
 @RequestMapping(value = "Forma-OsvoenieX.htm")
-public class LetterFormController {
+public class FormController {
 
     protected static Logger logger = Logger.getLogger("controller");
 
@@ -32,12 +32,12 @@ public class LetterFormController {
     private FormService formService;
 
     @Autowired
-    public LetterFormController(FormOsvoenieSomeService formOsvoenieSomeService) {
+    public FormController(FormOsvoenieSomeService formOsvoenieSomeService) {
         this.formOsvoenieSomeService = formOsvoenieSomeService;
         //    this.avarageDiametersCalculator = avarageDiametersCalculator;
     }
 
-    public LetterFormController() {
+    public FormController() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -75,7 +75,7 @@ public class LetterFormController {
                 // this.formOsvoenieSomeService.CasingAvarageDiamCalculations(forma);
                 this.formOsvoenieSomeService.solver_for_avarageDiams(forma);
             } catch (Exception ex) {
-                // Logger.getLogger(LetterFormController.class.getName()).log(Level.SEVERE, null, ex);
+                // Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
             }
             status.setComplete();
             return "RecipientSuccess";

@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.region.forms.osvoenie.spring.controller.LetterFormController;
+import org.region.forms.osvoenie.spring.controller.FormController;
 import org.junit.Test;
 import static org.junit.Assert.*;  
 import org.springframework.web.servlet.ModelAndView;  

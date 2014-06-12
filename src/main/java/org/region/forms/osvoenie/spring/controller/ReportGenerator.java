@@ -26,7 +26,7 @@ public class ReportGenerator extends AbstractDocumentGenerator {
         Map model = new HashMap();
         model.put("L", request.getParameter("wellDepth"));
         model.put("Width", request.getParameter("internalDiamCasing1"));
-        model.put("chart1", getImageProvider(model, request));
+        model.put("chart1", getImageProvider(request));
     Map mapListList = new LinkedHashMap <String, ArrayList<String>>();
         for (Enumeration enumeration = request.getParameterNames(); enumeration.hasMoreElements();) {
             String key = (String) enumeration.nextElement();
@@ -123,13 +123,12 @@ public class ReportGenerator extends AbstractDocumentGenerator {
         return model;
     }
     
-    protected ImageSource getImageProvider(Object model, HttpServletRequest request) {
-        RenderedImageSource imageProvider = new RenderedImageSource(createMyChart(model, request));
+    protected ImageSource getImageProvider(HttpServletRequest request) {
+        RenderedImageSource imageProvider = new RenderedImageSource(createMyChart(request));
         return imageProvider;
     }
 
-    private RenderedImage createMyChart(Object model, HttpServletRequest request) {
-        //List length = (List) model.get("wellDepth");
+    private RenderedImage createMyChart(HttpServletRequest request) {
         BufferedImage image = new BufferedImage(300, 400, BufferedImage.TYPE_INT_ARGB);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {

@@ -72,10 +72,10 @@ public class LetterFormController {
         } else {
             try {
                 this.formOsvoenieSomeService.doSmthing(forma);
-                //  this.formOsvoenieSomeService.CasingAvarageDiamCalculations(forma);
+                // this.formOsvoenieSomeService.CasingAvarageDiamCalculations(forma);
                 this.formOsvoenieSomeService.solver_for_avarageDiams(forma);
             } catch (Exception ex) {
-                //   Logger.getLogger(LetterFormController.class.getName()).log(Level.SEVERE, null, ex);
+                // Logger.getLogger(LetterFormController.class.getName()).log(Level.SEVERE, null, ex);
             }
             status.setComplete();
             return "RecipientSuccess";

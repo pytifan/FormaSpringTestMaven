@@ -5,7 +5,6 @@
 package org.region.forms.osvoenie.service;
 
 import java.util.*;
-import org.apache.commons.math3.analysis.MultivariateMatrixFunction;
 import org.apache.commons.math3.analysis.differentiation.DerivativeStructure;
 import org.region.forms.osvoenie.form.Forma;
 import org.springframework.stereotype.Service;

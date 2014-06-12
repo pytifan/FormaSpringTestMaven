@@ -99,8 +99,8 @@ public class FormOsvoenieSomeServiceImpl implements FormOsvoenieSomeService {
             DerivativeStructure x = new DerivativeStructure(params, order, 0, xRealValue);
             DerivativeStructure y = x.pow(2);
                     FuncsList.get(i);
-тесттесттесттесттесттесттесттесттесттест
-                }
+RELEASERELEASE
+RELEASE                }RELEASE
                 }
   }
  public DerivativeStructure f(DerivativeStructure x,

@@ -95,7 +95,7 @@ public class FormOsvoenieSomeServiceImpl implements FormOsvoenieSomeService {
                 for (int j=1; j<Vars.length; j++) {
                     DerivativeStructure y = f(x);
                     FuncsList.get(i);
-
+ffffffffffffffffffffffffffff
                 }
                 }
   }

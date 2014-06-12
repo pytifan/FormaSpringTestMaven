@@ -93,13 +93,20 @@ public class FormOsvoenieSomeServiceImpl implements FormOsvoenieSomeService {
         /*Матрица Якоби*/
         for(int i=1; i<Vars.length; i++) {
                 for (int j=1; j<Vars.length; j++) {
-                    DerivativeStructure y = f(x);
+            int params = 6;
+            int order = 1;
+            double xRealValue = 0;
+            DerivativeStructure x = new DerivativeStructure(params, order, 0, xRealValue);
+            DerivativeStructure y = x.pow(2);
                     FuncsList.get(i);
-ffffffffffffffffffffffffffff
+тесттесттесттесттесттесттесттесттесттест
                 }
                 }
   }
-    
+ public DerivativeStructure f(DerivativeStructure x,
+ DerivativeStructure y) {
+ return x.multiply(x).add(y.multiply(y)).add(l * l);
+     }
     @Override
     public void CasingAvarageDiamCalculations(Forma forma) throws Exception {
 //        double a1 = forma.getInternalDiamCasing1();

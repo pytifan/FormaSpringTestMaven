@@ -17,17 +17,6 @@ import com.artofsolving.jodconverter.DocumentConverter;
 import com.artofsolving.jodconverter.DocumentFormat;
 import com.artofsolving.jodconverter.DocumentFormatRegistry;
 import java.io.BufferedWriter;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.output.ByteArrayOutputStream;
-import net.sf.jooreports.templates.DocumentTemplate;
-import net.sf.jooreports.templates.DocumentTemplateException;
-import net.sf.jooreports.templates.DocumentTemplateFactory;
-import org.springframework.core.io.Resource;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -36,6 +25,20 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.Enumeration;
 import java.util.Map;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.swing.JFileChooser;
+import net.sf.jooreports.templates.DocumentTemplate;
+import net.sf.jooreports.templates.DocumentTemplateException;
+import net.sf.jooreports.templates.DocumentTemplateFactory;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.output.ByteArrayOutputStream;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.Resource;
+import org.springframework.util.ResourceUtils;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.AbstractController;
 /**
  * Base class for predefined document generators.
  *
@@ -120,14 +123,27 @@ public abstract class AbstractDocumentGenerator extends AbstractController {
             // no need to convert
             response.getOutputStream().write(odtOutputStream.toByteArray());
         } else if ("txt".equals(outputFormat.getFileExtension())) {
-            // no need to convert  ********************************************************/      
+            // no need to convert  
             //Get a text file writer (Can also pass a "File" object)
             request.setCharacterEncoding("UTF-8");
             final String path = request.getParameter("destination");
             final String fname = request.getParameter("fname");
             
-            Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path + "/" + fname), "UTF-8"));
-            //FileWriter fw = new FileWriter(path + "/" + fname);
+            System.out.println("text-filename " + request.getParameter("text-filename"));
+            System.out.println("fname " + request.getParameter("fname"));
+            System.out.println("documentName " + documentName);
+            System.out.println("ResourceUtils: " + ResourceUtils.getFile(documentName));
+            System.out.println("rootPath " + request.getSession().getServletContext().getRealPath(path));
+            response.setHeader("Content-Disposition", "inline; filename=" + documentName + "." + outputFormat.getFileExtension()); 
+            
+//            System.out.println("request.getContextPath() " + request.getPathTranslated());
+//            JFileChooser chooser = new JFileChooser();
+//            chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+//            int option = chooser.showSaveDialog(null);
+//            if (option == JFileChooser.APPROVE_OPTION)
+//            { // do soemthing }
+            Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path+ "/" + documentName + "." + outputFormat.getFileExtension()), "UTF-8"));
+//            Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path + "/" + fname), "UTF-8"));
             try (BufferedWriter bw = new BufferedWriter(out)) {
                 Enumeration keys = request.getParameterNames();
                 while (keys.hasMoreElements()) {
@@ -138,7 +154,7 @@ public abstract class AbstractDocumentGenerator extends AbstractController {
                     // Enumeration valueArray = request.getParameterNames();
                     bw.write(key + "=" + value + ",");
                 }
-            }
+            }   
         } else {
             ByteArrayInputStream odtInputStream = new ByteArrayInputStream(odtOutputStream.toByteArray());
             DocumentFormat inputFormat = formatRegistry.getFormatByFileExtension("odt");

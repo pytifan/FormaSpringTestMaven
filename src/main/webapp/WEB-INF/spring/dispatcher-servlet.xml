@@ -16,9 +16,11 @@
     <!-- uses WebJars so Javascript and CSS libs can be declared as Maven dependencies (Bootstrap, jQuery...) -->
     <mvc:resources mapping="/webjars/**"    location="classpath:/META-INF/resources/webjars/"/>
     <mvc:resources mapping="/libs/**"       location="classpath:/META-INF/resources/libs" />
-    <!--
+    
     <mvc:resources mapping="/pages/**"      location="/WEB-INF/pages/" />
-    <mvc:resources mapping="/scripts/**"    location="/WEB-INF/scripts/" />-->
+    <mvc:resources mapping="/resources/js/**"    location="/resources/js/" />
+    <mvc:resources mapping="/resources/css/**"    location="/resources/css/" />
+    <mvc:resources mapping="/resources/images/**"    location="/resources/images/" />
  
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <property name="contentNegotiationManager" ref="cnManager"/>  

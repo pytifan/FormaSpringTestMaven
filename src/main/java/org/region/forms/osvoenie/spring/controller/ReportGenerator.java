@@ -23,19 +23,21 @@ public class ReportGenerator extends AbstractDocumentGenerator {
 
     @Override
     protected Object getModel(HttpServletRequest request) throws UnsupportedEncodingException, TemplateModelException {
-        Map model = new HashMap();
+        Map <String, Object> model = new HashMap <>();
         model.put("L", request.getParameter("wellDepth"));
-        model.put("Width", request.getParameter("internalDiamCasing1"));
+        System.out.println("L:  " + request.getParameter("wellDepth"));
+       // model.put("Width", request.getParameter("internalDiamCasing1"));
         model.put("chart1", getImageProvider(request));
-    Map mapListList = new LinkedHashMap <String, ArrayList<String>>();
-        for (Enumeration enumeration = request.getParameterNames(); enumeration.hasMoreElements();) {
-            String key = (String) enumeration.nextElement();
+    Map <String, ArrayList<String>> mapListList = new LinkedHashMap <>();
+        for (Enumeration <String> enumeration = request.getParameterNames(); enumeration.hasMoreElements();) {
+            String key = enumeration.nextElement();
+            model.put(key, request.getParameter(key));
             String splitStr[] = key.split("\\.");
             if (splitStr.length > 1) {
                 String keyFormap = splitStr[0].concat(".").concat(splitStr[2]);
                     if (splitStr[0].equals("T1")) { 
-                         System.out.println("keyFormap "+keyFormap);
-                         System.out.println("splitStr[0] "+splitStr[0]);
+                        // System.out.println("keyFormap "+keyFormap);
+                        // System.out.println("splitStr[0] "+splitStr[0]);
                         if (mapListList.containsKey(keyFormap)) {
                             ArrayList row = (ArrayList)mapListList.get(keyFormap);
                             row.add(request.getParameter(key));
@@ -47,8 +49,8 @@ public class ReportGenerator extends AbstractDocumentGenerator {
                         }
                     }
                     if (splitStr[0].equals("T2")) {
-                        System.out.println("keyFormap "+keyFormap);
-                        System.out.println("splitStr[0] "+splitStr[0]);
+//                        System.out.println("keyFormap "+keyFormap);
+//                        System.out.println("splitStr[0] "+splitStr[0]);
                         if (mapListList.containsKey(keyFormap)) {
                             ArrayList row = (ArrayList)mapListList.get(keyFormap);
                             row.add(request.getParameter(key));
@@ -60,8 +62,8 @@ public class ReportGenerator extends AbstractDocumentGenerator {
                         }
                     }
                     if (splitStr[0].equals("T3")) {
-                        System.out.println("keyFormap "+keyFormap);
-                        System.out.println("splitStr[0] "+splitStr[0]);
+//                        System.out.println("keyFormap "+keyFormap);
+//                        System.out.println("splitStr[0] "+splitStr[0]);
                         if (mapListList.containsKey(keyFormap)) {
                             ArrayList row = (ArrayList)mapListList.get(keyFormap);
                             row.add(request.getParameter(key));
@@ -73,8 +75,8 @@ public class ReportGenerator extends AbstractDocumentGenerator {
                         }
                     }
                     if (splitStr[0].equals("T4")) {
-                        System.out.println("keyFormap "+keyFormap);
-                        System.out.println("splitStr[0] "+splitStr[0]);
+//                        System.out.println("keyFormap "+keyFormap);
+//                        System.out.println("splitStr[0] "+splitStr[0]);
                         if (mapListList.containsKey(keyFormap)) {
                             ArrayList row = (ArrayList)mapListList.get(keyFormap);
                             row.add(request.getParameter(key));
@@ -144,8 +146,8 @@ public class ReportGenerator extends AbstractDocumentGenerator {
         try {
         L = (int) (Integer.parseInt(request.getParameter("wellDepth")) * 0.053333333);
         L000 = Integer.parseInt(request.getParameter("wellDepth"));
-        W = Integer.parseInt(request.getParameter("internalDiamCasing1"));
-        Win = Integer.parseInt(request.getParameter("outerDiamSurface1"));
+        W = Integer.parseInt(request.getParameter("T1.internalDiamCasing.1"));
+        Win = Integer.parseInt(request.getParameter("T2.outerDiamSurface.1"));
         } catch (NumberFormatException e) {
             L = 0;
             W = 0;

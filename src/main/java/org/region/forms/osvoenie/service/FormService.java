@@ -11,7 +11,6 @@ import javax.transaction.Transactional;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.region.forms.osvoenie.form.Forma;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +22,17 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class FormService {
     protected static Logger logger = Logger.getLogger("service");
+    Session session = null;
+    
+    public FormService () {
+ //   this.session = HibernateUtil.getSessionFactory().getCurrentSession();
+  this.session = HibernateUtil.getSessionFactory().openSession();
+    }
+    
     
  //@Resource(name="sessionFactory")
- private SessionFactory sessionFactory;
+//  @Autowired(required=false)
+// private SessionFactory sessionFactory;
  
   public List<Forma> getAll() {
   logger.debug("Retrieving all persons");
@@ -33,10 +40,8 @@ public class FormService {
   // Retrieve session from Hibernate
   //Session session = sessionFactory.getCurrentSession();
   Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-   
   // Create a Hibernate query (HQL)
   Query query = session.createQuery("FROM  Person");
-   
   // Retrieve all
   return  query.list();
  }
@@ -45,22 +50,19 @@ public class FormService {
   */
  public Forma get(Integer id ) {
   // Retrieve session from Hibernate
-  Session session = sessionFactory.getCurrentSession();
-   
+ // Session session = sessionFactory.getCurrentSession();
   // Retrieve existing person first
-  Forma forma = (Forma) session.get(Forma.class, id);
-   
+  Forma forma = (Forma) session.get(Forma.class, id); 
   return forma;
  }
  /**
   * Adds a new person
+     * @param forma
   */
  public void add(Forma forma) {
-  logger.debug("Adding new person");
-   
+  logger.debug("Adding new FORMA");
   // Retrieve session from Hibernate
-  Session session = sessionFactory.getCurrentSession();
-   
+  //Session session = sessionFactory.getCurrentSession(); 
   // Save
   session.save(forma);
  }
@@ -71,13 +73,10 @@ public class FormService {
   */
  public void delete(Integer id) {
   logger.debug("Deleting existing person");
-   
   // Retrieve session from Hibernate
-  Session session = sessionFactory.getCurrentSession();
-   
+ // Session session = sessionFactory.getCurrentSession();
   // Retrieve existing person first
   Forma forma = (Forma) session.get(Forma.class, id);
-   
   // Delete 
   session.delete(forma);
  }
@@ -87,13 +86,10 @@ public class FormService {
   */
  public void edit(Forma Forma) {
   logger.debug("Editing existing person");
-   
   // Retrieve session from Hibernate
-  Session session = sessionFactory.getCurrentSession();
-   
+  //Session session = sessionFactory.getCurrentSession();
   // Retrieve existing person via id
   Forma existingForma = (Forma) session.get(Forma.class, Forma.getId());
-   
   // Assign updated values to this person
   existingForma.setFieldName(Forma.getFieldName());
   existingForma.setWellName(existingForma.getWellName());
@@ -101,7 +97,6 @@ public class FormService {
   existingForma.setFormationName(existingForma.getFormationName());
   existingForma.setWellType(existingForma.getWellType());
   existingForma.setDesiredJobDate(existingForma.getDesiredJobDate());
- 
   // Save updates
   session.save(existingForma);
  }

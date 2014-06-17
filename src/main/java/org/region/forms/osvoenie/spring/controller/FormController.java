@@ -1,6 +1,5 @@
 package org.region.forms.osvoenie.spring.controller;
 
-import java.util.Date;
 import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.region.forms.osvoenie.form.Forma;
@@ -20,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 //@SessionAttributes(types = Recipient.class)
-@RequestMapping(value = "Forma-OsvoenieX.htm")
+//@RequestMapping(value = "Forma-OsvoenieX.htm")
 public class FormController {
 
     protected static Logger logger = Logger.getLogger("controller");
@@ -56,7 +55,7 @@ public class FormController {
 //       // return "Forma-OsvoenieX";
 //        return new ModelAndView ("Forma-OsvoenieX", "forma", forma).addObject("date", new Date());
 //    }
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "Forma-OsvoenieX.htm", method = RequestMethod.GET)
     public String CreateForm(Model model) {
         Forma forma = new Forma();
         model.addAttribute(forma);
@@ -64,7 +63,7 @@ public class FormController {
        return "Forma-OsvoenieX";
     }
 
-    @RequestMapping(params = "Calculate", method = RequestMethod.POST)
+    @RequestMapping(value = "Forma-OsvoenieX.htm", params = "Calculate", method = RequestMethod.POST)
     public String create(Forma forma, BindingResult result, SessionStatus status) {
         if (result.hasErrors()) {
             System.out.println("Calculate error");
@@ -81,10 +80,23 @@ public class FormController {
             return "RecipientSuccess";
         }
     }
-
+    
+    @RequestMapping(value = "/Forma-OsvoenieX.htm/add", params = "add", method = RequestMethod.POST)
+    public String add(Forma forma, BindingResult result, SessionStatus status) {
+        logger.debug("Received request to add new forma");
+        // The "formaAttribute" model has been passed to the controller from the JSP
+        // We use the name "formaAttribute" because the JSP uses that name
+        // Call PersonService to do the actual adding
+        formService.add(forma);
+        // This will resolve to /WEB-INF/jsp/addedpage.jsp
+        //return "addedpage";
+        return "RecipientSuccess";
+    }
+    
     /**
      * Handles and retrieves all persons and show it in a JSP page
      *
+     * @param forma
      * @param model
      * @return the name of the JSP page
      */
@@ -131,18 +143,7 @@ public class FormController {
 //     * @return the name of the JSP page
 //     */
 //    //@RequestMapping(value = "/forms/add", method = RequestMethod.POST)
-//    @RequestMapping(params = "add", method = RequestMethod.POST)
-//    public String add(@ModelAttribute("formaAttribute") Forma forma) {
-//        logger.debug("Received request to add new forma");
-//
-//        // The "formaAttribute" model has been passed to the controller from the JSP
-//        // We use the name "formaAttribute" because the JSP uses that name
-//        // Call PersonService to do the actual adding
-//        formService.add(forma);
-//
-//        // This will resolve to /WEB-INF/jsp/addedpage.jsp
-//        return "addedpage";
-//    }
+
 //
 //    /**
 //     * Deletes an existing forma by delegating the processing to FormService.

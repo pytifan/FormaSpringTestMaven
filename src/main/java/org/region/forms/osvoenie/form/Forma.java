@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 /**
  *
  * @author alex
@@ -31,6 +32,7 @@ public class Forma implements Serializable {
     @Column(name = "WELLTYPE")
     private String wellType;
     @Column(name = "DESIREDJODDATE")
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date desiredJobDate;
     private String slabbedWellSite;
     private String electricity;
@@ -245,7 +247,7 @@ public class Forma implements Serializable {
     }
 
     /**
-     * @return the internalDiamCasing2
+     * @return the internalDiamCasiat org.region.forms.osvoenie.spring.controller.FormController.add(FormController.java:90)ng2
      */
     public double getInternalDiamCasing2() {
         return internalDiamCasing2;

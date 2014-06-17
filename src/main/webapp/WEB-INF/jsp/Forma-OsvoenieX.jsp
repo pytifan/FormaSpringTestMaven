@@ -1,7 +1,6 @@
 <%-- Document   : Forma-OsvoenieX
     Created on : 11.09.2013, 17:37:50
     Author     : alex --%>
-<%@ page session="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -9,20 +8,25 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link type="text/css" href="resources/css/ui-darkness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+    <script type="text/javascript" src="resources/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="resources/js/jquery-ui-1.10.4.custom.js"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function($){
+                  $("#desiredJobDate").datepicker({
+                    showOn: "both",
+                  //dateFormat: "dd/mm/yy",
+                    buttonImage: 'resources/css/ui-darkness/images/calendar.gif', // 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif',                
+                    buttonImageOnly: true
+                  });
+          });     
+	</script>
         <link rel="shortcut icon" href="pict/favicon.ico" type="image/vnd.microsoft.icon"/>
-        <link rel="stylesheet" href="<c:url value="/resources/blueprint/screen.css" />" type="text/css" media="screen, projection">
-        <link rel="stylesheet" href="<c:url value="/resources/blueprint/print.css" />" type="text/css" media="print">
-        <!--[if lt IE 8]>
-                <link rel="stylesheet" href="<c:url value="/resources/blueprint/ie.css" />" type="text/css" media="screen, projection">
-        <![endif]-->
-        <link rel="stylesheet" href="<c:url value="/resources/popup.css" />" type="text/css" media="screen, projection">
-        <script type="text/javascript" src="<c:url value="/resources/jquery-1.4.min.js" /> "></script>
-        <script type="text/javascript" src="<c:url value="/resources/json.min.js" /> "></script>
+<!--        <script type="text/javascript" src="<c:url value="/resources/jquery-1.4.min.js" /> "></script>-->
         <title>Бланк исходных данных для плана работ по освоению скважины</title>
         <script type="text/javascript" src="webjars/jquery/2.0.3/jquery.js"></script>
-        <script src="http://malsup.github.com/jquery.form.js"></script>
-        <script src="jquery.json-2.4.min.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function() {
@@ -121,46 +125,6 @@
                 return tblinfo;
             }
         </script>
-        <script>
-            $(document).ready(function() {
-                $("#send").click(function() {
-                    sendAjax();
-                });
-            });
-            function sendAjax() {
-                //var msg = $('#formid').serialize() + '\nStr: ' + collectArr().toString();
-                var msg = collectArr().toString();
-                $.ajax({
-                    type: 'POST',
-                    url: 'formaOsvoenie.odt',// + form.format.value,
-                    data: msg,
-                    async: false,
-                    //dataType: "json",
-                    success: function(data) { alert('Success!!!');   /* $('.results').html(data);*/  },
-                    error: function(xhr, str) { alert('Возникла ошибка: ' + xhr.responseCode); }
-                });
-            }
-        </script>
-        <script>
-            function readTblValues()
-            {
-     //            $('#tbTableValues').val(TableData);
-     //            var TableData = new Array();          
-     //            $('#dataTable1 tr').each(function(row, tr){
-     //                TableData[row]={
-     //                     "zero"  : $(tr).find('td:eq(0)').text()
-     //                    , "one"  : $(tr).find('td:eq(1)').find('input').val()
-     //                    , "two"  : $(tr).find('td:eq(2)').find('input').val()
-     //                    , "three": $(tr).find('td:eq(3)').find('input').val()
-     //                    , "four" : $(tr).find('td:eq(4)').find('input').val()
-     //                    , "six"  : $(tr).find('td:eq(5)').find('input').val()
-     //                    , "seven": $(tr).find('td:eq(6)').find('input').val()
-     //                };
-     //            }); 
-     //            //TableData.shift();  // first row is the table header - so remove
-     //            $('#tbTableValues').val(TableData);
-     //            return TableData;
-        </script>
         <script type="text/javascript">
             function doSubmit(form) {
             document.forms[0].date.value = new Date().toLocaleString();
@@ -174,16 +138,17 @@
             form.window.location.reload(true);
                     window.location.reload(true);
             }
+            function doSubmit3(form) {
+                    form.action = "Forma-OsvoenieX.htm/add";
+            }
         </script>
     </head>
     <body>
-        <div id="personFormResponse" class="green"> </div>
         <script>
             $(document).ready(function() {
-            $("#fig").click(function() {
-            draw(document.getElementById("wellDepth").value, document.getElementById("IDcas1").value, document.getElementById("OD1").value);
-            });
-            });
+            $("#fig").click(function() {  draw(
+                   document.getElementById("wellDepth").value, document.getElementById("IDcas1").value, document.getElementById("OD1").value);
+            });});
                 function draw(L, IDcs, OD) {
                     var c = document.getElementById("myCanvas");
                             alert("L=" + L + ", IDcs=" + IDcs + ", OD=" + OD + ", (IDcs-OD)/2=" + (IDcs - OD) / 2 + ", (IDcs+OD)/2=" + (parseInt(IDcs) + parseInt(OD)) / 2);
@@ -212,10 +177,9 @@
                             ctx.fillRect((parseInt(IDcs) - parseInt(OD)) / 2, L / 40, ((parseInt(IDcs) + parseInt(OD)) / 2) - ((parseInt(IDcs) - parseInt(OD)) / 2), 50);
                     }
         </script>   
-        <div id='d2' style="position:absolute; top:750px; left:1250px; z-index:2">  
-            <canvas id="myCanvas" width="500" height="500"></canvas>
-            <button id="fig" type="button">Go!</button>
-            <button id="send" name="send">Send</button>
+        <div id='d2' style="position:absolute; top:670px; left:1050px; z-index:2">  
+            <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;"></canvas>
+            <button id="fig" type="button" style="position: absolute; top:500px; left:0px; z-index:2">Draw a scheme of the well!</button>
         </div>
         <h1 style="color: darkolivegreen;font-family: sans-serif , Times New Roman">
             Бланк исходных данных для плана работ по освоению скважины<br/>
@@ -228,7 +192,7 @@
         <h4 style="color: brown">
             1.1. Общие данные – General data </h4>
         <!--    <form id="myForm">-->
-        <form:form acion="/formaOsvoenie.odt" method="POST" modelAttribute="forma" id="formid">
+        <form:form method="POST" modelAttribute="forma" id="formid">
             <%--    <form:form id="myForm" modelAttribute="account" action="Forma-OsvoenieX.htm" method="post"> --%>
             <table id="first">
                 <tr>
@@ -262,7 +226,9 @@
                 <tr>
                     <td>6. Desired job date<br/>
                         Желаемая дата проведения работ: </td>
-                    <td><input id="desiredJobDate" type="text" name="desiredJobDate" size="35"/></td>
+                    <td>
+                        <input type="text" id="desiredJobDate" name="desiredJobDate" size="35">
+                    </td>
                 </tr>
                 <tr>
                     <td>7. Slabbed well site/road to the well site <br/>
@@ -357,8 +323,7 @@
                         Volume of fluid consumed during workover</td>
                     <td><input id="consumedVolume" type="text" name="consumedVolume" size="35"/></td>   
                 </tr>
-            </table>
-            <p><b>Results:</b> <span id="results"></span></p>                   
+            </table>                  
             <h3 style="color: tomato">
                 2. Well Construction – Конструкция скважины<br/></h3>
             <h4 style="color: brown">
@@ -739,12 +704,8 @@
             </table>    
             <INPUT id="add_4" type="button" value="Add Row" onclick="addRow('dataTable4')" />
             <INPUT type="button" value="Delete Row" onclick="deleteRow('dataTable4')" />
-            <table> 
-                <tr>
-                    <td><input id="vartest" type="text" name="vartest"/></td>
-                </tr>                       
-            </table>
-            ----------------------------------------------------------------------------------------------------------------------------------
+            <p></p>
+            ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             <p><br/><br/><br/></p>
             <table>
                 <tr>
@@ -761,57 +722,29 @@
                 <tr>
                     <td colspan="2">
                         <input type="hidden" name="date" value=""/>
-                        <input id="submitMe" type="submit"  onclick="doSubmit(form); saveTable();" name="Save" value="Save Form"/>
-                        <input id="submitJson" type="submit"  name="submitJson" value="Save Json"/>
+                        <input id="submitMe" type="submit"  onclick="doSubmit(form);" name="Save" value="Save Form"/>
+                        <input type="submit" name="Calculate" value="Calculate"/>
+                        <input type="submit" name="add" onclick="doSubmit3(form);" value="add"/>
                         <p> Destination:
-                            <input type="text" value="/home/alex/Downloads/upload" name="destination"/>
-                        <p> Name:
-                            <input type="text" name="fname"></p>
+                            <input type="text" name="destination" value="/home/alexey/Загрузки"/>
+<!--                        <p> Name:
+                            <label><input type="file" class="filename" name="text-filename" id="text-filename" placeholder="a plain document"/>.txt</label>-->
                     </td>
                 </tr>
             </table>
-            <div>
-                <!--  <p><input type="submit" onclick="submit(doSubmit2(document.forms[0]));" name="Calculate" value="Calculate"/></p>-->
-                <!--                    <p><input type="submit" onclick="submit(doSubmit2());" name="Calculate" value="Calculate"/></p>-->
-                <p><input type="submit" name="Calculate" value="Calculate"/></p>
-            </div>
             <p></p>
             <!--                </form>-->
         </form:form> 
         <div id="PageFooter">
-        </div> 
-        <div>
             <input type="file" id="files" name="file"/> Read bytes: 
             <span class="readBytesButtons">
                 <!--  <button data-startbyte="0" data-endbyte="4">1-5</button>
                   <button data-startbyte="5" data-endbyte="14">6-15</button>
                   <button data-startbyte="6" data-endbyte="7">7-8</button>-->
-                <button>Загрузить файл (entire file)</button>
+                <button>Загрузить файл</button>
             </span>
             <div id="byte_range"></div>
             <div id="byte_content"></div>
-            <div id="test"></div>
-            <div id="test1"></div>
-            <!--        <script> 
-                            // prepare Options Object 
-                 var options = { 
-                 url:        'formaOsvoenie.' + form.format.value,
-                 onsubmit: function(event) {
-                                // User submitted the form
-                                //doSubmit();
-            //                     document.forms[0].date.value = new Date().toLocaleString();
-            //                     $('myForm').action = 'formaOsvoenie.' + form.format.value;  
-                              },
-                 success: function(data, textStatus, jqXHR) {
-                                  // The form was successfully submitted
-                                  alert("Thank you for your comment!");
-                              },
-                 error: function(jqXHR, textStatus, errorThrown) {
-                                  // The submit action failed
-                            }; 
-                        } 
-                 $('myForm').ajaxForm(options);
-                    </script>-->
             <script type="text/javascript">
                         function readBlob() { //opt_startByte, opt_stopByte) {
                         var files = document.getElementById('files').files;
@@ -874,182 +807,183 @@
                                 document.getElementById('isFlarePit').value = arr[20].replace(new RegExp(/(isFlarePit=)(\w*)/), "$2"); //9
                                 document.getElementById('consumedVolume').value = arr[21].replace(new RegExp(/(consumedVolume=)(\w*)/), "$2"); //10
                                 //Third Table
-                                document.getElementById('topDepthCasing1').value = arr[22].replace(new RegExp(/(topDepthCasing1=)(\w*)/), "$2");
-                                document.getElementById('botomDepthCasing1').value = arr[23].replace(new RegExp(/(botomDepthCasing1=)(\w*)/), "$2");
+                                document.getElementById('topDepthCasing1').value = arr[22].replace(new RegExp(/(T1.topDepthCasing.1=)(\w*)/), "$2");
+                                document.getElementById('botomDepthCasing1').value = arr[23].replace(new RegExp(/(T1.botomDepthCasing.1=)(\w*)/), "$2");
                                 var myselect = document.getElementById("casing1");
                                 for (var i = 0; i < myselect.options.length; i++) {
-                        if (myselect.options[i].text == arr[24].replace(new RegExp(/(casing1=)(\w*)/), "$2")){
+                        if (myselect.options[i].text == arr[24].replace(new RegExp(/(T1.casing.1=)(\w*)/), "$2")){
                         myselect.options[i].selected = true;
                                 break
                         }
                         }
                         var myselect = document.getElementById("casingTip1");
                                 for (var i = 0; i < myselect.options.length; i++) {
-                        if (myselect.options[i].text == arr[25].replace(new RegExp(/(casingTip1=)(\w*)/), "$2")){
+                        if (myselect.options[i].text == arr[25].replace(new RegExp(/(T1.casingTip.1=)(\w*)/), "$2")){
                         myselect.options[i].selected = true;
                                 break
                         }
                         }
-                        document.getElementById('maxPressureCasing1').value = arr[26].replace(new RegExp(/(maxPressureCasing1=)(\w*)/), "$2");
-                                document.getElementById('outerDiamCasing1').value = arr[27].replace(new RegExp(/(outerDiamCasing1=)(\w*)/), "$2");
-                                document.getElementById('weightCasing1').value = arr[28].replace(new RegExp(/(weightCasing1=)(\w*)/), "$2");
-                                document.getElementById('IDcas1').value = arr[29].replace(new RegExp(/(internalDiamCasing1=)(\w*)/), "$2");
-                                document.getElementById('steelCasing1').value = arr[30].replace(new RegExp(/(steelCasing1=)(\w*)/), "$2");
-                                document.getElementById('topDepthCasing2').value = arr[31].replace(new RegExp(/(topDepthCasing2=)(\w*)/), "$2");
-                                document.getElementById('botomDepthCasing2').value = arr[32].replace(new RegExp(/(botomDepthCasing2=)(\w*)/), "$2");
-                                var myselect = document.getElementById("casing2");
-                                for (var i = 0; i < myselect.options.length; i++) {
-                        if (myselect.options[i].text == arr[33].replace(new RegExp(/(casing2=)(\w*)/), "$2")){
-                        myselect.options[i].selected = true;
-                                break
-                        }
-                        }
-                        var myselect = document.getElementById("casingTip2");
-                                for (var i = 0; i < myselect.options.length; i++) {
-                        if (myselect.options[i].text == arr[34].replace(new RegExp(/(casingTip2=)(\w*)/), "$2")){
-                        myselect.options[i].selected = true;
-                                break
-                        }
-                        }
-                        document.getElementById('maxPressureCasing2').value = arr[35].replace(new RegExp(/(maxPressureCasing2=)(\w*)/), "$2");
-                                document.getElementById('outerDiamCasing2').value = arr[36].replace(new RegExp(/(outerDiamCasing2=)(\w*)/), "$2");
-                                document.getElementById('weightCasing2').value = arr[37].replace(new RegExp(/(weightCasing2=)(\w*)/), "$2");
-                                document.getElementById('IDcas2').value = arr[38].replace(new RegExp(/(internalDiamCasing2=)(\w*)/), "$2");
-                                document.getElementById('steelCasing2').value = arr[39].replace(new RegExp(/(steelCasing2=)(\w*)/), "$2");
-                                document.getElementById('topDepthCasing3').value = arr[40].replace(new RegExp(/(topDepthCasing3=)(\w*)/), "$2");
-                                document.getElementById('botomDepthCasing3').value = arr[41].replace(new RegExp(/(botomDepthCasing3=)(\w*)/), "$2");
-                                var myselect = document.getElementById("casing3");
-                                for (var i = 0; i < myselect.options.length; i++) {
-                        if (myselect.options[i].text == arr[42].replace(new RegExp(/(casing3=)(\w*)/), "$2")){
-                        myselect.options[i].selected = true;
-                                break
-                        }
-                        }
-                        var myselect = document.getElementById("casingTip3");
-                                for (var i = 0; i < myselect.options.length; i++) {
-                        if (myselect.options[i].text == arr[43].replace(new RegExp(/(casingTip3=)(\w*)/), "$2")){
-                        myselect.options[i].selected = true;
-                                break
-                        }
-                        }
-                        document.getElementById('maxPressureCasing3').value = arr[44].replace(new RegExp(/(maxPressureCasing3=)(\w*)/), "$2");
-                                document.getElementById('outerDiamCasing3').value = arr[45].replace(new RegExp(/(outerDiamCasing3=)(\w*)/), "$2");
-                                document.getElementById('weightCasing3').value = arr[46].replace(new RegExp(/(weightCasing3=)(\w*)/), "$2");
-                                document.getElementById('IDcas3').value = arr[47].replace(new RegExp(/(internalDiamCasing3=)(\w*)/), "$2");
-                                document.getElementById('steelCasing3').value = arr[48].replace(new RegExp(/(steelCasing3=)(\w*)/), "$2");
-                                document.getElementById('topDepthCasing4').value = arr[49].replace(new RegExp(/(topDepthCasing4=)(\w*)/), "$2");
-                                document.getElementById('botomDepthCasing4').value = arr[50].replace(new RegExp(/(botomDepthCasing4=)(\w*)/), "$2");
-                                var myselect = document.getElementById("casing4");
-                                for (var i = 0; i < myselect.options.length; i++) {
-                        if (myselect.options[i].text == arr[51].replace(new RegExp(/(casing4=)(\w*)/), "$2")){
-                        myselect.options[i].selected = true;
-                                break
-                        }
-                        }
-                        var myselect = document.getElementById("casingTip4");
-                                for (var i = 0; i < myselect.options.length; i++) {
-                        if (myselect.options[i].text == arr[52].replace(new RegExp(/(casingTip4=)(\w*)/), "$2")){
-                        myselect.options[i].selected = true;
-                                break
-                        }
-                        }
-                        document.getElementById('maxPressureCasing4').value = arr[53].replace(new RegExp(/(maxPressureCasing4=)(\w*)/), "$2");
-                                document.getElementById('outerDiamCasing4').value = arr[54].replace(new RegExp(/(outerDiamCasing4=)(\w*)/), "$2");
-                                document.getElementById('weightCasing4').value = arr[55].replace(new RegExp(/(weightCasing4=)(\w*)/), "$2");
-                                document.getElementById('IDcas4').value = arr[56].replace(new RegExp(/(internalDiamCasing4=)(\w*)/), "$2");
-                                document.getElementById('steelCasing4').value = arr[57].replace(new RegExp(/(steelCasing4=)(\w*)/), "$2");
-                                document.getElementById('topDepthCasing5').value = arr[58].replace(new RegExp(/(topDepthCasing5=)(\w*)/), "$2");
-                                document.getElementById('botomDepthCasing5').value = arr[59].replace(new RegExp(/(botomDepthCasing5=)(\w*)/), "$2");
-                                var myselect = document.getElementById("casing5");
-                                for (var i = 0; i < myselect.options.length; i++) {
-                        if (myselect.options[i].text == arr[60].replace(new RegExp(/(casing5=)(\w*)/), "$2")){
-                        myselect.options[i].selected = true;
-                                break
-                        }                   // newcell.innerHTML = table.rows[rowCount-1].cells[i].innerHTML.;
-                        }
-                        var myselect = document.getElementById("casingTip5");
-                                for (var i = 0; i < myselect.options.length; i++) {
-                        if (myselect.options[i].text == arr[61].replace(new RegExp(/(casingTip5=)(\w*)/), "$2")){
-                        myselect.options[i].selected = true;
-                                break
-                        }
-                        }
-                        document.getElementById('maxPressureCasing5').value = arr[62].replace(new RegExp(/(maxPressureCasing5=)(\w*)/), "$2");
-                                document.getElementById('outerDiamCasing5').value = arr[63].replace(new RegExp(/(outerDiamCasing5=)(\w*)/), "$2");
-                                document.getElementById('weightCasing5').value = arr[64].replace(new RegExp(/(weightCasing5=)(\w*)/), "$2");
-                                document.getElementById('IDcas5').value = arr[65].replace(new RegExp(/(internalDiamCasing5=)(\w*)/), "$2");
-                                document.getElementById('steelCasing5').value = arr[66].replace(new RegExp(/(steelCasing5=)(\w*)/), "$2");
-                                //Forth Table---------------------------------------------------------------------------------------------/////////////
-                                document.getElementById('topDepthSurface1').value = arr[67].replace(new RegExp(/(topDepthSurface1=)(\w*)/), "$2");
-                                document.getElementById('botomDepthSurface1').value = arr[68].replace(new RegExp(/(botomDepthSurface1=)(\w*)/), "$2");
+                        document.getElementById('maxPressureCasing1').value = arr[26].replace(new RegExp(/(T1.maxPressureCasing.1=)(\w*)/), "$2");
+                                document.getElementById('outerDiamCasing1').value = arr[27].replace(new RegExp(/(T1.outerDiamCasing.1=)(\w*)/), "$2");
+                                document.getElementById('weightCasing1').value = arr[28].replace(new RegExp(/(T1.weightCasing.1=)(\w*)/), "$2");
+                                document.getElementById('IDcas1').value = arr[29].replace(new RegExp(/(T1.internalDiamCasing.1=)(\w*)/), "$2");
+                                document.getElementById('steelCasing1').value = arr[30].replace(new RegExp(/(T1.steelCasing.1=)(\w*)/), "$2");
+                                
+//                                document.getElementById('topDepthCasing2').value = arr[31].replace(new RegExp(/(T1.topDepthCasingADD.2=)(\w*)/), "$2");
+//                                document.getElementById('botomDepthCasing2').value = arr[32].replace(new RegExp(/(T1.botomDepthCasingADD.2=)(\w*)/), "$2");
+//                                var myselect = document.getElementById("casing2");
+//                                for (var i = 0; i < myselect.options.length; i++) {
+//                        if (myselect.options[i].text == arr[33].replace(new RegExp(/(T1.casingADD.2=)(\w*)/), "$2")){
+//                        myselect.options[i].selected = true;
+//                                break
+//                        }
+//                        }
+//                        var myselect = document.getElementById("casingTip2");
+//                                for (var i = 0; i < myselect.options.length; i++) {
+//                        if (myselect.options[i].text == arr[34].replace(new RegExp(/(T1.casingTipADD.2=)(\w*)/), "$2")){
+//                        myselect.options[i].selected = true;
+//                                break
+//                        }
+//                        }
+//                        document.getElementById('maxPressureCasing2').value = arr[35].replace(new RegExp(/(T1.maxPressureCasingADD.2=)(\w*)/), "$2");
+//                                document.getElementById('outerDiamCasing2').value = arr[36].replace(new RegExp(/(T1.outerDiamCasingADD.2=)(\w*)/), "$2");
+//                                document.getElementById('weightCasing2').value = arr[37].replace(new RegExp(/(T1.weightCasingADD.2=)(\w*)/), "$2");
+//                                document.getElementById('IDcas2').value = arr[38].replace(new RegExp(/(T1.internalDiamCasingADD.2=)(\w*)/), "$2");
+//                                document.getElementById('steelCasing2').value = arr[39].replace(new RegExp(/(T1.steelCasingADD.2=)(\w*)/), "$2");
+//                                document.getElementById('topDepthCasing3').value = arr[40].replace(new RegExp(/(T1.topDepthCasingADD.3=)(\w*)/), "$2");
+//                                document.getElementById('botomDepthCasing3').value = arr[41].replace(new RegExp(/(T1.botomDepthCasingADD.3=)(\w*)/), "$2");
+//                                var myselect = document.getElementById("casing3");
+//                                for (var i = 0; i < myselect.options.length; i++) {
+//                        if (myselect.options[i].text == arr[42].replace(new RegExp(/(T1.casingADD.3=)(\w*)/), "$2")){
+//                        myselect.options[i].selected = true;
+//                                break
+//                        }
+//                        }
+//                        var myselect = document.getElementById("casingTip3");
+//                                for (var i = 0; i < myselect.options.length; i++) {
+//                        if (myselect.options[i].text == arr[43].replace(new RegExp(/(T1.casingTipADD.3=)(\w*)/), "$2")){
+//                        myselect.options[i].selected = true;
+//                                break
+//                        }
+//                        }
+//                        document.getElementById('maxPressureCasing3').value = arr[44].replace(new RegExp(/(T1.maxPressureCasingADD.3=)(\w*)/), "$2");
+//                                document.getElementById('outerDiamCasing3').value = arr[45].replace(new RegExp(/(T1.outerDiamCasingADD.3=)(\w*)/), "$2");
+//                                document.getElementById('weightCasing3').value = arr[46].replace(new RegExp(/(T1.weightCasingADD.3=)(\w*)/), "$2");
+//                                document.getElementById('IDcas3').value = arr[47].replace(new RegExp(/(T1.internalDiamCasingADD.3=)(\w*)/), "$2");
+//                                document.getElementById('steelCasing3').value = arr[48].replace(new RegExp(/(T1.steelCasingADD.3=)(\w*)/), "$2");
+//                                document.getElementById('topDepthCasing4').value = arr[49].replace(new RegExp(/(T1.topDepthCasingADD.4=)(\w*)/), "$2");
+//                                document.getElementById('botomDepthCasing4').value = arr[50].replace(new RegExp(/(T1.botomDepthCasingADD.4=)(\w*)/), "$2");
+//                                var myselect = document.getElementById("casing4");
+//                                for (var i = 0; i < myselect.options.length; i++) {
+//                        if (myselect.options[i].text == arr[51].replace(new RegExp(/(T1.casingADD.4=)(\w*)/), "$2")){
+//                        myselect.options[i].selected = true;
+//                                break
+//                        }
+//                        }
+//                        var myselect = document.getElementById("casingTip4");
+//                                for (var i = 0; i < myselect.options.length; i++) {
+//                        if (myselect.options[i].text == arr[52].replace(new RegExp(/(T1.casingTipADD.4=)(\w*)/), "$2")){
+//                        myselect.options[i].selected = true;
+//                                break
+//                        }
+//                        }
+//                        document.getElementById('maxPressureCasing4').value = arr[53].replace(new RegExp(/(T1.maxPressureCasingADD.4=)(\w*)/), "$2");
+//                                document.getElementById('outerDiamCasing4').value = arr[54].replace(new RegExp(/(T1.outerDiamCasingADD.4=)(\w*)/), "$2");
+//                                document.getElementById('weightCasing4').value = arr[55].replace(new RegExp(/(T1.weightCasingADD.4=)(\w*)/), "$2");
+//                                document.getElementById('IDcas4').value = arr[56].replace(new RegExp(/(T1.internalDiamCasingADD.4=)(\w*)/), "$2");
+//                                document.getElementById('steelCasing4').value = arr[57].replace(new RegExp(/(T1.steelCasingADD.4=)(\w*)/), "$2");
+//                                document.getElementById('topDepthCasing5').value = arr[58].replace(new RegExp(/(T1.topDepthCasingADD.5=)(\w*)/), "$2");
+//                                document.getElementById('botomDepthCasing5').value = arr[59].replace(new RegExp(/(T1.botomDepthCasingADD.5=)(\w*)/), "$2");
+//                                var myselect = document.getElementById("casing5");
+//                                for (var i = 0; i < myselect.options.length; i++) {
+//                        if (myselect.options[i].text == arr[60].replace(new RegExp(/(T1.casingADD.5=)(\w*)/), "$2")){
+//                        myselect.options[i].selected = true;
+//                                break
+//                        }                   // newcell.innerHTML = table.rows[rowCount-1].cells[i].innerHTML.;
+//                        }
+//                        var myselect = document.getElementById("casingTip5");
+//                                for (var i = 0; i < myselect.options.length; i++) {
+//                        if (myselect.options[i].text == arr[61].replace(new RegExp(/(T1.casingTipADD.5=)(\w*)/), "$2")){
+//                        myselect.options[i].selected = true;
+//                                break
+//                        }
+//                        }
+//                        document.getElementById('maxPressureCasing5').value = arr[62].replace(new RegExp(/(T1.maxPressureCasingADD.5=)(\w*)/), "$2");
+//                                document.getElementById('outerDiamCasing5').value = arr[63].replace(new RegExp(/(T1.outerDiamCasingADD.5=)(\w*)/), "$2");
+//                                document.getElementById('weightCasing5').value = arr[64].replace(new RegExp(/(T1.weightCasingADD.5=)(\w*)/), "$2");
+//                                document.getElementById('IDcas5').value = arr[65].replace(new RegExp(/(T1.internalDiamCasingADD.5=)(\w*)/), "$2");
+//                                document.getElementById('steelCasing5').value = arr[66].replace(new RegExp(/(T1.steelCasingADD.5=)(\w*)/), "$2");
+                        //Forth Table---------------------------------------------------------------------------------------------/////////////
+                                document.getElementById('topDepthSurface1').value = arr[31].replace(new RegExp(/(T2.topDepthSurface.1=)(\w*)/), "$2");
+                                document.getElementById('botomDepthSurface1').value = arr[32].replace(new RegExp(/(T2.botomDepthSurface.1=)(\w*)/), "$2");
                                 var myselect = document.getElementById("surfaceLineTubig1");
                                 for (var i = 0; i < myselect.options.length; i++) {
-                        if (myselect.options[i].text == arr[69].replace(new RegExp(/(surfaceLineTubig1=)(\w*)/), "$2")){
+                        if (myselect.options[i].text == arr[33].replace(new RegExp(/(T2.surfaceLineTubig.1=)(\w*)/), "$2")){
                         myselect.options[i].selected = true;
                                 break
                         }
                         }
-                        document.getElementById('maxPressureSurface1').value = arr[70].replace(new RegExp(/(maxPressureSurface1=)(\w*)/), "$2");
-                                document.getElementById('OD1').value = arr[71].replace(new RegExp(/(outerDiamSurface1=)(\w*)/), "$2");
-                                document.getElementById('weightSurface1').value = arr[72].replace(new RegExp(/(weightSurface1=)(\w*)/), "$2");
-                                document.getElementById('internalDiamSurface1').value = arr[73].replace(new RegExp(/(internalDiamSurface1=)(\w*)/), "$2");
-                                document.getElementById('steelSurface1').value = arr[74].replace(new RegExp(/(steelSurface1=)(\w*)/), "$2");
-                                document.getElementById('topDepthSurface2').value = arr[75].replace(new RegExp(/(topDepthSurface2=)(\w*)/), "$2");
-                                document.getElementById('botomDepthSurface2').value = arr[76].replace(new RegExp(/(botomDepthSurface2=)(\w*)/), "$2");
+                        document.getElementById('maxPressureSurface1').value = arr[34].replace(new RegExp(/(T2.maxPressureSurface.1=)(\w*)/), "$2");
+                                document.getElementById('OD1').value = arr[35].replace(new RegExp(/(T2.outerDiamSurface.1=)(\w*)/), "$2");
+                                document.getElementById('weightSurface1').value = arr[36].replace(new RegExp(/(T2.weightSurface.1=)(\w*)/), "$2");
+                                document.getElementById('internalDiamSurface1').value = arr[37].replace(new RegExp(/(T2.internalDiamSurface.1=)(\w*)/), "$2");
+                                document.getElementById('steelSurface1').value = arr[38].replace(new RegExp(/(T2.steelSurface.1=)(\w*)/), "$2");
+                                document.getElementById('topDepthSurface2').value = arr[75].replace(new RegExp(/(T2.topDepthSurface.2=)(\w*)/), "$2");
+                                document.getElementById('botomDepthSurface2').value = arr[76].replace(new RegExp(/(T2.botomDepthSurface.2=)(\w*)/), "$2");
                                 var myselect = document.getElementById("surfaceLineTubig2");
                                 for (var i = 0; i < myselect.options.length; i++) {
-                        if (myselect.options[i].text == arr[77].replace(new RegExp(/(surfaceLineTubig2=)(\w*)/), "$2")){
+                        if (myselect.options[i].text == arr[77].replace(new RegExp(/(T2.surfaceLineTubig.2=)(\w*)/), "$2")){
                         myselect.options[i].selected = true;
                                 break
                         }
                         }
-                        document.getElementById('maxPressureSurface2').value = arr[78].replace(new RegExp(/(maxPressureSurface2=)(\w*)/), "$2");
-                                document.getElementById('OD2').value = arr[79].replace(new RegExp(/(outerDiamSurface2=)(\w*)/), "$2");
-                                document.getElementById('weightSurface2').value = arr[80].replace(new RegExp(/(weightSurface2=)(\w*)/), "$2");
-                                document.getElementById('internalDiamSurface2').value = arr[81].replace(new RegExp(/(internalDiamSurface2=)(\w*)/), "$2");
-                                document.getElementById('steelSurface2').value = arr[82].replace(new RegExp(/(steelSurface2=)(\w*)/), "$2");
-                                document.getElementById('topDepthSurface3').value = arr[83].replace(new RegExp(/(topDepthSurface3=)(\w*)/), "$2");
-                                document.getElementById('botomDepthSurface3').value = arr[84].replace(new RegExp(/(botomDepthSurface3=)(\w*)/), "$2");
+                        document.getElementById('maxPressureSurface2').value = arr[78].replace(new RegExp(/(T2.maxPressureSurface.2=)(\w*)/), "$2");
+                                document.getElementById('OD2').value = arr[79].replace(new RegExp(/(T2.outerDiamSurface.2=)(\w*)/), "$2");
+                                document.getElementById('weightSurface2').value = arr[80].replace(new RegExp(/(T2.weightSurface.2=)(\w*)/), "$2");
+                                document.getElementById('internalDiamSurface2').value = arr[81].replace(new RegExp(/(T2.internalDiamSurface.2=)(\w*)/), "$2");
+                                document.getElementById('steelSurface2').value = arr[82].replace(new RegExp(/(T2.steelSurface.2=)(\w*)/), "$2");
+                                document.getElementById('topDepthSurface3').value = arr[83].replace(new RegExp(/(T2.topDepthSurface.3=)(\w*)/), "$2");
+                                document.getElementById('botomDepthSurface3').value = arr[84].replace(new RegExp(/(T2.botomDepthSurface.3=)(\w*)/), "$2");
                                 var myselect = document.getElementById("surfaceLineTubig3");
                                 for (var i = 0; i < myselect.options.length; i++) {
-                        if (myselect.options[i].text == arr[85].replace(new RegExp(/(surfaceLineTubig3=)(\w*)/), "$2")){
+                        if (myselect.options[i].text == arr[85].replace(new RegExp(/(T2.surfaceLineTubig.3=)(\w*)/), "$2")){
                         myselect.options[i].selected = true;
                                 break
                         }
                         }
-                        document.getElementById('maxPressureSurface3').value = arr[86].replace(new RegExp(/(maxPressureSurface3=)(\w*)/), "$2");
-                                document.getElementById('OD3').value = arr[87].replace(new RegExp(/(outerDiamSurface3=)(\w*)/), "$2");
-                                document.getElementById('weightSurface3').value = arr[88].replace(new RegExp(/(weightSurface3=)(\w*)/), "$2");
-                                document.getElementById('internalDiamSurface3').value = arr[89].replace(new RegExp(/(internalDiamSurface3=)(\w*)/), "$2");
-                                document.getElementById('steelSurface3').value = arr[90].replace(new RegExp(/(steelSurface3=)(\w*)/), "$2");
-                                document.getElementById('topDepthSurface4').value = arr[91].replace(new RegExp(/(topDepthSurface4=)(\w*)/), "$2");
-                                document.getElementById('botomDepthSurface4').value = arr[92].replace(new RegExp(/(botomDepthSurface4=)(\w*)/), "$2");
+                        document.getElementById('maxPressureSurface3').value = arr[86].replace(new RegExp(/(T2.maxPressureSurface.3=)(\w*)/), "$2");
+                                document.getElementById('OD3').value = arr[87].replace(new RegExp(/(T2.outerDiamSurface.3=)(\w*)/), "$2");
+                                document.getElementById('weightSurface3').value = arr[88].replace(new RegExp(/(T2.weightSurface.3=)(\w*)/), "$2");
+                                document.getElementById('internalDiamSurface3').value = arr[89].replace(new RegExp(/(T2.internalDiamSurface.3=)(\w*)/), "$2");
+                                document.getElementById('steelSurface3').value = arr[90].replace(new RegExp(/(T2.steelSurface.3=)(\w*)/), "$2");
+                                document.getElementById('topDepthSurface4').value = arr[91].replace(new RegExp(/(T2.topDepthSurface.4=)(\w*)/), "$2");
+                                document.getElementById('botomDepthSurface4').value = arr[92].replace(new RegExp(/(T2.botomDepthSurface.4=)(\w*)/), "$2");
                                 var myselect = document.getElementById("surfaceLineTubig4");
                                 for (var i = 0; i < myselect.options.length; i++) {
-                        if (myselect.options[i].text == arr[93].replace(new RegExp(/(surfaceLineTubig4=)(\w*)/), "$2")){
+                        if (myselect.options[i].text == arr[93].replace(new RegExp(/(T2.surfaceLineTubig.4=)(\w*)/), "$2")){
                         myselect.options[i].selected = true;
                                 break
                         }
                         }
-                        document.getElementById('maxPressureSurface4').value = arr[94].replace(new RegExp(/(maxPressureSurface4=)(\w*)/), "$2");
-                                document.getElementById('OD4').value = arr[95].replace(new RegExp(/(outerDiamSurface4=)(\w*)/), "$2");
-                                document.getElementById('weightSurface4').value = arr[96].replace(new RegExp(/(weightSurface4=)(\w*)/), "$2");
-                                document.getElementById('internalDiamSurface4').value = arr[97].replace(new RegExp(/(internalDiamSurface4=)(\w*)/), "$2");
-                                document.getElementById('steelSurface4').value = arr[98].replace(new RegExp(/(steelSurface4=)(\w*)/), "$2");
-                                document.getElementById('topDepthSurface5').value = arr[99].replace(new RegExp(/(topDepthSurface5=)(\w*)/), "$2");
-                                document.getElementById('botomDepthSurface5').value = arr[100].replace(new RegExp(/(botomDepthSurface5=)(\w*)/), "$2");
+                        document.getElementById('maxPressureSurface4').value = arr[94].replace(new RegExp(/(T2.maxPressureSurface.4=)(\w*)/), "$2");
+                                document.getElementById('OD4').value = arr[95].replace(new RegExp(/(T2.outerDiamSurface.4=)(\w*)/), "$2");
+                                document.getElementById('weightSurface4').value = arr[96].replace(new RegExp(/(T2.weightSurface.4=)(\w*)/), "$2");
+                                document.getElementById('internalDiamSurface4').value = arr[97].replace(new RegExp(/(T2.internalDiamSurface.4=)(\w*)/), "$2");
+                                document.getElementById('steelSurface4').value = arr[98].replace(new RegExp(/(T2.steelSurface.4=)(\w*)/), "$2");
+                                document.getElementById('topDepthSurface5').value = arr[99].replace(new RegExp(/(T2.topDepthSurface.5=)(\w*)/), "$2");
+                                document.getElementById('botomDepthSurface5').value = arr[100].replace(new RegExp(/(T2.botomDepthSurface.5=)(\w*)/), "$2");
                                 var myselect = document.getElementById("surfaceLineTubig5");
                                 for (var i = 0; i < myselect.options.length; i++) {
-                        if (myselect.options[i].text == arr[101].replace(new RegExp(/(surfaceLineTubig5=)(\w*)/), "$2")){
+                        if (myselect.options[i].text == arr[101].replace(new RegExp(/(T2.surfaceLineTubig.5=)(\w*)/), "$2")){
                         myselect.options[i].selected = true;
                                 break
                         }
                         }
-                        document.getElementById('maxPressureSurface5').value = arr[102].replace(new RegExp(/(maxPressureSurface5=)(\w*)/), "$2");
-                                document.getElementById('OD5').value = arr[103].replace(new RegExp(/(outerDiamSurface5=)(\w*)/), "$2");
-                                document.getElementById('weightSurface5').value = arr[104].replace(new RegExp(/(weightSurface5=)(\w*)/), "$2");
-                                document.getElementById('internalDiamSurface5').value = arr[105].replace(new RegExp(/(internalDiamSurface5=)(\w*)/), "$2");
-                                document.getElementById('steelSurface5').value = arr[106].replace(new RegExp(/(steelSurface5=)(\w*)/), "$2");
+                        document.getElementById('maxPressureSurface5').value = arr[102].replace(new RegExp(/(T2.maxPressureSurface.5=)(\w*)/), "$2");
+                                document.getElementById('OD5').value = arr[103].replace(new RegExp(/(T2.outerDiamSurface.5=)(\w*)/), "$2");
+                                document.getElementById('weightSurface5').value = arr[104].replace(new RegExp(/(T2.weightSurface.5=)(\w*)/), "$2");
+                                document.getElementById('internalDiamSurface5').value = arr[105].replace(new RegExp(/(T2.internalDiamSurface.5=)(\w*)/), "$2");
+                                document.getElementById('steelSurface5').value = arr[106].replace(new RegExp(/(T2.steelSurface.5=)(\w*)/), "$2");
                                 //Table Five
                                 document.getElementById('DownholeDepth1').value = arr[107].replace(new RegExp(/(DownholeDepth1=)(\w*)/), "$2");
                                 document.getElementById('DownholeEquipType1').value = arr[108].replace(new RegExp(/(DownholeEquipType1=)(\w*)/), "$2");

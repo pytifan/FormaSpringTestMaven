@@ -20,11 +20,9 @@ public class FormOsvoenieSomeServiceImpl implements FormOsvoenieSomeService {
     
     @Override
     public void doSmthing(Forma forma) throws Exception {
-        //  MyRecipient recipient = new MyRecipient();
         FieldName = forma.getFieldName();
         WellName = forma.getWellName();
-        forma.setComments(FieldName.concat(WellName));    
-       // nl_solver_test();
+        forma.setComments(FieldName.concat(WellName));
         
        int Rho = 1020; /* плотность воды*/
        int Pmax = 200 * 100000; /* Максимальное давление на устье, Па*/
@@ -139,16 +137,6 @@ public class FormOsvoenieSomeServiceImpl implements FormOsvoenieSomeService {
             Result[i] = Result[i - 1] + Vani[i];
         }
         System.out.println("Result[i]: " + Result.toString());
-    }
-  
-    public int NumberOfsegments(Forma forma) {
-        int numberofsegments = 0;
-        if (forma.getInternalDiamCasing1() != 0.0) { numberofsegments = 1; }
-        if (forma.getInternalDiamCasing2() != 0.0) { numberofsegments = 2; }
-        if (forma.getInternalDiamCasing3() != 0.0) { numberofsegments = 3; }
-        if (forma.getInternalDiamCasing4() != 0.0) { numberofsegments = 4; }
-        if (forma.getInternalDiamCasing5() != 0.0) { numberofsegments = 5; }
-        return numberofsegments;
     }
 
     @Override

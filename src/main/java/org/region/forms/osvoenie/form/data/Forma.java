@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.region.forms.osvoenie.form;
+package org.region.forms.osvoenie.form.data;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,6 +10,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -18,8 +19,15 @@ import javax.persistence.Temporal;
  * @author alex
  */
 @Entity
-@Table(name = "FORMA")
+@Table(name = "FORMS")
 public class Forma implements Serializable {
+    private static final long serialVersionUID = 1L;
+        
+    @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    @Column(name = "IDFORM")
+    private Long id;
+    
     /*Общие данные – General data*/
     @Column(name = "FIELDNAME")
     private String fieldName;
@@ -31,30 +39,30 @@ public class Forma implements Serializable {
     private String formationName;
     @Column(name = "WELLTYPE")
     private String wellType;
-    @Column(name = "DESIREDJODDATE")
+    @Column(name = "DESIREDJOBDATE")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date desiredJobDate;
+    @Column(name = "SLABBEDWELLSITE")
     private String slabbedWellSite;
+    @Column(name = "ELECTRICITY")
     private String electricity;
+    @Column(name = "RIG")
     private String rig;
+    @Column(name = "COMPANYNAME")
     private String companyName;
+    @Column(name = "COMPANYREPRESENTATIVE")
     private String companyRepresentative;
+    @Column(name = "COMMENTS")
     private String comments;
-    
-    @Id
-    @Column(name = "IDFORM")
-    @GeneratedValue
-    private Long id;
-    
-    private String  cell;
+
     /*Данные по скважине – Well data*/
 //    private String ;
-    private double internalDiamCasing1;
-    private double internalDiamCasing2;
-    private double internalDiamCasing3;
-    private double internalDiamCasing4;
-    private double internalDiamCasing5;
-    private double avdiamcas;
+//    private double internalDiamCasing1;
+//    private double internalDiamCasing2;
+//    private double internalDiamCasing3;
+//    private double internalDiamCasing4;
+//    private double internalDiamCasing5;
+//    private double avdiamcas;
    
 //    private double botomDepthCasing1;
 //    private double topDepthCasing1;
@@ -235,86 +243,86 @@ public class Forma implements Serializable {
     /**
      * @return the internalDiamCasing1
      */
-    public double getInternalDiamCasing1() {
-        return internalDiamCasing1;
-    }
+//    public double getInternalDiamCasing1() {
+//        return internalDiamCasing1;
+//    }
 
     /**
      * @param internalDiamCasing1 the internalDiamCasing1 to set
      */
-    public void setInternalDiamCasing1(double internalDiamCasing1) {
-        this.internalDiamCasing1 = internalDiamCasing1;
-    }
+//    public void setInternalDiamCasing1(double internalDiamCasing1) {
+//        this.internalDiamCasing1 = internalDiamCasing1;
+//    }
 
     /**
      * @return the internalDiamCasiat org.region.forms.osvoenie.spring.controller.FormController.add(FormController.java:90)ng2
      */
-    public double getInternalDiamCasing2() {
-        return internalDiamCasing2;
-    }
+//    public double getInternalDiamCasing2() {
+//        return internalDiamCasing2;
+//    }
 
     /**
      * @param internalDiamCasing2 the internalDiamCasing2 to set
      */
-    public void setInternalDiamCasing2(double internalDiamCasing2) {
-        this.internalDiamCasing2 = internalDiamCasing2;
-    }
+//    public void setInternalDiamCasing2(double internalDiamCasing2) {
+//        this.internalDiamCasing2 = internalDiamCasing2;
+//    }
 
     /**
      * @return the avdiamcas
      */
-    public double getAvdiamcas() {
-        return avdiamcas;
-    }
+//    public double getAvdiamcas() {
+//        return avdiamcas;
+//    }
 
     /**
      * @param avdiamcas the avdiamcas to set
      */
-    public void setAvdiamcas(double avdiamcas) {
-        this.avdiamcas = avdiamcas;
-    }
+//    public void setAvdiamcas(double avdiamcas) {
+//        this.avdiamcas = avdiamcas;
+//    }
 
     /**
      * @return the internalDiamCasing3
      */
-    public double getInternalDiamCasing3() {
-        return internalDiamCasing3;
-    }
+//    public double getInternalDiamCasing3() {
+//        return internalDiamCasing3;
+//    }
 
     /**
      * @param internalDiamCasing3 the internalDiamCasing3 to set
      */
-    public void setInternalDiamCasing3(double internalDiamCasing3) {
-        this.internalDiamCasing3 = internalDiamCasing3;
-    }
+//    public void setInternalDiamCasing3(double internalDiamCasing3) {
+//        this.internalDiamCasing3 = internalDiamCasing3;
+//    }
 
     /**
      * @return the internalDiamCasing4
      */
-    public double getInternalDiamCasing4() {
-        return internalDiamCasing4;
-    }
+//    public double getInternalDiamCasing4() {
+//        return internalDiamCasing4;
+//    }
 
     /**
      * @param internalDiamCasing4 the internalDiamCasing4 to set
      */
-    public void setInternalDiamCasing4(double internalDiamCasing4) {
-        this.internalDiamCasing4 = internalDiamCasing4;
-    }
+//    public void setInternalDiamCasing4(double internalDiamCasing4) {
+//        this.internalDiamCasing4 = internalDiamCasing4;
+//    }
 
     /**
      * @return the internalDiamCasing5
      */
-    public double getInternalDiamCasing5() {
-        return internalDiamCasing5;
-    }
+//    public double getInternalDiamCasing5() {
+//        return internalDiamCasing5;
+//    }
 
     /**
      * @param internalDiamCasing5 the internalDiamCasing5 to set
      */
-    public void setInternalDiamCasing5(double internalDiamCasing5) {
-        this.internalDiamCasing5 = internalDiamCasing5;
-    }
+//    public void setInternalDiamCasing5(double internalDiamCasing5) {
+//        this.internalDiamCasing5 = internalDiamCasing5;
+//    }
 //
 //    /**
 //     * @return the outerDiamSurface1
@@ -399,26 +407,12 @@ public class Forma implements Serializable {
 //    public void setTopDepthCasing1(double topDepthCasing1) {
 //        this.topDepthCasing1 = topDepthCasing1;
 //    }
-
-    /**
-     * @return the cell
-     */
-    public String getCell() {
-        return cell;
-    }
-
-    /**
-     * @param cell the cell to set
-     */
-    public void setCell(String cell) {
-        this.cell = cell;
-    }
     
-    public Long assignId() {
-            this.setId((Long) idSequence.incrementAndGet());
-		return getId();
-	}
-    private static final AtomicLong idSequence = new AtomicLong();           
+//    public Long assignId() {
+//            this.setId(idSequence.incrementAndGet());
+//		return getId();
+//	}
+//    private static final AtomicLong idSequence = new AtomicLong();           
 
     /**
      * @return the id

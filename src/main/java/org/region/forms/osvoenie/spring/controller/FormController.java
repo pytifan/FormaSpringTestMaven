@@ -1,18 +1,20 @@
 package org.region.forms.osvoenie.spring.controller;
 
-import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 import org.apache.log4j.Logger;
-import org.region.forms.osvoenie.form.Forma;
+import org.apache.log4j.Priority;
+import org.region.forms.osvoenie.form.data.Forma;
 import org.region.forms.osvoenie.service.FormOsvoenieSomeService;
-import org.region.forms.osvoenie.service.FormService;
+import org.region.forms.osvoenie.service.FormaServiceDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * A Spring MVC form controller for the Letter example.
@@ -27,8 +29,10 @@ public class FormController {
     private final FormOsvoenieSomeService formOsvoenieSomeService;
     // private final AvarageDiametersCalculator avarageDiametersCalculator;
 
-    @Resource(name = "FormService")
-    private FormService formService;
+//    @Resource(name = "FormService")
+//    private FormService formService;
+    @Autowired
+    private FormaServiceDAO formaServiceDAO;
 
     @Autowired
     public FormController(FormOsvoenieSomeService formOsvoenieSomeService) {
@@ -57,10 +61,12 @@ public class FormController {
 //    }
     @RequestMapping(value = "Forma-OsvoenieX.htm", method = RequestMethod.GET)
     public String CreateForm(Model model) {
-        Forma forma = new Forma();
-        model.addAttribute(forma);
-       // model.addAttribute(new Date());
-       return "Forma-OsvoenieX";
+//    public String CreateForm(Map<String, Object> map) {
+//     map.put("forma", new Forma());
+        model.addAttribute("forma", new Forma());
+        System.out.println("model: " + model);
+        // model.addAttribute(new Date());
+        return "Forma-OsvoenieX";
     }
 
     @RequestMapping(value = "Forma-OsvoenieX.htm", params = "Calculate", method = RequestMethod.POST)
@@ -74,47 +80,44 @@ public class FormController {
                 // this.formOsvoenieSomeService.CasingAvarageDiamCalculations(forma);
                 this.formOsvoenieSomeService.solver_for_avarageDiams(forma);
             } catch (Exception ex) {
-                // Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FormController.class.getName()).log(null, Priority.ERROR, result, ex);
             }
             status.setComplete();
             return "RecipientSuccess";
         }
     }
-    
+
     @RequestMapping(value = "/Forma-OsvoenieX.htm/add", params = "add", method = RequestMethod.POST)
-    public String add(Forma forma, BindingResult result, SessionStatus status) {
+    //public String add(@ModelAttribute("forma") Forma forma, BindingResult result, SessionStatus sessionStatus) {
+    public String add(Forma forma, BindingResult result, SessionStatus sessionStatus) {
         logger.debug("Received request to add new forma");
         // The "formaAttribute" model has been passed to the controller from the JSP
         // We use the name "formaAttribute" because the JSP uses that name
-        // Call PersonService to do the actual adding
-        formService.add(forma);
-        // This will resolve to /WEB-INF/jsp/addedpage.jsp
-        //return "addedpage";
-        return "RecipientSuccess";
+        if (result.hasErrors()) {
+            System.out.println("Save in bd error");
+            return "Forma-OsvoenieX";
+        } else {
+            try {
+                formaServiceDAO.create(forma);
+            } catch (Exception ex) {
+                Logger.getLogger(FormController.class.getName()).log(null, Priority.ERROR, result, ex);
+            }
+        // This will resolve to /WEB-INF/jsp/addedpage.jsp return "addedpage";
+            sessionStatus.setComplete();
+            return "RecipientSuccess";
+        }
     }
-    
-    /**
-     * Handles and retrieves all persons and show it in a JSP page
-     *
-     * @param forma
-     * @param model
-     * @return the name of the JSP page
-     */
-    //@RequestMapping(value = "/forms", method = RequestMethod.GET)
-//    @RequestMapping(params = "forms", method = RequestMethod.GET)
-//    public String getPersons(Model model) {
-//
-//        logger.debug("Received request to show all forms");
-//
-//        // Retrieve all persons by delegating the call to PersonService
-//        List<Forma> forms = formService.getAll();
-//
-//        // Attach persons to the Model
-//        model.addAttribute("forms", forms);
-//
-//        // This will resolve to /WEB-INF/jsp/personspage.jsp
-//        return "formpage"; //????????????????????????????????????
-//    }
+
+    @RequestMapping(params = "forms", method = RequestMethod.GET)
+    public String getPersons(Model model) {
+        logger.debug("Received request to show all forms");
+        // Retrieve all persons by delegating the call to PersonService
+        List<Forma> forms = formaServiceDAO.getAll();
+        // Attach persons to the Model
+        model.addAttribute("forms", forms);
+        // This will resolve to /WEB-INF/jsp/personspage.jsp
+        return "formpage"; //????????????????????????????????????
+    }
 //
 //    /**
 //     * Retrieves the add page
@@ -138,12 +141,10 @@ public class FormController {
 //    /**
 //     * Adds a new form by delegating the processing to FormService. Displays a
 //     * confirmation JSP page
-//     *
 //     * @param forma
 //     * @return the name of the JSP page
 //     */
 //    //@RequestMapping(value = "/forms/add", method = RequestMethod.POST)
-
 //
 //    /**
 //     * Deletes an existing forma by delegating the processing to FormService.

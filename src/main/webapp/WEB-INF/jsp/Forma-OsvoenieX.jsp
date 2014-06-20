@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -192,7 +193,8 @@
         <h4 style="color: brown">
             1.1. Общие данные – General data </h4>
         <!--    <form id="myForm">-->
-        <form:form method="POST" modelAttribute="forma" id="formid">
+        <%-- <form:form method="POST" modelAttribute="forma" id="formid" commandName="forma">--%>
+            <form:form method="POST" id="formid" commandName="forma">
             <%--    <form:form id="myForm" modelAttribute="account" action="Forma-OsvoenieX.htm" method="post"> --%>
             <table id="first">
                 <tr>

@@ -2,5 +2,5 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
   <class dynamic-insert="false" dynamic-update="false" mutable="true"
-         name="org.region.forms.osvoenie.form.Forma" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="FORMS"/>
+         name="org.region.forms.osvoenie.form.Forma" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="FORMS" schema=""/>
 </hibernate-mapping>

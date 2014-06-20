@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package org.region.forms.osvoenie.service;
+package org.region.forms.osvoenie.form.dao;
 
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;

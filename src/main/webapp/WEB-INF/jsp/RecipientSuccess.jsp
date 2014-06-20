@@ -36,8 +36,8 @@
                 <td>${forma.comments}</td>
             </tr>
             <tr>
-                <td> Average diametr casing:</td>
-                <td>${forma.avdiamcas}</td>
+<%--                <td> Average diametr casing:</td>
+                <td>${forma.avdiamcas}</td>--%>
             </tr>
             <tr>
                 <td> Test Rig:</td>

@@ -17,6 +17,8 @@ public interface FormaServiceDAO {
 
     public void create(Forma newforma);
 
+    public Forma getForm(long id);
+    
     boolean update(Forma formaToUpdate) throws SQLException;
 
     List<Forma> getAll();

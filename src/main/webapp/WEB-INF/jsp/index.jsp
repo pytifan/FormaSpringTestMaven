@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome to Spring Web MVC project</title>
+        <title>Бланки формы</title>
     </head>
 
     <body>
@@ -39,10 +39,10 @@
             <li style="width: 100px;">
                 <a href='<spring:url value="/jsp/Forma-Osvoenie.html" htmlEscape="true"/>'>FormA HTML</a>
             </li>
-        </ul>
+        </ul>-->
         <ul>
             <li style="width: 100px;">
-                <a href="/letterForm">letterForm2</a></li>
-        </ul>-->
+            <a href="${pageContext.request.contextPath}/listforms.htm">Forms list</a><br></li>
+        </ul>
     </body>
 </html>

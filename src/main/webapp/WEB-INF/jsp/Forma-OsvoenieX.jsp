@@ -462,7 +462,7 @@
             </table>
             <INPUT id="add_1" type="button" value="Add Row" onclick="addRow('dataTable1')" />
             <INPUT id="rem_1" type="button" value="Delete Row" onclick="deleteRow('dataTable1')" />
-<%--            <h4 style="color: brown">
+            <h4 style="color: brown">
                 2.2. Параметры наземной линии/НКТ – Surface line/Tubing parameters</h4>
             <table id="dataTable2" border="1">
                 <thead>
@@ -487,98 +487,98 @@
                     </tr> </thead>
                 <tr>
                     <TD><INPUT type="checkbox" name="chk"/></TD>
-                    <td><form:input path="" id="topDepthSurface1" type="text" name="T2.topDepthSurface.1"/></td>
-                    <td><form:input path="" id="botomDepthSurface1" type="text" name="T2.botomDepthSurface.1"/></td>
-                    <td><select id="surfaceLineTubig1" name="T2.surfaceLineTubig.1" style="width:185px;">
-                            <option value="" selected="selected"></option>
-                            <option value="НКТ/Tubing">НКТ/Tubing</option>
-                            <option value="Бурильная колонна/Drill pipe">Бурильная колонна/Drill pipe</option>
-                            <option value="Пакер/Packer">Пакер/Packer</option>
-                            <option value="Наземная линия/Surface line">Наземная линия/Surface line</option>
-                            <option value="Наземная ГНКТ/Surface CTU">Наземная ГНКТ/Surface CTU</option>
-                            <option value="Переходник/Cross over">Переходник/Cross over</option>
-                        </select></td>
-                    <td><form:input path="" id="maxPressureSurface1" type="text" name="T2.maxPressureSurface.1"/></td>
-                    <td><form:input path="" id="OD1" type="text" name="T2.outerDiamSurface.1"/></td>
-                    <td><form:input path="" id="weightSurface1" type="text" name="T2.weightSurface.1"/></td>
-                    <td><form:input path="" id="internalDiamSurface1" type="text" name="T2.internalDiamSurface.1" value="0"/></td>
-                    <td><form:input path="" id="steelSurface1" type="text" name="T2.steelSurface.1"/></td>
+                    <td><form:input path="topDepthSurface1" id="topDepthSurface1" type="text" name="T2.topDepthSurface.1"/></td>
+                    <td><form:input path="botomDepthSurface1" id="botomDepthSurface1" type="text" name="T2.botomDepthSurface.1"/></td>
+                    <td><form:select path="surfaceLineTubig1" id="surfaceLineTubig1" name="T2.surfaceLineTubig.1" style="width:185px;">
+                            <form:option value="" selected="selected"/>
+                            <form:option value="НКТ/Tubing" label="НКТ/Tubing"/>
+                            <form:option value="Бурильная колонна/Drill pipe" label="Бурильная колонна/Drill pipe"/>
+                            <form:option value="Пакер/Packer" label="Пакер/Packer"/>
+                            <form:option value="Наземная линия/Surface line" label="Наземная линия/Surface line"/>
+                            <form:option value="Наземная ГНКТ/Surface CTU" label="Наземная ГНКТ/Surface CTU"/>
+                            <form:option value="Переходник/Cross over" label="Переходник/Cross over"/>
+                        </form:select></td>
+                    <td><form:input path="maxPressureSurface1" id="maxPressureSurface1" type="text" name="T2.maxPressureSurface.1"/></td>
+                    <td><form:input path="OD1" id="OD1" type="text" name="T2.outerDiamSurface.1"/></td>
+                    <td><form:input path="weightSurface1" id="weightSurface1" type="text" name="T2.weightSurface.1"/></td>
+                    <td><form:input path="internalDiamSurface1" id="internalDiamSurface1" type="text" name="T2.internalDiamSurface.1" value="0"/></td>
+                    <td><form:input path="steelSurface1" id="steelSurface1" type="text" name="T2.steelSurface.1"/></td>
                 </tr>
                 <tr>
                     <TD><INPUT type="checkbox" name="chk"/></TD>
-                    <td><form:input path="" id="topDepthSurface2" type="text" name="T2.topDepthSurface.2"/></td>
-                    <td><form:input path="" id="botomDepthSurface2" type="text" name="T2.botomDepthSurface.2"/></td>
-                    <td><select id="surfaceLineTubig2" name="T2.surfaceLineTubig.2" style="width:185px;">
-                            <option value="" selected="selected"></option>
-                            <option value="НКТ/Tubing">НКТ/Tubing</option>
-                            <option value="Бурильная колонна/Drill pipe">Бурильная колонна/Drill pipe</option>
-                            <option value="Пакер/Packer">Пакер/Packer</option>
-                            <option value="Наземная линия/Surface line">Наземная линия/Surface line</option>
-                            <option value="Наземная ГНКТ/Surface CTU">Наземная ГНКТ/Surface CTU</option>
-                            <option value="Переходник/Cross over">Переходник/Cross over</option>
-                        </select></td>
-                    <td><form:input path="" id="maxPressureSurface2" type="text" name="T2.maxPressureSurface.2"/></td>
-                    <td><form:input path="" id="OD2" type="text" name="T2.outerDiamSurface.2"/></td>
-                    <td><form:input path="" id="weightSurface2" type="text" name="T2.weightSurface.2"/></td>
-                    <td><form:input path="" id="internalDiamSurface2" type="text" name="T2.internalDiamSurface.2" value="0"/></td>
-                    <td><form:input path="" id="steelSurface2" type="text" name="T2.steelSurface.2"/></td>
+                <td><form:input path="topDepthSurface2" id="topDepthSurface2" type="text" name="T2.topDepthSurface.2"/></td>
+                    <td><form:input path="botomDepthSurface2" id="botomDepthSurface2" type="text" name="T2.botomDepthSurface.2"/></td>
+                    <td><form:select path="surfaceLineTubig2" id="surfaceLineTubig2" name="T2.surfaceLineTubig.2" style="width:185px;">
+                            <form:option value="" selected="selected"/>
+                            <form:option value="НКТ/Tubing" label="НКТ/Tubing"/>
+                            <form:option value="Бурильная колонна/Drill pipe" label="Бурильная колонна/Drill pipe"/>
+                            <form:option value="Пакер/Packer" label="Пакер/Packer"/>
+                            <form:option value="Наземная линия/Surface line" label="Наземная линия/Surface line"/>
+                            <form:option value="Наземная ГНКТ/Surface CTU" label="Наземная ГНКТ/Surface CTU"/>
+                            <form:option value="Переходник/Cross over" label="Переходник/Cross over"/>
+                        </form:select></td>
+                    <td><form:input path="maxPressureSurface2" id="maxPressureSurface2" type="text" name="T2.maxPressureSurface.2"/></td>
+                    <td><form:input path="OD2" id="OD2" type="text" name="T2.outerDiamSurface.2"/></td>
+                    <td><form:input path="weightSurface2" id="weightSurface2" type="text" name="T2.weightSurface.2"/></td>
+                    <td><form:input path="internalDiamSurface2" id="internalDiamSurface2" type="text" name="T2.internalDiamSurface.2" value="0"/></td>
+                    <td><form:input path="steelSurface2" id="steelSurface2" type="text" name="T2.steelSurface.2"/></td>
                 </tr>
                 <tr>
                     <TD><INPUT type="checkbox" name="chk"/></TD>
-                    <td><form:input path="" id="topDepthSurface3" type="text" name="T2.topDepthSurface.3"/></td>
-                    <td><form:input path="" id="botomDepthSurface3" type="text" name="T2.botomDepthSurface.3"/></td>
-                    <td><select id="surfaceLineTubig3" name="T2.surfaceLineTubig.3" style="width:185px;">
-                            <option value="" selected="selected"></option>
-                            <option value="НКТ/Tubing">НКТ/Tubing</option>
-                            <option value="Бурильная колонна/Drill pipe">Бурильная колонна/Drill pipe</option>
-                            <option value="Пакер/Packer">Пакер/Packer</option>
-                            <option value="Наземная линия/Surface line">Наземная линия/Surface line</option>
-                            <option value="Наземная ГНКТ/Surface CTU">Наземная ГНКТ/Surface CTU</option>
-                            <option value="Переходник/Cross over">Переходник/Cross over</option>
-                        </select></td>
-                    <td><form:input path="" id="maxPressureSurface3" type="text" name="T2.maxPressureSurface.3"/></td>
-                    <td><form:input path="" id="OD3" type="text" name="T2.outerDiamSurface.3"/></td>
-                    <td><form:input path="" id="weightSurface3" type="text" name="T2.weightSurface.3"/></td>
-                    <td><form:input path="" id="internalDiamSurface3" type="text" name="T2.internalDiamSurface.3" value="0"/></td>
-                    <td><form:input path="" id="steelSurface3" type="text" name="T2.steelSurface.3"/></td>
+                    <td><form:input path="topDepthSurface3" id="topDepthSurface3" type="text" name="T2.topDepthSurface.3"/></td>
+                    <td><form:input path="botomDepthSurface3" id="botomDepthSurface3" type="text" name="T2.botomDepthSurface.3"/></td>
+                     <td><form:select path="surfaceLineTubig3" id="surfaceLineTubig3" name="T2.surfaceLineTubig.3" style="width:185px;">
+                            <form:option value="" selected="selected"/>
+                            <form:option value="НКТ/Tubing" label="НКТ/Tubing"/>
+                            <form:option value="Бурильная колонна/Drill pipe" label="Бурильная колонна/Drill pipe"/>
+                            <form:option value="Пакер/Packer" label="Пакер/Packer"/>
+                            <form:option value="Наземная линия/Surface line" label="Наземная линия/Surface line"/>
+                            <form:option value="Наземная ГНКТ/Surface CTU" label="Наземная ГНКТ/Surface CTU"/>
+                            <form:option value="Переходник/Cross over"  label="Переходник/Cross over"/>
+                        </form:select></td>
+                    <td><form:input path="maxPressureSurface3" id="maxPressureSurface3" type="text" name="T2.maxPressureSurface.3"/></td>
+                    <td><form:input path="OD3" id="OD3" type="text" name="T2.outerDiamSurface.3"/></td>
+                    <td><form:input path="weightSurface3" id="weightSurface3" type="text" name="T2.weightSurface.3"/></td>
+                    <td><form:input path="internalDiamSurface3" id="internalDiamSurface3" type="text" name="T2.internalDiamSurface.3" value="0"/></td>
+                    <td><form:input path="steelSurface3" id="steelSurface3" type="text" name="T2.steelSurface.3"/></td>
                 </tr>
                 <tr>
                     <TD><INPUT type="checkbox" name="chk"/></TD>
-                    <td><form:input path="" id="topDepthSurface4" type="text" name="T2.topDepthSurface.4"/></td>
-                    <td><form:input path="" id="botomDepthSurface4" type="text" name="T2.botomDepthSurface.4"/></td>
-                    <td><select id="surfaceLineTubig4" name="T2.surfaceLineTubig.4" style="width:185px;">
-                            <option value="" selected="selected"></option>
-                            <option value="НКТ/Tubing">НКТ/Tubing</option>
-                            <option value="Бурильная колонна/Drill pipe">Бурильная колонна/Drill pipe</option>
-                            <option value="Пакер/Packer">Пакер/Packer</option>
-                            <option value="Наземная линия/Surface line">Наземная линия/Surface line</option>
-                            <option value="Наземная ГНКТ/Surface CTU">Наземная ГНКТ/Surface CTU</option>
-                            <option value="Переходник/Cross over">Переходник/Cross over</option>
-                        </select></td>
-                    <td><form:input path="" id="maxPressureSurface4" type="text" name="T2.maxPressureSurface.4"/></td>
-                    <td><form:input path="" id="OD4" type="text" name="T2.outerDiamSurface.4"/></td>
-                    <td><form:input path="" id="weightSurface4" type="text" name="T2.weightSurface.4"/></td>
-                    <td><form:input path="" id="internalDiamSurface4" type="text" name="T2.internalDiamSurface.4" value="0"/></td>
-                    <td><form:input path="" id="steelSurface4" type="text" name="T2.steelSurface.4"/></td>
+                    <td><form:input path="topDepthSurface4" id="topDepthSurface4" type="text" name="T2.topDepthSurface.4"/></td>
+                    <td><form:input path="botomDepthSurface4" id="botomDepthSurface4" type="text" name="T2.botomDepthSurface.4"/></td>
+                    <td><form:select path="surfaceLineTubig4" id="surfaceLineTubig4" name="T2.surfaceLineTubig.4" style="width:185px;">
+                            <form:option value="" selected="selected"/>
+                            <form:option value="НКТ/Tubing" label="НКТ/Tubing"/>
+                            <form:option value="Бурильная колонна/Drill pipe" label="Бурильная колонна/Drill pipe"/>
+                            <form:option value="Пакер/Packer" label="Пакер/Packer"/>
+                            <form:option value="Наземная линия/Surface line" label="Наземная линия/Surface line"/>
+                            <form:option value="Наземная ГНКТ/Surface CTU" label="Наземная ГНКТ/Surface CTU"/>
+                            <form:option value="Переходник/Cross over" label="Переходник/Cross over"/>
+                        </form:select></td>
+                    <td><form:input path="maxPressureSurface4" id="maxPressureSurface4" type="text" name="T2.maxPressureSurface.4"/></td>
+                    <td><form:input path="OD4" id="OD4" type="text" name="T2.outerDiamSurface.4"/></td>
+                    <td><form:input path="weightSurface4" id="weightSurface4" type="text" name="T2.weightSurface.4"/></td>
+                    <td><form:input path="internalDiamSurface4" id="internalDiamSurface4" type="text" name="T2.internalDiamSurface.4" value="0"/></td>
+                    <td><form:input path="steelSurface4" id="steelSurface4" type="text" name="T2.steelSurface.4"/></td>
                 </tr>
                 <tr>
                     <TD><INPUT type="checkbox" name="chk"/></TD>
-                    <td><form:input path="" id="topDepthSurface5" type="text" name="T2.topDepthSurface.5"/></td>
-                    <td><form:input path="" id="botomDepthSurface5" type="text" name="T2.botomDepthSurface.5"/></td>
-                    <td><select id="surfaceLineTubig5" name="T2.surfaceLineTubig.5" style="width:185px;">
-                            <option value="" selected="selected"></option>
-                            <option value="НКТ/Tubing">НКТ/Tubing</option>
-                            <option value="Бурильная колонна/Drill pipe">Бурильная колонна/Drill pipe</option>
-                            <option value="Пакер/Packer">Пакер/Packer</option>
-                            <option value="Наземная линия/Surface line">Наземная линия/Surface line</option>
-                            <option value="Наземная ГНКТ/Surface CTU">Наземная ГНКТ/Surface CTU</option>
-                            <option value="Переходник/Cross over">Переходник/Cross over</option>
-                        </select></td>
-                    <td><form:input path="" id="maxPressureSurface5" type="text" name="T2.maxPressureSurface.5"/></td>
-                    <td><form:input path="" id="OD5" type="text" name="T2.outerDiamSurface.5"/></td>
-                    <td><form:input path="" id="weightSurface5" type="text" name="T2.weightSurface.5"/></td>
-                    <td><form:input path="" id="internalDiamSurface5" type="text" name="T2.internalDiamSurface.5" value="0"/></td>
-                    <td><form:input path="" id="steelSurface5" type="text" name="T2.steelSurface.5"/></td>
+                    <td><form:input path="topDepthSurface5" id="topDepthSurface5" type="text" name="T2.topDepthSurface.5"/></td>
+                    <td><form:input path="botomDepthSurface5" id="botomDepthSurface5" type="text" name="T2.botomDepthSurface.5"/></td>
+                    <td><form:select path="surfaceLineTubig5" id="surfaceLineTubig5" name="T2.surfaceLineTubig.5" style="width:185px;">
+                            <form:option value="" selected="selected"/>
+                            <form:option value="НКТ/Tubing" label="НКТ/Tubing"/>
+                            <form:option value="Бурильная колонна/Drill pipe" label="Бурильная колонна/Drill pipe"/>
+                            <form:option value="Пакер/Packer" label="Пакер/Packer"/>
+                            <form:option value="Наземная линия/Surface line" label="Наземная линия/Surface line"/>
+                            <form:option value="Наземная ГНКТ/Surface CTU" label="Наземная ГНКТ/Surface CTU"/>
+                            <form:option value="Переходник/Cross over" label="Переходник/Cross over"/>
+                        </form:select></td>
+                    <td><form:input path="maxPressureSurface5" id="maxPressureSurface5" type="text" name="T2.maxPressureSurface.5"/></td>
+                    <td><form:input path="OD5" id="OD5" type="text" name="T2.outerDiamSurface.5"/></td>
+                    <td><form:input path="weightSurface5" id="weightSurface5" type="text" name="T2.weightSurface.5"/></td>
+                    <td><form:input path="internalDiamSurface5" id="internalDiamSurface5" type="text" name="T2.internalDiamSurface.5" value="0"/></td>
+                    <td><form:input path="steelSurface5" id="steelSurface5" type="text" name="T2.steelSurface.5"/></td>
                 </tr>
             </table>
             <INPUT id="add_2" type="button" value="Add Row" onclick="addRow('dataTable2')" />
@@ -604,40 +604,40 @@
                     </tr> </thead>
                 <tr>
                     <TD><INPUT type="checkbox" name="chk"/></TD>
-                    <td><form:input path="" id="DownholeDepth1" type="text" name="T3.DownholeDepth.1"/></td>
-                    <td><form:input path="" id="DownholeEquipType1" type="text" name="T3.DownholeEquipType.1"/></td>
-                    <td><form:input path="" id="DownholeMaxPress1" type="text" name="T3.DownholeMaxPress.1"/></td>
-                    <td><form:input path="" id="DownholeOutDiam1" type="text" name="T3.DownholeOutDiam.1"/></td>
-                    <td><form:input path="" id="DownholeInterDiam1" type="text" name="T3.DownholeInterDiam.1"/></td>
+                    <td><form:input path="DownholeDepth1" id="DownholeDepth1" type="text" name="T3.DownholeDepth.1"/></td>
+                    <td><form:input path="DownholeEquipType1" id="DownholeEquipType1" type="text" name="T3.DownholeEquipType.1"/></td>
+                    <td><form:input path="DownholeMaxPress1" id="DownholeMaxPress1" type="text" name="T3.DownholeMaxPress.1"/></td>
+                    <td><form:input path="DownholeOutDiam1" id="DownholeOutDiam1" type="text" name="T3.DownholeOutDiam.1"/></td>
+                    <td><form:input path="DownholeInterDiam1" id="DownholeInterDiam1" type="text" name="T3.DownholeInterDiam.1"/></td>
                 </tr>
                 <tr>
                     <TD><INPUT type="checkbox" name="chk"/></TD>
-                    <td><form:input path="" id="DownholeDepth2" type="text" name="T3.DownholeDepth.2"/></td>
-                    <td><form:input path="" id="DownholeEquipType2" type="text" name="T3.DownholeEquipType.2"/></td>
-                    <td><form:input path="" id="DownholeMaxPress2" type="text" name="T3.DownholeMaxPress.2"/></td>
-                    <td><form:input path="" id="DownholeOutDiam2" type="text" name="T3.DownholeOutDiam.2"/></td>
-                    <td><form:input path="" id="DownholeInterDiam2" type="text" name="T3.DownholeInterDiam.2"/></td>
+                    <td><form:input path="DownholeDepth2" id="DownholeDepth2" type="text" name="T3.DownholeDepth.2"/></td>
+                    <td><form:input path="DownholeEquipType2" id="DownholeEquipType2" type="text" name="T3.DownholeEquipType.2"/></td>
+                    <td><form:input path="DownholeMaxPress2" id="DownholeMaxPress2" type="text" name="T3.DownholeMaxPress.2"/></td>
+                    <td><form:input path="DownholeOutDiam2" id="DownholeOutDiam2" type="text" name="T3.DownholeOutDiam.2"/></td>
+                    <td><form:input path="DownholeInterDiam2" id="DownholeInterDiam2" type="text" name="T3.DownholeInterDiam.2"/></td>
                 </tr>
                 <tr>
                     <TD><INPUT type="checkbox" name="chk"/></TD>
-                    <td><form:input path="" id="DownholeDepth3" type="text" name="T3.DownholeDepth.3"/></td>
-                    <td><form:input path="" id="DownholeEquipType3" type="text" name="T3.DownholeEquipType.3"/></td>
-                    <td><form:input path="" id="DownholeMaxPress3" type="text" name="T3.DownholeMaxPress.3"/></td>
-                    <td><form:input path="" id="DownholeOutDiam3" type="text" name="T3.DownholeOutDiam.3"/></td>
-                    <td><form:input path="" id="DownholeInterDiam3" type="text" name="T3.DownholeInterDiam.3"/></td>
+                    <td><form:input path="DownholeDepth3" id="DownholeDepth3" type="text" name="T3.DownholeDepth.3"/></td>
+                    <td><form:input path="DownholeEquipType3" id="DownholeEquipType3" type="text" name="T3.DownholeEquipType.3"/></td>
+                    <td><form:input path="DownholeMaxPress3" id="DownholeMaxPress3" type="text" name="T3.DownholeMaxPress.3"/></td>
+                    <td><form:input path="DownholeOutDiam3" id="DownholeOutDiam3" type="text" name="T3.DownholeOutDiam.3"/></td>
+                    <td><form:input path="DownholeInterDiam3" id="DownholeInterDiam3" type="text" name="T3.DownholeInterDiam.3"/></td>
                 </tr>
                 <tr>
                     <TD><INPUT type="checkbox" name="chk"/></TD>
-                    <td><form:input path="" id="DownholeDepth4" type="text" name="T3.DownholeDepth.4"/></td>
-                    <td><form:input path="" id="DownholeEquipType4" type="text" name="T3.DownholeEquipType.4"/></td>
-                    <td><form:input path="" id="DownholeMaxPress4" type="text" name="T3.DownholeMaxPress.4"/></td>
-                    <td><form:input path="" id="DownholeOutDiam4" type="text" name="T3.DownholeOutDiam.4"/></td>
-                    <td><form:input path="" id="DownholeInterDiam4" type="text" name="T3.DownholeInterDiam.4"/></td>
+                    <td><form:input path="DownholeDepth4" id="DownholeDepth4" type="text" name="T3.DownholeDepth.4"/></td>
+                    <td><form:input path="DownholeEquipType4" id="DownholeEquipType4" type="text" name="T3.DownholeEquipType.4"/></td>
+                    <td><form:input path="DownholeMaxPress4" id="DownholeMaxPress4" type="text" name="T3.DownholeMaxPress.4"/></td>
+                    <td><form:input path="DownholeOutDiam4" id="DownholeOutDiam4" type="text" name="T3.DownholeOutDiam.4"/></td>
+                    <td><form:input path="DownholeInterDiam4" id="DownholeInterDiam4" type="text" name="T3.DownholeInterDiam.4"/></td>
                 </tr>                     
             </table>
             <INPUT id="add_3" type="button" value="Add Row" onclick="addRow('dataTable3')" />
             <INPUT type="button" value="Delete Row" onclick="deleteRow('dataTable3')" />
-            <h4 style="color: brown">
+           <h4 style="color: brown">
                 2.4. Инклинометрия – Directional Survey
             </h4>
             <h5>В таблицу внести имеющиеся данные<br/>
@@ -656,35 +656,35 @@
                     </tr> </thead>
                 <tr>
                     <TD><INPUT type="checkbox" name="chk"/></TD>
-                    <td><form:input path="" id="WellDepth1" type="text" name="T4.WellDepth.1"/></td>
-                    <td><form:input path="" id="WellDegree1" type="text" name="T4.WellDegree.1"/></td>
-                    <td><form:input path="" id="WellAzimuth1" type="text" name="T4.WellAzimuth.1"/></td>
+                    <td><form:input path="WellDepth1" id="WellDepth1" type="text" name="T4.WellDepth.1"/></td>
+                    <td><form:input path="WellDegree1" id="WellDegree1" type="text" name="T4.WellDegree.1"/></td>
+                    <td><form:input path="WellAzimuth1" id="WellAzimuth1" type="text" name="T4.WellAzimuth.1"/></td>
                 </tr>
                 <tr>
                     <TD><INPUT type="checkbox" name="chk"/></TD>
-                    <td><form:input path="" id="WellDepth2" type="text" name="T4.WellDepth.2"/></td>
-                    <td><form:input path="" id="WellDegree2" type="text" name="T4.WellDegree.2"/></td>
-                    <td><form:input path="" id="WellAzimuth2" type="text" name="T4.WellAzimuth.2"/></td>
+                    <td><form:input path="WellDepth2" id="WellDepth2" type="text" name="T4.WellDepth.2"/></td>
+                    <td><form:input path="WellDegree2" id="WellDegree2" type="text" name="T4.WellDegree.2"/></td>
+                    <td><form:input path="WellAzimuth2" id="WellAzimuth2" type="text" name="T4.WellAzimuth.2"/></td>
                 </tr>
                 <tr>
                     <TD><INPUT type="checkbox" name="chk"/></TD>
-                    <td><form:input path="" id="WellDepth3" type="text" name="T4.WellDepth.3"/></td>
-                    <td><form:input path="" id="WellDegree3" type="text" name="T4.WellDegree.3"/></td>
-                    <td><form:input path="" id="WellAzimuth3" type="text" name="T4.WellAzimuth.3"/></td>
+                    <td><form:input path="WellDepth3" id="WellDepth3" type="text" name="T4.WellDepth.3"/></td>
+                    <td><form:input path="WellDegree3" id="WellDegree3" type="text" name="T4.WellDegree.3"/></td>
+                    <td><form:input path="WellAzimuth3" id="WellAzimuth3" type="text" name="T4.WellAzimuth.3"/></td>
                 </tr>
                 <tr>
                     <TD><INPUT type="checkbox" name="chk"/></TD>
-                    <td><form:input path="" id="WellDepth4" type="text" name="T4.WellDepth.4"/></td>
-                    <td><form:input path="" id="WellDegree4" type="text" name="T4.WellDegree.4"/></td>
-                    <td><form:input path="" id="WellAzimuth4" type="text" name="T4.WellAzimuth.4"/></td>
+                    <td><form:input path="WellDepth4" id="WellDepth4" type="text" name="T4.WellDepth.4"/></td>
+                    <td><form:input path="WellDegree4" id="WellDegree4" type="text" name="T4.WellDegree.4"/></td>
+                    <td><form:input path="WellAzimuth4" id="WellAzimuth4" type="text" name="T4.WellAzimuth.4"/></td>
                 </tr>
                 <tr>
                     <TD><INPUT type="checkbox" name="chk"/></TD>
-                    <td><form:input path="" id="WellDepth5" type="text" name="T4.WellDepth.5"/></td>
-                    <td><form:input path="" id="WellDegree5" type="text" name="T4.WellDegree.5"/></td>
-                    <td><form:input path="" id="WellAzimuth5" type="text" name="T4.WellAzimuth.5"/></td>
+                    <td><form:input path="WellDepth5" id="WellDepth5" type="text" name="T4.WellDepth.5"/></td>
+                    <td><form:input path="WellDegree5" id="WellDegree5" type="text" name="T4.WellDegree.5"/></td>
+                    <td><form:input path="WellAzimuth5" id="WellAzimuth5" type="text" name="T4.WellAzimuth.5"/></td>
                 </tr>
-                <tr>
+<%--              <tr>
                     <TD><INPUT type="checkbox" name="chk"/></TD>
                     <td><form:input path="" id="WellDepth6" type="text" name="T4.WellDepth.6"/></td>
                     <td><form:input path="" id="WellDegree6" type="text" name="T4.WellDegree.6"/></td>
@@ -701,11 +701,11 @@
                     <td><form:input path="" id="WellDepth8" type="text" name="T4.WellDepth.8"/></td>
                     <td><form:input path="" id="WellDegree8" type="text" name="T4.WellDegree.8"/></td>
                     <td><form:input path="" id="WellAzimuth8" type="text" name="T4.WellAzimuth.8"/></td>
-                </tr>
+                </tr>--%>
             </table>    
             <INPUT id="add_4" type="button" value="Add Row" onclick="addRow('dataTable4')" />
             <INPUT type="button" value="Delete Row" onclick="deleteRow('dataTable4')" />
-            <p></p> --%>
+            <p></p> 
             ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             <p><br/><br/><br/></p>
             <table>

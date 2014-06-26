@@ -1,6 +1,7 @@
 package org.region.forms.osvoenie.spring.controller;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -54,12 +55,11 @@ public class FormController {
 //    Recipient recipient = (Recipient) command;
 //    return new ModelAndView("RecipientSuccess", "recipient", recipient).addObject("date", new Date());
 //  }
-//  private Map<Long, Recipient> recipients = new ConcurrentHashMap<Long, Recipient>();    
+ 
 //    @RequestMapping(method = RequestMethod.GET)
 //    public ModelAndView CreateForm(Model model) {
 //        Forma forma = new Forma();
 //        model.addAttribute("forma", forma);
-//       // model.addAttribute(forma);
 //       // model.addAttribute(new Date());
 //       // return "Forma-OsvoenieX";
 //        return new ModelAndView ("Forma-OsvoenieX", "forma", forma).addObject("date", new Date());
@@ -70,19 +70,18 @@ public class FormController {
 //     map.put("forma", new Forma());
         model.addAttribute("forma", new Forma());
         System.out.println("model: " + model);
-        // model.addAttribute(new Date());
+        model.addAttribute(new Date());
         return "Forma-OsvoenieX";
     }
 
     @RequestMapping(value = "Forma-OsvoenieX.htm", params = "Calculate", method = RequestMethod.POST)
-    public String create(Forma forma, BindingResult result, SessionStatus status) {
+    public String calculate(Forma forma, BindingResult result, SessionStatus status) {
         if (result.hasErrors()) {
             System.out.println("Calculate error");
             return "Forma-OsvoenieX";
         } else {
             try {
                 this.formOsvoenieSomeService.doSmthing(forma);
-                // this.formOsvoenieSomeService.CasingAvarageDiamCalculations(forma);
                 this.formOsvoenieSomeService.solver_for_avarageDiams(forma);
             } catch (Exception ex) {
                 Logger.getLogger(FormController.class.getName()).log(null, Priority.ERROR, result, ex);
@@ -94,7 +93,7 @@ public class FormController {
 
     @RequestMapping(value = "/Forma-OsvoenieX.htm/add", params = "add", method = RequestMethod.POST)
     //public String add(@ModelAttribute("forma") Forma forma, BindingResult result, SessionStatus sessionStatus) {
-    public String add(Forma forma, BindingResult result, SessionStatus sessionStatus) {
+    public String addForm(Forma forma, BindingResult result, SessionStatus sessionStatus) {
         logger.debug("Received request to add new forma");
         if (result.hasErrors()) {
             System.out.println("Save in bd error");
@@ -128,7 +127,7 @@ public class FormController {
      */
     //@RequestMapping(value = "/forms/edit", method = RequestMethod.GET)
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public ModelAndView getEdit(@PathVariable long id, Model model) {
+    public ModelAndView getEditForm(@PathVariable long id, Model model) {
         logger.debug("Received request to show edit page");
         // Retrieve existing Forma and add to model
         // This is the formBackingOBject
@@ -136,47 +135,50 @@ public class FormController {
         // This will resolve to /WEB-INF/jsp/editpage.jsp
         ModelAndView modelAndView = new ModelAndView("Forma-OsvoenieX");
         Forma forma = formaServiceDAO.getForm(id);
-        System.out.println("form.getId(): " + forma.getId()+ " " + id);
+        //System.out.println("form.getId(): " + forma.getId()+ " " + id);
         modelAndView.addObject("forma",forma);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    public ModelAndView saveEditForm(Forma forma, @PathVariable long id) {
+        ModelAndView modelAndView = new ModelAndView("home");
+        try {
+            formaServiceDAO.update(forma);
+            String message = "FORm was successfully edited.";
+            modelAndView.addObject("message", message);
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return modelAndView;
     }
     
     /**
-     * Edits an existing person by delegating the processing to PersonService.
-     * Displays a confirmation JSP page
-     *
      * @param forma
      * @param id
      * @param model
      * @return the name of the JSP page
      */
     //@RequestMapping(value = "/forms/edit", method = RequestMethod.POST)
-    @RequestMapping(value = "Forma-OsvoenieX.htm", params = "edit", method = RequestMethod.POST)
-    public String saveEdit(@ModelAttribute("formaAttribute") Forma forma,
-            @RequestParam(value = "id", required = true) Long id,
-            Model model) {
-        logger.debug("Received request to update person");
-
-     // The "formaAttribute" model has been passed to the controller from the JSP
-        // We use the name "formaAttribute" because the JSP uses that name
-        // We manually assign the id because we disabled it in the JSP page
-        // When a field is disabled it will not be included in the ModelAttribute
-        forma.setId(id);
-
-        try {
-            // Delegate to FormaServiceDAO for editing
-            formaServiceDAO.update(forma);
-        } catch (SQLException ex) {
-            java.util.logging.Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        // Add id reference to Model
-        model.addAttribute("id", id);
-
-        // This will resolve to /WEB-INF/jsp/editedpage.jsp
-        return "editedpage";
-    }
-//
+//    @RequestMapping(value = "Forma-OsvoenieX.htm", params = "edit", method = RequestMethod.POST)
+//    public String saveEdit(@ModelAttribute("formaAttribute") Forma forma,
+//            @RequestParam(value = "id", required = true) Long id, Model model) {
+//        logger.debug("Received request to update person");
+//     // The "formaAttribute" model has been passed to the controller from the JSP
+//        // We use the name "formaAttribute" because the JSP uses that name
+//        // We manually assign the id because we disabled it in the JSP page
+//        // When a field is disabled it will not be included in the ModelAttribute
+//        forma.setId(id);
+//        try {
+//            // Delegate to FormaServiceDAO for editing
+//            formaServiceDAO.update(forma);
+//        } catch (SQLException ex) {
+//            java.util.logging.Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        // Add id reference to Model
+//        model.addAttribute("id", id);
+//        return "editedpage";
+//    }
 //    /**
 //     * Retrieves the add page
 //     *

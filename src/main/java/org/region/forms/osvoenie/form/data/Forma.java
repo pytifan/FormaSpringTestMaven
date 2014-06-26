@@ -19,7 +19,7 @@ import javax.persistence.Temporal;
  * @author alex
  */
 @Entity
-@Table(name = "FORMS")
+@Table (name = "FORMS")
 public class Forma implements Serializable {
     private static final long serialVersionUID = 1L;
         
@@ -167,21 +167,172 @@ public class Forma implements Serializable {
     private String IDcas5;
     @Column(name = "steelCasing5")
     private String steelCasing5;
+    /*2.2. Параметры наземной линии/НКТ – Surface line/Tubing parameters*/
+    @Column(name = "topDepthSurface1")
+    private String topDepthSurface1;
+    @Column(name = "botomDepthSurface1")
+    private String botomDepthSurface1;
+    @Column(name = "surfaceLineTubig1")
+    private String surfaceLineTubig1;
+    @Column(name = "maxPressureSurface1")
+    private String maxPressureSurface1;
+    @Column(name = "OD1")
+    private String OD1;
+    @Column(name = "weightSurface1")
+    private String weightSurface1;
+    @Column(name = "internalDiamSurface1")
+    private String internalDiamSurface1;
+    @Column(name = "steelSurface1")
+    private String steelSurface1;
     
-//    private double internalDiamCasing1;
-//    private double internalDiamCasing2;
-//    private double internalDiamCasing3;
-//    private double internalDiamCasing4;
-//    private double internalDiamCasing5;
-//    private double avdiamcas;
-   
-//    private double botomDepthCasing1;
-//    private double topDepthCasing1;
-//    /*Параметры наземной линии/НКТ – Surface line/Tubing parameters*/
-//    private double topDepthSurface1;
-//    private double botomDepthSurface1;       
-//    private double outerDiamSurface1; 
-//    private double internalDiamSurface1;
+    @Column(name = "topDepthSurface2")
+    private String topDepthSurface2;
+    @Column(name = "botomDepthSurface2")
+    private String botomDepthSurface2;
+    @Column(name = "surfaceLineTubig2")
+    private String surfaceLineTubig2;
+    @Column(name = "maxPressureSurface2")
+    private String maxPressureSurface2;
+    @Column(name = "OD2")
+    private String OD2;
+    @Column(name = "weightSurface2")
+    private String weightSurface2;
+    @Column(name = "internalDiamSurface2")
+    private String internalDiamSurface2;
+    @Column(name = "steelSurface2")
+    private String steelSurface2;
+    
+    @Column(name = "topDepthSurface3")
+    private String topDepthSurface3;
+    @Column(name = "botomDepthSurface3")
+    private String botomDepthSurface3;
+    @Column(name = "surfaceLineTubig3")
+    private String surfaceLineTubig3;
+    @Column(name = "maxPressureSurface3")
+    private String maxPressureSurface3;
+    @Column(name = "OD3")
+    private String OD3;
+    @Column(name = "weightSurface3")
+    private String weightSurface3;
+    @Column(name = "internalDiamSurface3")
+    private String internalDiamSurface3;
+    @Column(name = "steelSurface3")
+    private String steelSurface3;
+    
+    @Column(name = "topDepthSurface4")
+    private String topDepthSurface4;
+    @Column(name = "botomDepthSurface4")
+    private String botomDepthSurface4;
+    @Column(name = "surfaceLineTubig4")
+    private String surfaceLineTubig4;
+    @Column(name = "maxPressureSurface4")
+    private String maxPressureSurface4;
+    @Column(name = "OD4")
+    private String OD4;
+    @Column(name = "weightSurface4")
+    private String weightSurface4;
+    @Column(name = "internalDiamSurface4")
+    private String internalDiamSurface4;
+    @Column(name = "steelSurface4")
+    private String steelSurface4;
+    
+    @Column(name = "topDepthSurface5")
+    private String topDepthSurface5;
+    @Column(name = "botomDepthSurface5")
+    private String botomDepthSurface5;
+    @Column(name = "surfaceLineTubig5")
+    private String surfaceLineTubig5;
+    @Column(name = "maxPressureSurface5")
+    private String maxPressureSurface5;
+    @Column(name = "OD5")
+    private String OD5;
+    @Column(name = "weightSurface5")
+    private String weightSurface5;
+    @Column(name = "internalDiamSurface5")
+    private String internalDiamSurface5;
+    @Column(name = "steelSurface5")
+    private String steelSurface5;
+    
+    
+    @Column(name = "DownholeDepth1")
+    private String DownholeDepth1;
+    @Column(name = "DownholeEquipType1")
+    private String DownholeEquipType1;
+    @Column(name = "DownholeMaxPress1")
+    private String DownholeMaxPress1;
+    @Column(name = "DownholeOutDiam1")
+    private String DownholeOutDiam1;
+    @Column(name = "DownholeInterDiam1")
+    private String DownholeInterDiam1;
+    @Column(name = "DownholeDepth2")
+    private String DownholeDepth2;
+    @Column(name = "DownholeEquipType2")
+    private String DownholeEquipType2;
+    @Column(name = "DownholeMaxPress2")
+    private String DownholeMaxPress2;
+    @Column(name = "DownholeOutDiam2")
+    private String DownholeOutDiam2;
+    @Column(name = "DownholeInterDiam2")
+    private String DownholeInterDiam2;
+    @Column(name = "DownholeDepth3")
+    private String DownholeDepth3;
+    @Column(name = "DownholeEquipType3")
+    private String DownholeEquipType3;
+    @Column(name = "DownholeMaxPress3")
+    private String DownholeMaxPress3;
+    @Column(name = "DownholeOutDiam3")
+    private String DownholeOutDiam3;
+    
+    @Column(name = "DownholeInterDiam3")
+    private String DownholeInterDiam3;
+    @Column(name = "DownholeDepth4")
+    private String DownholeDepth4;
+    @Column(name = "DownholeEquipType4")
+    private String DownholeEquipType4;
+        @Column(name = "DownholeMaxPress4")
+    private String DownholeMaxPress4;
+    @Column(name = "DownholeOutDiam4")
+    private String DownholeOutDiam4;
+    @Column(name = "DownholeInterDiam4")
+    private String DownholeInterDiam4;
+    /* 2.4. Инклинометрия – Directional Survey
+    1.2. Данные по скважине – Well data (или приложить полные данные по инклинометрии):
+        Input mentioned data to the table (or attach full directional survey data):*/
+    
+    @Column(name = "WellDepth1")
+    private String WellDepth1;
+    @Column(name = "WellDegree1")
+    private String WellDegree1;
+    @Column(name = "WellAzimuth1")
+    private String WellAzimuth1;
+    
+    @Column(name = "WellDepth2")
+    private String WellDepth2;
+    @Column(name = "WellDegree2")
+    private String WellDegree2;
+    @Column(name = "WellAzimuth2")
+    private String WellAzimuth2;
+    
+    @Column(name = "WellDepth3")
+    private String WellDepth3;
+    @Column(name = "WellDegree3")
+    private String WellDegree3;
+    @Column(name = "WellAzimuth3")
+    private String WellAzimuth3;
+    
+    @Column(name = "WellDepth4")
+    private String WellDepth4;
+    @Column(name = "WellDegree4")
+    private String WellDegree4;
+    @Column(name = "WellAzimuth4")
+    private String WellAzimuth4;
+    
+    @Column(name = "WellDepth5")
+    private String WellDepth5;
+    @Column(name = "WellDegree5")
+    private String WellDegree5;
+    @Column(name = "WellAzimuth5")
+    private String WellAzimuth5;
   
 //    public Long assignId() {
 //            this.setId(idSequence.incrementAndGet());
@@ -1139,5 +1290,1055 @@ public class Forma implements Serializable {
      */
     public void setSteelCasing5(String steelCasing5) {
         this.steelCasing5 = steelCasing5;
+    }
+
+    /**
+     * @return the topDepthSurface1
+     */
+    public String getTopDepthSurface1() {
+        return topDepthSurface1;
+    }
+
+    /**
+     * @param topDepthSurface1 the topDepthSurface1 to set
+     */
+    public void setTopDepthSurface1(String topDepthSurface1) {
+        this.topDepthSurface1 = topDepthSurface1;
+    }
+
+    /**
+     * @return the botomDepthSurface1
+     */
+    public String getBotomDepthSurface1() {
+        return botomDepthSurface1;
+    }
+
+    /**
+     * @param botomDepthSurface1 the botomDepthSurface1 to set
+     */
+    public void setBotomDepthSurface1(String botomDepthSurface1) {
+        this.botomDepthSurface1 = botomDepthSurface1;
+    }
+
+    /**
+     * @return the surfaceLineTubig1
+     */
+    public String getSurfaceLineTubig1() {
+        return surfaceLineTubig1;
+    }
+
+    /**
+     * @param surfaceLineTubig1 the surfaceLineTubig1 to set
+     */
+    public void setSurfaceLineTubig1(String surfaceLineTubig1) {
+        this.surfaceLineTubig1 = surfaceLineTubig1;
+    }
+
+    /**
+     * @return the maxPressureSurface1
+     */
+    public String getMaxPressureSurface1() {
+        return maxPressureSurface1;
+    }
+
+    /**
+     * @param maxPressureSurface1 the maxPressureSurface1 to set
+     */
+    public void setMaxPressureSurface1(String maxPressureSurface1) {
+        this.maxPressureSurface1 = maxPressureSurface1;
+    }
+
+    /**
+     * @return the OD1
+     */
+    public String getOD1() {
+        return OD1;
+    }
+
+    /**
+     * @param OD1 the OD1 to set
+     */
+    public void setOD1(String OD1) {
+        this.OD1 = OD1;
+    }
+
+    /**
+     * @return the weightSurface1
+     */
+    public String getWeightSurface1() {
+        return weightSurface1;
+    }
+
+    /**
+     * @param weightSurface1 the weightSurface1 to set
+     */
+    public void setWeightSurface1(String weightSurface1) {
+        this.weightSurface1 = weightSurface1;
+    }
+
+    /**
+     * @return the internalDiamSurface1
+     */
+    public String getInternalDiamSurface1() {
+        return internalDiamSurface1;
+    }
+
+    /**
+     * @param internalDiamSurface1 the internalDiamSurface1 to set
+     */
+    public void setInternalDiamSurface1(String internalDiamSurface1) {
+        this.internalDiamSurface1 = internalDiamSurface1;
+    }
+
+    /**
+     * @return the steelSurface1
+     */
+    public String getSteelSurface1() {
+        return steelSurface1;
+    }
+
+    /**
+     * @param steelSurface1 the steelSurface1 to set
+     */
+    public void setSteelSurface1(String steelSurface1) {
+        this.steelSurface1 = steelSurface1;
+    }
+
+    /**
+     * @return the topDepthSurface2
+     */
+    public String getTopDepthSurface2() {
+        return topDepthSurface2;
+    }
+
+    /**
+     * @param topDepthSurface2 the topDepthSurface2 to set
+     */
+    public void setTopDepthSurface2(String topDepthSurface2) {
+        this.topDepthSurface2 = topDepthSurface2;
+    }
+
+    /**
+     * @return the botomDepthSurface2
+     */
+    public String getBotomDepthSurface2() {
+        return botomDepthSurface2;
+    }
+
+    /**
+     * @param botomDepthSurface2 the botomDepthSurface2 to set
+     */
+    public void setBotomDepthSurface2(String botomDepthSurface2) {
+        this.botomDepthSurface2 = botomDepthSurface2;
+    }
+
+    /**
+     * @return the surfaceLineTubig2
+     */
+    public String getSurfaceLineTubig2() {
+        return surfaceLineTubig2;
+    }
+
+    /**
+     * @param surfaceLineTubig2 the surfaceLineTubig2 to set
+     */
+    public void setSurfaceLineTubig2(String surfaceLineTubig2) {
+        this.surfaceLineTubig2 = surfaceLineTubig2;
+    }
+
+    /**
+     * @return the maxPressureSurface2
+     */
+    public String getMaxPressureSurface2() {
+        return maxPressureSurface2;
+    }
+
+    /**
+     * @param maxPressureSurface2 the maxPressureSurface2 to set
+     */
+    public void setMaxPressureSurface2(String maxPressureSurface2) {
+        this.maxPressureSurface2 = maxPressureSurface2;
+    }
+
+    /**
+     * @return the OD2
+     */
+    public String getOD2() {
+        return OD2;
+    }
+
+    /**
+     * @param OD2 the OD2 to set
+     */
+    public void setOD2(String OD2) {
+        this.OD2 = OD2;
+    }
+
+    /**
+     * @return the weightSurface2
+     */
+    public String getWeightSurface2() {
+        return weightSurface2;
+    }
+
+    /**
+     * @param weightSurface2 the weightSurface2 to set
+     */
+    public void setWeightSurface2(String weightSurface2) {
+        this.weightSurface2 = weightSurface2;
+    }
+
+    /**
+     * @return the internalDiamSurface2
+     */
+    public String getInternalDiamSurface2() {
+        return internalDiamSurface2;
+    }
+
+    /**
+     * @param internalDiamSurface2 the internalDiamSurface2 to set
+     */
+    public void setInternalDiamSurface2(String internalDiamSurface2) {
+        this.internalDiamSurface2 = internalDiamSurface2;
+    }
+
+    /**
+     * @return the steelSurface2
+     */
+    public String getSteelSurface2() {
+        return steelSurface2;
+    }
+
+    /**
+     * @param steelSurface2 the steelSurface2 to set
+     */
+    public void setSteelSurface2(String steelSurface2) {
+        this.steelSurface2 = steelSurface2;
+    }
+
+    /**
+     * @return the topDepthSurface3
+     */
+    public String getTopDepthSurface3() {
+        return topDepthSurface3;
+    }
+
+    /**
+     * @param topDepthSurface3 the topDepthSurface3 to set
+     */
+    public void setTopDepthSurface3(String topDepthSurface3) {
+        this.topDepthSurface3 = topDepthSurface3;
+    }
+
+    /**
+     * @return the botomDepthSurface3
+     */
+    public String getBotomDepthSurface3() {
+        return botomDepthSurface3;
+    }
+
+    /**
+     * @param botomDepthSurface3 the botomDepthSurface3 to set
+     */
+    public void setBotomDepthSurface3(String botomDepthSurface3) {
+        this.botomDepthSurface3 = botomDepthSurface3;
+    }
+
+    /**
+     * @return the surfaceLineTubig3
+     */
+    public String getSurfaceLineTubig3() {
+        return surfaceLineTubig3;
+    }
+
+    /**
+     * @param surfaceLineTubig3 the surfaceLineTubig3 to set
+     */
+    public void setSurfaceLineTubig3(String surfaceLineTubig3) {
+        this.surfaceLineTubig3 = surfaceLineTubig3;
+    }
+
+    /**
+     * @return the maxPressureSurface3
+     */
+    public String getMaxPressureSurface3() {
+        return maxPressureSurface3;
+    }
+
+    /**
+     * @param maxPressureSurface3 the maxPressureSurface3 to set
+     */
+    public void setMaxPressureSurface3(String maxPressureSurface3) {
+        this.maxPressureSurface3 = maxPressureSurface3;
+    }
+
+    /**
+     * @return the OD3
+     */
+    public String getOD3() {
+        return OD3;
+    }
+
+    /**
+     * @param OD3 the OD3 to set
+     */
+    public void setOD3(String OD3) {
+        this.OD3 = OD3;
+    }
+
+    /**
+     * @return the weightSurface3
+     */
+    public String getWeightSurface3() {
+        return weightSurface3;
+    }
+
+    /**
+     * @param weightSurface3 the weightSurface3 to set
+     */
+    public void setWeightSurface3(String weightSurface3) {
+        this.weightSurface3 = weightSurface3;
+    }
+
+    /**
+     * @return the internalDiamSurface3
+     */
+    public String getInternalDiamSurface3() {
+        return internalDiamSurface3;
+    }
+
+    /**
+     * @param internalDiamSurface3 the internalDiamSurface3 to set
+     */
+    public void setInternalDiamSurface3(String internalDiamSurface3) {
+        this.internalDiamSurface3 = internalDiamSurface3;
+    }
+
+    /**
+     * @return the steelSurface3
+     */
+    public String getSteelSurface3() {
+        return steelSurface3;
+    }
+
+    /**
+     * @param steelSurface3 the steelSurface3 to set
+     */
+    public void setSteelSurface3(String steelSurface3) {
+        this.steelSurface3 = steelSurface3;
+    }
+
+    /**
+     * @return the botomDepthSurface4
+     */
+    public String getBotomDepthSurface4() {
+        return botomDepthSurface4;
+    }
+
+    /**
+     * @param botomDepthSurface4 the botomDepthSurface4 to set
+     */
+    public void setBotomDepthSurface4(String botomDepthSurface4) {
+        this.botomDepthSurface4 = botomDepthSurface4;
+    }
+
+    /**
+     * @return the surfaceLineTubig4
+     */
+    public String getSurfaceLineTubig4() {
+        return surfaceLineTubig4;
+    }
+
+    /**
+     * @param surfaceLineTubig4 the surfaceLineTubig4 to set
+     */
+    public void setSurfaceLineTubig4(String surfaceLineTubig4) {
+        this.surfaceLineTubig4 = surfaceLineTubig4;
+    }
+
+    /**
+     * @return the maxPressureSurface4
+     */
+    public String getMaxPressureSurface4() {
+        return maxPressureSurface4;
+    }
+
+    /**
+     * @param maxPressureSurface4 the maxPressureSurface4 to set
+     */
+    public void setMaxPressureSurface4(String maxPressureSurface4) {
+        this.maxPressureSurface4 = maxPressureSurface4;
+    }
+
+    /**
+     * @return the OD4
+     */
+    public String getOD4() {
+        return OD4;
+    }
+
+    /**
+     * @param OD4 the OD4 to set
+     */
+    public void setOD4(String OD4) {
+        this.OD4 = OD4;
+    }
+
+    /**
+     * @return the weightSurface4
+     */
+    public String getWeightSurface4() {
+        return weightSurface4;
+    }
+
+    /**
+     * @param weightSurface4 the weightSurface4 to set
+     */
+    public void setWeightSurface4(String weightSurface4) {
+        this.weightSurface4 = weightSurface4;
+    }
+
+    /**
+     * @return the internalDiamSurface4
+     */
+    public String getInternalDiamSurface4() {
+        return internalDiamSurface4;
+    }
+
+    /**
+     * @param internalDiamSurface4 the internalDiamSurface4 to set
+     */
+    public void setInternalDiamSurface4(String internalDiamSurface4) {
+        this.internalDiamSurface4 = internalDiamSurface4;
+    }
+
+    /**
+     * @return the steelSurface4
+     */
+    public String getSteelSurface4() {
+        return steelSurface4;
+    }
+
+    /**
+     * @param steelSurface4 the steelSurface4 to set
+     */
+    public void setSteelSurface4(String steelSurface4) {
+        this.steelSurface4 = steelSurface4;
+    }
+
+    /**
+     * @return the topDepthSurface5
+     */
+    public String getTopDepthSurface5() {
+        return topDepthSurface5;
+    }
+
+    /**
+     * @param topDepthSurface5 the topDepthSurface5 to set
+     */
+    public void setTopDepthSurface5(String topDepthSurface5) {
+        this.topDepthSurface5 = topDepthSurface5;
+    }
+
+    /**
+     * @return the botomDepthSurface5
+     */
+    public String getBotomDepthSurface5() {
+        return botomDepthSurface5;
+    }
+
+    /**
+     * @param botomDepthSurface5 the botomDepthSurface5 to set
+     */
+    public void setBotomDepthSurface5(String botomDepthSurface5) {
+        this.botomDepthSurface5 = botomDepthSurface5;
+    }
+
+    /**
+     * @return the surfaceLineTubig5
+     */
+    public String getSurfaceLineTubig5() {
+        return surfaceLineTubig5;
+    }
+
+    /**
+     * @param surfaceLineTubig5 the surfaceLineTubig5 to set
+     */
+    public void setSurfaceLineTubig5(String surfaceLineTubig5) {
+        this.surfaceLineTubig5 = surfaceLineTubig5;
+    }
+
+    /**
+     * @return the maxPressureSurface5
+     */
+    public String getMaxPressureSurface5() {
+        return maxPressureSurface5;
+    }
+
+    /**
+     * @param maxPressureSurface5 the maxPressureSurface5 to set
+     */
+    public void setMaxPressureSurface5(String maxPressureSurface5) {
+        this.maxPressureSurface5 = maxPressureSurface5;
+    }
+
+    /**
+     * @return the OD5
+     */
+    public String getOD5() {
+        return OD5;
+    }
+
+    /**
+     * @param OD5 the OD5 to set
+     */
+    public void setOD5(String OD5) {
+        this.OD5 = OD5;
+    }
+
+    /**
+     * @return the weightSurface5
+     */
+    public String getWeightSurface5() {
+        return weightSurface5;
+    }
+
+    /**
+     * @param weightSurface5 the weightSurface5 to set
+     */
+    public void setWeightSurface5(String weightSurface5) {
+        this.weightSurface5 = weightSurface5;
+    }
+
+    /**
+     * @return the internalDiamSurface5
+     */
+    public String getInternalDiamSurface5() {
+        return internalDiamSurface5;
+    }
+
+    /**
+     * @param internalDiamSurface5 the internalDiamSurface5 to set
+     */
+    public void setInternalDiamSurface5(String internalDiamSurface5) {
+        this.internalDiamSurface5 = internalDiamSurface5;
+    }
+
+    /**
+     * @return the steelSurface5
+     */
+    public String getSteelSurface5() {
+        return steelSurface5;
+    }
+
+    /**
+     * @param steelSurface5 the steelSurface5 to set
+     */
+    public void setSteelSurface5(String steelSurface5) {
+        this.steelSurface5 = steelSurface5;
+    }
+
+    /**
+     * @return the topDepthSurface4
+     */
+    public String getTopDepthSurface4() {
+        return topDepthSurface4;
+    }
+
+    /**
+     * @param topDepthSurface4 the topDepthSurface4 to set
+     */
+    public void setTopDepthSurface4(String topDepthSurface4) {
+        this.topDepthSurface4 = topDepthSurface4;
+    }
+
+    /**
+     * @return the DownholeDepth1
+     */
+    public String getDownholeDepth1() {
+        return DownholeDepth1;
+    }
+
+    /**
+     * @param DownholeDepth1 the DownholeDepth1 to set
+     */
+    public void setDownholeDepth1(String DownholeDepth1) {
+        this.DownholeDepth1 = DownholeDepth1;
+    }
+
+    /**
+     * @return the DownholeEquipType1
+     */
+    public String getDownholeEquipType1() {
+        return DownholeEquipType1;
+    }
+
+    /**
+     * @param DownholeEquipType1 the DownholeEquipType1 to set
+     */
+    public void setDownholeEquipType1(String DownholeEquipType1) {
+        this.DownholeEquipType1 = DownholeEquipType1;
+    }
+
+    /**
+     * @return the DownholeMaxPress1
+     */
+    public String getDownholeMaxPress1() {
+        return DownholeMaxPress1;
+    }
+
+    /**
+     * @param DownholeMaxPress1 the DownholeMaxPress1 to set
+     */
+    public void setDownholeMaxPress1(String DownholeMaxPress1) {
+        this.DownholeMaxPress1 = DownholeMaxPress1;
+    }
+
+    /**
+     * @return the DownholeOutDiam1
+     */
+    public String getDownholeOutDiam1() {
+        return DownholeOutDiam1;
+    }
+
+    /**
+     * @param DownholeOutDiam1 the DownholeOutDiam1 to set
+     */
+    public void setDownholeOutDiam1(String DownholeOutDiam1) {
+        this.DownholeOutDiam1 = DownholeOutDiam1;
+    }
+
+    /**
+     * @return the DownholeInterDiam1
+     */
+    public String getDownholeInterDiam1() {
+        return DownholeInterDiam1;
+    }
+
+    /**
+     * @param DownholeInterDiam1 the DownholeInterDiam1 to set
+     */
+    public void setDownholeInterDiam1(String DownholeInterDiam1) {
+        this.DownholeInterDiam1 = DownholeInterDiam1;
+    }
+
+    /**
+     * @return the DownholeDepth2
+     */
+    public String getDownholeDepth2() {
+        return DownholeDepth2;
+    }
+
+    /**
+     * @param DownholeDepth2 the DownholeDepth2 to set
+     */
+    public void setDownholeDepth2(String DownholeDepth2) {
+        this.DownholeDepth2 = DownholeDepth2;
+    }
+
+    /**
+     * @return the DownholeEquipType2
+     */
+    public String getDownholeEquipType2() {
+        return DownholeEquipType2;
+    }
+
+    /**
+     * @param DownholeEquipType2 the DownholeEquipType2 to set
+     */
+    public void setDownholeEquipType2(String DownholeEquipType2) {
+        this.DownholeEquipType2 = DownholeEquipType2;
+    }
+
+    /**
+     * @return the DownholeMaxPress2
+     */
+    public String getDownholeMaxPress2() {
+        return DownholeMaxPress2;
+    }
+
+    /**
+     * @param DownholeMaxPress2 the DownholeMaxPress2 to set
+     */
+    public void setDownholeMaxPress2(String DownholeMaxPress2) {
+        this.DownholeMaxPress2 = DownholeMaxPress2;
+    }
+
+    /**
+     * @return the DownholeOutDiam2
+     */
+    public String getDownholeOutDiam2() {
+        return DownholeOutDiam2;
+    }
+
+    /**
+     * @param DownholeOutDiam2 the DownholeOutDiam2 to set
+     */
+    public void setDownholeOutDiam2(String DownholeOutDiam2) {
+        this.DownholeOutDiam2 = DownholeOutDiam2;
+    }
+
+    /**
+     * @return the DownholeInterDiam2
+     */
+    public String getDownholeInterDiam2() {
+        return DownholeInterDiam2;
+    }
+
+    /**
+     * @param DownholeInterDiam2 the DownholeInterDiam2 to set
+     */
+    public void setDownholeInterDiam2(String DownholeInterDiam2) {
+        this.DownholeInterDiam2 = DownholeInterDiam2;
+    }
+
+    /**
+     * @return the DownholeDepth3
+     */
+    public String getDownholeDepth3() {
+        return DownholeDepth3;
+    }
+
+    /**
+     * @param DownholeDepth3 the DownholeDepth3 to set
+     */
+    public void setDownholeDepth3(String DownholeDepth3) {
+        this.DownholeDepth3 = DownholeDepth3;
+    }
+
+    /**
+     * @return the DownholeEquipType3
+     */
+    public String getDownholeEquipType3() {
+        return DownholeEquipType3;
+    }
+
+    /**
+     * @param DownholeEquipType3 the DownholeEquipType3 to set
+     */
+    public void setDownholeEquipType3(String DownholeEquipType3) {
+        this.DownholeEquipType3 = DownholeEquipType3;
+    }
+
+    /**
+     * @return the DownholeMaxPress3
+     */
+    public String getDownholeMaxPress3() {
+        return DownholeMaxPress3;
+    }
+
+    /**
+     * @param DownholeMaxPress3 the DownholeMaxPress3 to set
+     */
+    public void setDownholeMaxPress3(String DownholeMaxPress3) {
+        this.DownholeMaxPress3 = DownholeMaxPress3;
+    }
+
+    /**
+     * @return the DownholeOutDiam3
+     */
+    public String getDownholeOutDiam3() {
+        return DownholeOutDiam3;
+    }
+
+    /**
+     * @param DownholeOutDiam3 the DownholeOutDiam3 to set
+     */
+    public void setDownholeOutDiam3(String DownholeOutDiam3) {
+        this.DownholeOutDiam3 = DownholeOutDiam3;
+    }
+
+    /**
+     * @return the DownholeInterDiam3
+     */
+    public String getDownholeInterDiam3() {
+        return DownholeInterDiam3;
+    }
+
+    /**
+     * @param DownholeInterDiam3 the DownholeInterDiam3 to set
+     */
+    public void setDownholeInterDiam3(String DownholeInterDiam3) {
+        this.DownholeInterDiam3 = DownholeInterDiam3;
+    }
+
+    /**
+     * @return the DownholeDepth4
+     */
+    public String getDownholeDepth4() {
+        return DownholeDepth4;
+    }
+
+    /**
+     * @param DownholeDepth4 the DownholeDepth4 to set
+     */
+    public void setDownholeDepth4(String DownholeDepth4) {
+        this.DownholeDepth4 = DownholeDepth4;
+    }
+
+    /**
+     * @return the DownholeEquipType4
+     */
+    public String getDownholeEquipType4() {
+        return DownholeEquipType4;
+    }
+
+    /**
+     * @param DownholeEquipType4 the DownholeEquipType4 to set
+     */
+    public void setDownholeEquipType4(String DownholeEquipType4) {
+        this.DownholeEquipType4 = DownholeEquipType4;
+    }
+
+    /**
+     * @return the DownholeMaxPress4
+     */
+    public String getDownholeMaxPress4() {
+        return DownholeMaxPress4;
+    }
+
+    /**
+     * @param DownholeMaxPress4 the DownholeMaxPress4 to set
+     */
+    public void setDownholeMaxPress4(String DownholeMaxPress4) {
+        this.DownholeMaxPress4 = DownholeMaxPress4;
+    }
+
+    /**
+     * @return the DownholeOutDiam4
+     */
+    public String getDownholeOutDiam4() {
+        return DownholeOutDiam4;
+    }
+
+    /**
+     * @param DownholeOutDiam4 the DownholeOutDiam4 to set
+     */
+    public void setDownholeOutDiam4(String DownholeOutDiam4) {
+        this.DownholeOutDiam4 = DownholeOutDiam4;
+    }
+
+    /**
+     * @return the DownholeInterDiam4
+     */
+    public String getDownholeInterDiam4() {
+        return DownholeInterDiam4;
+    }
+
+    /**
+     * @param DownholeInterDiam4 the DownholeInterDiam4 to set
+     */
+    public void setDownholeInterDiam4(String DownholeInterDiam4) {
+        this.DownholeInterDiam4 = DownholeInterDiam4;
+    }
+
+    /**
+     * @return the WellDepth1
+     */
+    public String getWellDepth1() {
+        return WellDepth1;
+    }
+
+    /**
+     * @param WellDepth1 the WellDepth1 to set
+     */
+    public void setWellDepth1(String WellDepth1) {
+        this.WellDepth1 = WellDepth1;
+    }
+
+    /**
+     * @return the WellDegree1
+     */
+    public String getWellDegree1() {
+        return WellDegree1;
+    }
+
+    /**
+     * @param WellDegree1 the WellDegree1 to set
+     */
+    public void setWellDegree1(String WellDegree1) {
+        this.WellDegree1 = WellDegree1;
+    }
+
+    /**
+     * @return the WellAzimuth1
+     */
+    public String getWellAzimuth1() {
+        return WellAzimuth1;
+    }
+
+    /**
+     * @param WellAzimuth1 the WellAzimuth1 to set
+     */
+    public void setWellAzimuth1(String WellAzimuth1) {
+        this.WellAzimuth1 = WellAzimuth1;
+    }
+
+    /**
+     * @return the WellDepth2
+     */
+    public String getWellDepth2() {
+        return WellDepth2;
+    }
+
+    /**
+     * @param WellDepth2 the WellDepth2 to set
+     */
+    public void setWellDepth2(String WellDepth2) {
+        this.WellDepth2 = WellDepth2;
+    }
+
+    /**
+     * @return the WellDegree2
+     */
+    public String getWellDegree2() {
+        return WellDegree2;
+    }
+
+    /**
+     * @param WellDegree2 the WellDegree2 to set
+     */
+    public void setWellDegree2(String WellDegree2) {
+        this.WellDegree2 = WellDegree2;
+    }
+
+    /**
+     * @return the WellAzimuth2
+     */
+    public String getWellAzimuth2() {
+        return WellAzimuth2;
+    }
+
+    /**
+     * @param WellAzimuth2 the WellAzimuth2 to set
+     */
+    public void setWellAzimuth2(String WellAzimuth2) {
+        this.WellAzimuth2 = WellAzimuth2;
+    }
+
+    /**
+     * @return the WellDepth3
+     */
+    public String getWellDepth3() {
+        return WellDepth3;
+    }
+
+    /**
+     * @param WellDepth3 the WellDepth3 to set
+     */
+    public void setWellDepth3(String WellDepth3) {
+        this.WellDepth3 = WellDepth3;
+    }
+
+    /**
+     * @return the WellDegree3
+     */
+    public String getWellDegree3() {
+        return WellDegree3;
+    }
+
+    /**
+     * @param WellDegree3 the WellDegree3 to set
+     */
+    public void setWellDegree3(String WellDegree3) {
+        this.WellDegree3 = WellDegree3;
+    }
+
+    /**
+     * @return the WellAzimuth3
+     */
+    public String getWellAzimuth3() {
+        return WellAzimuth3;
+    }
+
+    /**
+     * @param WellAzimuth3 the WellAzimuth3 to set
+     */
+    public void setWellAzimuth3(String WellAzimuth3) {
+        this.WellAzimuth3 = WellAzimuth3;
+    }
+
+    /**
+     * @return the WellDepth4
+     */
+    public String getWellDepth4() {
+        return WellDepth4;
+    }
+
+    /**
+     * @param WellDepth4 the WellDepth4 to set
+     */
+    public void setWellDepth4(String WellDepth4) {
+        this.WellDepth4 = WellDepth4;
+    }
+
+    /**
+     * @return the WellDegree4
+     */
+    public String getWellDegree4() {
+        return WellDegree4;
+    }
+
+    /**
+     * @param WellDegree4 the WellDegree4 to set
+     */
+    public void setWellDegree4(String WellDegree4) {
+        this.WellDegree4 = WellDegree4;
+    }
+
+    /**
+     * @return the WellAzimuth4
+     */
+    public String getWellAzimuth4() {
+        return WellAzimuth4;
+    }
+
+    /**
+     * @param WellAzimuth4 the WellAzimuth4 to set
+     */
+    public void setWellAzimuth4(String WellAzimuth4) {
+        this.WellAzimuth4 = WellAzimuth4;
+    }
+
+    /**
+     * @return the WellDepth5
+     */
+    public String getWellDepth5() {
+        return WellDepth5;
+    }
+
+    /**
+     * @param WellDepth5 the WellDepth5 to set
+     */
+    public void setWellDepth5(String WellDepth5) {
+        this.WellDepth5 = WellDepth5;
+    }
+
+    /**
+     * @return the WellDegree5
+     */
+    public String getWellDegree5() {
+        return WellDegree5;
+    }
+
+    /**
+     * @param WellDegree5 the WellDegree5 to set
+     */
+    public void setWellDegree5(String WellDegree5) {
+        this.WellDegree5 = WellDegree5;
+    }
+
+    /**
+     * @return the WellAzimuth5
+     */
+    public String getWellAzimuth5() {
+        return WellAzimuth5;
+    }
+
+    /**
+     * @param WellAzimuth5 the WellAzimuth5 to set
+     */
+    public void setWellAzimuth5(String WellAzimuth5) {
+        this.WellAzimuth5 = WellAzimuth5;
     }
 }

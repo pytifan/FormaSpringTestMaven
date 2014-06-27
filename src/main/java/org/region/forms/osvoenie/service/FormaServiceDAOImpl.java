@@ -32,8 +32,8 @@ public class FormaServiceDAOImpl implements FormaServiceDAO {
 
     @Override
     @Transactional
-    public boolean update(Forma formaToUpdate) throws SQLException {
-        return formadao.update(formaToUpdate);
+    public void update(Forma formaToUpdate) throws SQLException {
+        formadao.update(formaToUpdate);
     }
 
     @Override

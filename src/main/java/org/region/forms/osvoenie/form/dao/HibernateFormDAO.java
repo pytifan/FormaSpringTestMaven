@@ -27,10 +27,10 @@ public interface HibernateFormDAO {
      * Update existed forma
      *
      * @param formaToUpdate - the new form or form - changed form object
-     * @return true, if changing was successful, false, if it fails
+     * //@return true, if changing was successful, false, if it fails
      * @throws SQLException
      */
-    boolean update(Forma formaToUpdate) throws SQLException;
+    void update(Forma formaToUpdate) throws SQLException;
 
     /**
      * Find all forms in the database

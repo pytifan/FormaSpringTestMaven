@@ -30,7 +30,7 @@ public class HibernateFormDAOImpl implements HibernateFormDAO {
         Transaction txn = null;
         Session session = null;
         try {          
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
             txn = session.beginTransaction();
             session.save(newforma);
             txn.commit();
@@ -90,7 +90,7 @@ public class HibernateFormDAOImpl implements HibernateFormDAO {
 		List<Forma> result = null;
 		Session session = null;		
 		try {
-			session = HibernateUtil.getSessionFactory().openSession();
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			result = session.createCriteria(Forma.class).list();
 			for (Forma f:result){
@@ -118,49 +118,59 @@ public class HibernateFormDAOImpl implements HibernateFormDAO {
     @Override
     public Forma getForm(long id) {
         // Retrieve session from Hibernate
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         //Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         // Retrieve existing form first
+        session.beginTransaction();
         Forma forma = (Forma) session.get(Forma.class, id);
+        session.getTransaction().commit();
         return forma;
     }  
     
     @Override
-    public boolean update(Forma formaToUpdate) throws SQLException {
-       		boolean result = false;
+    public void update(Forma forma) throws SQLException {
+//       		boolean result = false;
 		Session session = null;
-		long testId = -1L;
-		String testFieldName = null;
-		
-		if (formaToUpdate == null || formaToUpdate.getId() < 0) {
-			LOG.trace("Invalid parameter, form wasn't created");
-			return result;
-		}
-		
-		List<Forma> forms = getAllforms();
-		for (Forma f:forms){
-			if (formaToUpdate.getId() == f.getId()){
-				testId = f.getId();
-			}
-			if (formaToUpdate.getFieldName().equals(f.getFieldName())) {
-				testFieldName = f.getFieldName();
-			}
-		}
-		
-		if (testId != -1L && testFieldName == null) {
-			try {
-				session = HibernateUtil.getSessionFactory().openSession();
-				session.beginTransaction();
-				session.update(formaToUpdate);
-				session.getTransaction().commit();
-				result = true;			
-			} finally {
-				if (session != null && session.isOpen()) {
-					session.close();
-				}
-			}
-		}
-		return result;
+//		long testId = -1L;
+//		String testFieldName = null;
+//		
+//		if (formaToUpdate == null || formaToUpdate.getId() < 0) {
+//			LOG.trace("Invalid parameter, form wasn't created");
+//			return result;
+//		}
+//		
+//		List<Forma> forms = getAllforms();
+//		for (Forma f:forms){
+//			if (formaToUpdate.getId() == f.getId()){
+//				testId = f.getId();
+//			}
+//			if (formaToUpdate.getFieldName().equals(f.getFieldName())) {
+//				testFieldName = f.getFieldName();
+//			}
+//		}
+//		
+//		if (testId != -1L && testFieldName == null) {
+//			try {
+//				session = HibernateUtil.getSessionFactory().openSession();
+//				session.beginTransaction();
+//				session.update(formaToUpdate);
+//				session.getTransaction().commit();
+//				result = true;			
+//			} finally {
+//				if (session != null && session.isOpen()) {
+//					session.close();
+//				}
+//			}
+//		}
+//		return result;
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        //Forma formaToUpdate = getForm(forma.getId());
+        Forma formaToUpdate = (Forma) session.get(Forma.class, forma.getId());
+        formaToUpdate.setFieldName(forma.getFieldName());
+        formaToUpdate.setWellName(forma.getWellName());
+        session.update(formaToUpdate);
+        session.getTransaction().commit();
     }
 
     @Override

@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.springframework.format.annotation.DateTimeFormat;
 /**
  *
  * @author alex
@@ -40,6 +41,7 @@ public class Forma implements Serializable {
     @Column(name = "WELLTYPE")
     private String wellType;
     @Column(name = "DESIREDJOBDATE")
+    @DateTimeFormat (pattern = "dd-mm-yy")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date desiredJobDate;
     @Column(name = "SLABBEDWELLSITE")
@@ -289,7 +291,7 @@ public class Forma implements Serializable {
     private String DownholeDepth4;
     @Column(name = "DownholeEquipType4")
     private String DownholeEquipType4;
-        @Column(name = "DownholeMaxPress4")
+    @Column(name = "DownholeMaxPress4")
     private String DownholeMaxPress4;
     @Column(name = "DownholeOutDiam4")
     private String DownholeOutDiam4;

@@ -64,34 +64,15 @@ public class FormController {
 //       // return "Forma-OsvoenieX";
 //        return new ModelAndView ("Forma-OsvoenieX", "forma", forma).addObject("date", new Date());
 //    }
-    @RequestMapping(value = "Forma-OsvoenieX.htm", method = RequestMethod.GET)
-    public String CreateForm(Model model) {
-//    public String CreateForm(Map<String, Object> map) {
-//     map.put("forma", new Forma());
-        model.addAttribute("forma", new Forma());
-        System.out.println("model: " + model);
-        model.addAttribute(new Date());
-        return "Forma-OsvoenieX";
+    
+    @RequestMapping(value="/add")
+    public ModelAndView addTeamPage() {
+        ModelAndView modelAndView = new ModelAndView("Forma-OsvoenieX");
+        modelAndView.addObject("forma", new Forma());
+        return modelAndView;
     }
-
-    @RequestMapping(value = "Forma-OsvoenieX.htm", params = "Calculate", method = RequestMethod.POST)
-    public String calculate(Forma forma, BindingResult result, SessionStatus status) {
-        if (result.hasErrors()) {
-            System.out.println("Calculate error");
-            return "Forma-OsvoenieX";
-        } else {
-            try {
-                this.formOsvoenieSomeService.doSmthing(forma);
-                this.formOsvoenieSomeService.solver_for_avarageDiams(forma);
-            } catch (Exception ex) {
-                Logger.getLogger(FormController.class.getName()).log(null, Priority.ERROR, result, ex);
-            }
-            status.setComplete();
-            return "RecipientSuccess";
-        }
-    }
-
-    @RequestMapping(value = "/Forma-OsvoenieX.htm/add", params = "add", method = RequestMethod.POST)
+    
+    @RequestMapping(value = "/add/process", params = "add", method = RequestMethod.POST)
     //public String add(@ModelAttribute("forma") Forma forma, BindingResult result, SessionStatus sessionStatus) {
     public String addForm(Forma forma, BindingResult result, SessionStatus sessionStatus) {
         logger.debug("Received request to add new forma");
@@ -105,6 +86,32 @@ public class FormController {
                 Logger.getLogger(FormController.class.getName()).log(null, Priority.ERROR, result, ex);
             }
             sessionStatus.setComplete();
+            return "home";
+        }
+    }
+//    @RequestMapping(value = "Forma-OsvoenieX.htm", method = RequestMethod.GET)
+//    public String CreateForm(Model model) {
+////    public String CreateForm(Map<String, Object> map) {
+////     map.put("forma", new Forma());
+//        model.addAttribute("forma", new Forma());
+//        System.out.println("model: " + model);
+//        model.addAttribute(new Date());
+//        return "Forma-OsvoenieX";
+//    }
+
+    @RequestMapping(value = "/Calculate", params = "Calculate", method = RequestMethod.POST)
+    public String calculate(Forma forma, BindingResult result, SessionStatus status) {
+        if (result.hasErrors()) {
+            System.out.println("Calculate error");
+            return "Forma-OsvoenieX";
+        } else {
+            try {
+                this.formOsvoenieSomeService.doSmthing(forma);
+                this.formOsvoenieSomeService.solver_for_avarageDiams(forma);
+            } catch (Exception ex) {
+                Logger.getLogger(FormController.class.getName()).log(null, Priority.ERROR, result, ex);
+            }
+            status.setComplete();
             return "RecipientSuccess";
         }
     }
@@ -141,12 +148,12 @@ public class FormController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public ModelAndView saveEditForm(Forma forma, @PathVariable long id) {
+    public ModelAndView saveEditForm(@PathVariable long id, Forma forma) {
         ModelAndView modelAndView = new ModelAndView("home");
         try {
             formaServiceDAO.update(forma);
             String message = "FORm was successfully edited.";
-            modelAndView.addObject("message", message);
+         //   modelAndView.addObject("message", message);
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
         }

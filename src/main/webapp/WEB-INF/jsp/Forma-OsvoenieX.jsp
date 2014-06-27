@@ -18,7 +18,7 @@
             jQuery(document).ready(function($){
                   $("#desiredJobDate").datepicker({
                     showOn: "both",
-                  //dateFormat: "dd/mm/yy",
+                    dateFormat: "dd-mm-yy",
                     buttonImage: 'resources/css/ui-darkness/images/calendar.gif', // 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif',                
                     buttonImageOnly: true
                   });
@@ -140,7 +140,13 @@
                     window.location.reload(true);
             }
             function doSubmit3(form) {
-                    form.action = "Forma-OsvoenieX.htm/add";
+                    form.action = "${pageContext.request.contextPath}/add/process";
+            }
+            function doSubmit4(form) {
+                    form.action = "${pageContext.request.contextPath}/edit/${forma.id}.html";
+            }
+            function doSubmit5(form) {
+                    form.action = "${pageContext.request.contextPath}/Calculate";
             }
         </script>
     </head>
@@ -194,8 +200,8 @@
             1.1. Общие данные – General data </h4>
         <!--    <form id="myForm">-->
         <%-- <form:form method="POST" modelAttribute="forma" id="formid" commandName="forma">--%>
+        <%-- <form:form id="myForm" modelAttribute="account" action="Forma-OsvoenieX.htm" method="post"> --%>
             <form:form method="POST" id="formid" commandName="forma">
-            <%--    <form:form id="myForm" modelAttribute="account" action="Forma-OsvoenieX.htm" method="post"> --%>
             <table id="first">
                 <tr>
                     <td>1. Field Name<br/>
@@ -724,8 +730,9 @@
                     <td colspan="2">
                         <input type="hidden" name="date" value=""/>
                         <input id="submitMe" type="submit"  onclick="doSubmit(form);" name="Save" value="Save Form"/>
-                        <input type="submit" name="Calculate" value="Calculate"/>
+                        <input type="submit" name="Calculate" onclick="doSubmit5(form);" value="Calculate"/>
                         <input type="submit" name="add" onclick="doSubmit3(form);" value="add"/>
+                        <input type="submit" name="Update" onclick="doSubmit4(form);" value="Update"/>
                         <p> Destination:
                             <input type="text" name="destination" value="/home/alexey/Загрузки"/>
 <!--                        <p> Name:

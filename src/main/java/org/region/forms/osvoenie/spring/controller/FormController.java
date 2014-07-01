@@ -161,6 +161,24 @@ public class FormController {
     }
     
     /**
+     * Deletes an existing forma by delegating the processing to FormService.
+     * Displays a confirmation JSP page
+     *
+     * @param id
+     * @param model
+     * @param forma
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
+    public ModelAndView deleteTeam(@PathVariable long id) {
+        ModelAndView modelAndView = new ModelAndView("listforms");
+        formaServiceDAO.remove(id);
+        String message = "Team was successfully deleted.";
+        modelAndView.addObject("message", message);
+        return modelAndView;
+    }
+    
+    /**
      * @param forma
      * @param id
      * @param model
@@ -201,38 +219,5 @@ public class FormController {
 //        model.addAttribute("formaAttribute", new Forma());
 //        // This will resolve to /WEB-INF/jsp/addpage.jsp
 //        return "addpage";//????????????????????????????????????
-//    }
-//
-//    /**
-//     * Adds a new form by delegating the processing to FormService. Displays a
-//     * confirmation JSP page
-//     * @param forma
-//     * @return the name of the JSP page
-//     */
-//    //@RequestMapping(value = "/forms/add", method = RequestMethod.POST)
-//
-//    /**
-//     * Deletes an existing forma by delegating the processing to FormService.
-//     * Displays a confirmation JSP page
-//     *
-//     * @param id
-//     * @param model
-//     * @return the name of the JSP page
-//     */
-//    //@RequestMapping(value = "/forms/delete", method = RequestMethod.GET)
-//    @RequestMapping(params = "delete", method = RequestMethod.GET)
-//    public String delete(@RequestParam(value = "id", required = true) Integer id,
-//            Model model) {
-//
-//        logger.debug("Received request to delete existing forma");
-//
-//        // Call PersonService to do the actual deleting
-//        formService.delete(id);
-//
-//        // Add id reference to Model
-//        model.addAttribute("id", id);
-//
-//        // This will resolve to /WEB-INF/jsp/deletedpage.jsp
-//        return "deletedpage";
 //    }
 }

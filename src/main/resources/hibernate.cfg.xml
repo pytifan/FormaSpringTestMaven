@@ -3,16 +3,16 @@
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/FORMS?useUnicode=true&amp;characterEncoding=UTF-8</property>
+    <property name="hibernate.connection.url">jdbc:mysql://region.if.ua:3306/mysqlregion?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.Charset">UTF-8</property>
     <property name="hibernate.connection.CharacterEncoding">UTF-8</property>
     <property name="hibernate.connection.Useunicode">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.username">mysql</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.show_sql">true</property>
-    <property name="hibernate.default_schema">FORMS</property>
+    <property name="hibernate.connection.password">Bnc7Hba3VxzPa</property>
     <mapping class="org.region.forms.osvoenie.form.data.Forma"/>
   </session-factory>
 </hibernate-configuration>

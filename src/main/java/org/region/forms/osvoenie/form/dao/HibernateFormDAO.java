@@ -40,18 +40,10 @@ public interface HibernateFormDAO {
     List<Forma> getAllforms();
 
     /**
-     * Find special form by it's fieldName
-     *
-     * @param fieldName - form fieldName
-     * @return form object or null if form not founded
-     */
-    Forma findByFieldName(String fieldName);
-
-    /**
      * Remove form from database
      *
      * @param form - form to remove
      * @return - true, if form was removed, false, if removing fails or there is no such form in the database
      */
-    boolean remove(Forma form);
+    void remove(long id);
 }

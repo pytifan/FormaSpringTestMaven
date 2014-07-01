@@ -25,7 +25,7 @@ public class FormaServiceDAOImpl implements FormaServiceDAO {
     private HibernateFormDAO formadao;
 
     @Override
-    //@Transactional
+    @Transactional
     public void create(Forma newforma) {
        formadao.create(newforma);
     }
@@ -44,14 +44,8 @@ public class FormaServiceDAOImpl implements FormaServiceDAO {
 
     @Override
     @Transactional
-    public Forma findByFieldName(String fieldName) {
-        return formadao.findByFieldName(fieldName);
-    }
-
-    @Override
-    @Transactional
-    public boolean remove(Forma form) {
-        return formadao.remove(form);
+    public void remove(long id) {
+        formadao.remove(id);
     }
 
     @Override

@@ -174,50 +174,33 @@ public class HibernateFormDAOImpl implements HibernateFormDAO {
     }
 
     @Override
-    public Forma findByFieldName(String fieldName) {
-        Session session = null;
-		Forma result = null;
-		try {
-			session = HibernateUtil.getSessionFactory().openSession();
-			Query query = session.createQuery("select forma from forma in class "
-					+ " package org.region.forms.osvoenie.form.data.Forma where forma.fieldName=:fieldName");	
-			query.setString("fieldName", fieldName);
-			
-			@SuppressWarnings("rawtypes")
-			List resList = query.list();
-			if (resList.size() > 0){
-				result = (Forma) resList.get(0);
-			//	Hibernate.initialize(result.getRoles());
-			}		
-		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
-		}
-		return result;
-    }
-
-    @Override
-    public boolean remove(Forma form) {
-        	boolean result = false;
+    public void remove(long id) {
+//        	boolean result = false;
 		Session session = null;		
-		if (form == null) {
-			LOG.trace("Invalid parameter, form wasn't created");
-			return result;
-		}		
-		try {
-			session = HibernateUtil.getSessionFactory().openSession();
-			session.beginTransaction();
-			if (findByFieldName(form.getFieldName()) != null){
-				session.delete(form);
-				session.getTransaction().commit();
-				result = true;
-			}
-		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
-		}
-		return result;
+//		if (form == null) {
+//			LOG.trace("Invalid parameter, form wasn't created");
+//			return result;
+//		}		
+//		try {
+//			session = HibernateUtil.getSessionFactory().openSession();
+//			session.beginTransaction();
+//			if (findByFieldName(form.getFieldName()) != null){
+//				session.delete(form);
+//				session.getTransaction().commit();
+//				result = true;
+//			}
+//		} finally {
+//			if (session != null && session.isOpen()) {
+//				session.close();
+//			}
+//		}
+//		return result;
+                Forma forma = getForm(id);
+        if (forma != null) {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session.beginTransaction();
+                session.delete(forma);
+            session.getTransaction().commit();    
+        }
     }
 }

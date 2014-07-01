@@ -23,7 +23,5 @@ public interface FormaServiceDAO {
 
     List<Forma> getAll();
 
-    Forma findByFieldName(String fieldName);
-
-    boolean remove(Forma form);
+    void remove(long id);
 }

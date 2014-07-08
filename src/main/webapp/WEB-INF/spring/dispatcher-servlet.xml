@@ -9,40 +9,55 @@
     <context:component-scan base-package="org.region.forms.osvoenie"/>
 <!-- Configures the @Controller programming model -->
     <mvc:annotation-driven /><!--  for example:   <mvc:annotation-driven conversion-service="conversionService"/>-->
+    <import resource="jasper-views.xml"/>
        <!-- Forwards requests to the "/" resource to the "welcome" view -->
 <!--    <mvc:view-controller path="/" view-name="index" />-->
  <!--  all resources inside folder src/main/webapp/resources are mapped so they can be refered to inside JSP files (see header.jsp for more details) -->
-<!--    <mvc:resources mapping="/resources/**"  location="/resources/"/>-->
+    <mvc:resources mapping="/resources/**"  location="/resources/"/>
     <!-- uses WebJars so Javascript and CSS libs can be declared as Maven dependencies (Bootstrap, jQuery...) -->
     <mvc:resources mapping="/webjars/**"    location="classpath:/META-INF/resources/webjars/"/>
     <mvc:resources mapping="/libs/**"       location="classpath:/META-INF/resources/libs" />
     
-    <mvc:resources mapping="/pages/**"      location="/WEB-INF/pages/" />
+    <mvc:resources mapping="/pages/**"      location="/WEB-INF/pages/" />  
     <mvc:resources mapping="/resources/js/**"    location="/resources/js/" />
     <mvc:resources mapping="/resources/css/**"    location="/resources/css/" />
     <mvc:resources mapping="/resources/images/**"    location="/resources/images/" />
  
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-        <property name="contentNegotiationManager" ref="cnManager"/>  
+<!--        <property name="contentNegotiationManager" ref="cnManager"/>-->
+<property name="order" value="1"/>
+                <property name="mediaTypes">
+            <map>
+                <entry key="html" value="text/html" />
+                <entry key="xml" value="application/xml" />
+                <entry key="atom" value="application/atom+xml" />
+            </map>
+        </property>  
         <property name="viewResolvers">
-        	<list>
-                    	<!-- Default viewClass: JSTL view (JSP with html output) -->
-			    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		 <!-- Example: a logical view name of 'vets' is mapped to '/WEB-INF/jsp/vets.jsp' -->
-			        <property name="prefix" value="/WEB-INF/jsp/"/>
-			        <property name="suffix" value=".jsp"/>
-			    </bean>		
-                                <!-- Used here for 'xml' and 'atom' views  -->
-			    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
-        	</list>
+            <list>	
+                <!--Used here for 'xml' and 'atom' views  -->      
+                <!--<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>-->
+                <bean class="org.springframework.web.servlet.view.XmlViewResolver">
+                    <property name="order" value="1"/>
+                    <property name="location" value="/WEB-INF/spring/jasper-views.xml"/>  
+                </bean>
+                <!--Default viewClass: JSTL view (JSP with html output) -->
+                <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                    <!-- Example: a logical view name of 'vets' is mapped to '/WEB-INF/jsp/vets.jsp' -->
+                    <property name="order" value="2" />
+                    <property name="prefix" value="/WEB-INF/jsp/"/>
+                    <property name="suffix" value=".jsp"/>
+                </bean>	
+            </list>
         </property>
+        <property name="ignoreAcceptHeader" value="true"/>
     </bean>
 
     <!-- Simple strategy: only path extension is taken into account -->
     <bean id="cnManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
-        <property name="favorPathExtension" value="true"/>
+<!--        <property name="favorPathExtension" value="true"/>
         <property name="ignoreAcceptHeader" value="true"/>
-        <property name="defaultContentType" value="text/html"/>
+        <property name="defaultContentType" value="text/html"/>-->
         
         <property name="mediaTypes">
             <map>
@@ -84,33 +99,37 @@
   <bean id="ReportGenerator" class="org.region.forms.osvoenie.spring.controller.ReportGenerator"/>
 <!--  <bean id="LetterFormController" class="org.jodreports.web.spring.controller.LetterFormController"/>-->
 
-  <bean id="handlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+<!--  <bean id="handlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
     <property name="mappings">
       <props>
-<!--        Letter example with a proper FormController -->
-<!--        <prop key="*Forma-OsvoenieX.htm">LetterFormController</prop>-->
-<!--        <prop key="/mvc/letter.html">letterFormController</prop> -->     
-        <!--- Some possible key values:
+        Letter example with a proper FormController 
+        <prop key="*Forma-OsvoenieX.htm">LetterFormController</prop>
+        <prop key="/mvc/letter.html">letterFormController</prop>      
+        - Some possible key values:
               - "foo.pdf"  ->  PDF from template "foo"
               - "foo.*"    ->  any format from template "foo"AlexRemote
               - "*.pdf"    ->  PDF from any template
-              - "*"        ->  any format from any template - -->
-        <!-- named templates -->
-<!--    <prop key="formaOsvoenie.*">httpParametersDocumentGenerator</prop>-->
+              - "*"        ->  any format from any template - 
+         named templates 
+    <prop key="formaOsvoenie.*">httpParametersDocumentGenerator</prop>
     <prop key="formaOsvoenie.*">ReportGenerator</prop>
-<!--    <prop key="letterForm.odt">httpParametersDocumentGenerator</prop>
+    <prop key="letterForm.odt">httpParametersDocumentGenerator</prop>
         <prop key="formaOsvoenie.pdf">httpParametersDocumentGenerator</prop>
         <prop key="formaOsvoenie.odt">httpParametersDocumentGenerator</prop>
         <prop key="formaOsvoenie.doc">httpParametersDocumentGenerator</prop>
-        <prop key="formaOsvoenie.txt">httpParametersDocumentGenerator</prop>-->
-<!--    ready to use; just drop new templates into WEB-INF/templateAlexRemotes/--> 
-<!--    <prop key="/params/*">httpParametersDocumentGenerator</prop>-->
-<!--    <prop key="/xml/*">xmlDocumentGenerator</prop>       -->
+        <prop key="formaOsvoenie.txt">httpParametersDocumentGenerator</prop>
+    ready to use; just drop new templates into WEB-INF/templateAlexRemotes/ 
+    <prop key="/params/*">httpParametersDocumentGenerator</prop>
+    <prop key="/xml/*">xmlDocumentGenerator</prop>       
       </props>
     </property>
   </bean>
 
-  <bean id="BundleviewResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
-    <property name="basename" value="views"/>
-  </bean>
+    <bean id="BundleviewResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+      <property name="basename" value="views"/>
+    </bean>-->
+    <!--  Resolves view names based on the names declared on the declared xml location
+    All our Jasper views are declared inside the specified xml location.
+    Take note of the ordering of this ViewResolver.-->
+
 </beans>

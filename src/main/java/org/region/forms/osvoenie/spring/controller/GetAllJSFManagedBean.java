@@ -41,7 +41,7 @@ public class GetAllJSFManagedBean implements Serializable {
 
     public DataModel getAllForms() {
         if (forms == null) {
-            forms = new ListDataModel(formaServiceDAO.getAll());
+            forms = new ListDataModel(formaServiceDAO.getAllforms());
         }
         return forms;
     }

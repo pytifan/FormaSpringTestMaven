@@ -21,7 +21,7 @@ public interface FormaServiceDAO {
     
     void update(Forma formaToUpdate) throws SQLException;
 
-    List<Forma> getAll();
+    List<Forma> getAllforms();
 
     void remove(long id);
 }

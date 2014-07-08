@@ -38,7 +38,7 @@ public class FormaServiceDAOImpl implements FormaServiceDAO {
 
     @Override
     @Transactional
-    public List<Forma> getAll() {
+    public List<Forma> getAllforms() {
         return formadao.getAllforms();
     }
 

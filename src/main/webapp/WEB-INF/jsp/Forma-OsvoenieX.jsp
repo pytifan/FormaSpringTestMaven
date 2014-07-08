@@ -744,6 +744,9 @@
             <!--                </form>-->
         </form:form> 
         <div id="PageFooter">
+            </p>
+<a href="${pageContext.request.contextPath}/report/pdf">Download PDF</a><p>
+</p>
             <input type="file" id="files" name="file"/> Read bytes: 
             <span class="readBytesButtons">
                 <!--  <button data-startbyte="0" data-endbyte="4">1-5</button>

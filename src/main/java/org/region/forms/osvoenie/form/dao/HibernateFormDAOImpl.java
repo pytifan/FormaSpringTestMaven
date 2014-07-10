@@ -7,14 +7,16 @@ package org.region.forms.osvoenie.form.dao;
 
 import java.sql.SQLException;
 import java.util.List;
+import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.region.forms.osvoenie.form.data.Forma;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 
 /**
  *
@@ -25,24 +27,29 @@ public class HibernateFormDAOImpl implements HibernateFormDAO {
 
     private static final Logger LOG = Logger.getLogger(HibernateFormDAOImpl.class);
 
+//@Resource(name = "sessionFactory")
+@Autowired
+ SessionFactory sessionFactory;
+ 
     @Override
     public void create(Forma newforma) {
         Transaction txn = null;
         Session session = null;
-        try {          
-            session = HibernateUtil.getSessionFactory().getCurrentSession();
-            txn = session.beginTransaction();
-            session.save(newforma);
-            txn.commit();
-        } catch (HibernateException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            if (!txn.wasCommitted()) {
-                txn.rollback();
-            }
-            session.flush();
-            session.close();
-        }
+//        try {
+            sessionFactory.getCurrentSession().save(newforma);
+//            session = HibernateUtil.getSessionFactory().getCurrentSession();
+//            txn = session.beginTransaction();
+//            session.save(newforma);
+//            txn.commit();
+//        } catch (HibernateException e) {
+//            System.out.println(e.getMessage());
+//        } finally {
+//            if (!txn.wasCommitted()) {
+//                txn.rollback();
+//            }
+//            session.flush();
+//            session.close();
+//        }
         // HibernateUtil.getSessionFactory().getCurrentSession().save(newforma);
 //        long result = -1L;
 //        Session session = null;
@@ -81,27 +88,26 @@ public class HibernateFormDAOImpl implements HibernateFormDAO {
     public List<Forma> getAllforms() {
         LOG.debug("Retrieving all forms");
 //  // Retrieve session from Hibernate
-//  Session session = sessionFactory.getCurrentSession();
-//  Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //  // Create a Hibernate query (HQL)
 //  Query query = session.createQuery("FROM  FORMS");
 //  // Retrieve all
 //  return  query.list();
 		List<Forma> result = null;
-		Session session = null;		
-		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
-			session.beginTransaction();
+		//Session session = null;		
+		// try {
+                Session session = sessionFactory.getCurrentSession();
+		//	session = HibernateUtil.getSessionFactory().getCurrentSession();
+		//	session.beginTransaction();
 			result = session.createCriteria(Forma.class).list();
 			for (Forma f:result){
 				Hibernate.initialize(f.getId());
 			}
-			session.getTransaction().commit();
-		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
-		}
+		//	session.getTransaction().commit();
+//		} finally {
+//			if (session != null && session.isOpen()) {
+//				session.close();
+//			}
+//		}
 		return result;
     }
     
@@ -118,12 +124,12 @@ public class HibernateFormDAOImpl implements HibernateFormDAO {
     @Override
     public Forma getForm(long id) {
         // Retrieve session from Hibernate
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
         //Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         // Retrieve existing form first
-        session.beginTransaction();
+  //      session.beginTransaction();
         Forma forma = (Forma) session.get(Forma.class, id);
-        session.getTransaction().commit();
+  //      session.getTransaction().commit();
         return forma;
     }  
     
@@ -163,14 +169,16 @@ public class HibernateFormDAOImpl implements HibernateFormDAO {
 //			}
 //		}
 //		return result;
-        session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
+         session = sessionFactory.getCurrentSession();   
+        //session = HibernateUtil.getSessionFactory().getCurrentSession();
+  //      session.beginTransaction();
         //Forma formaToUpdate = getForm(forma.getId());
         Forma formaToUpdate = (Forma) session.get(Forma.class, forma.getId());
         formaToUpdate.setFieldName(forma.getFieldName());
         formaToUpdate.setWellName(forma.getWellName());
+        formaToUpdate.setDesiredJobDate(forma.getDesiredJobDate());
         session.update(formaToUpdate);
-        session.getTransaction().commit();
+   //     session.getTransaction().commit();
     }
 
     @Override
@@ -197,10 +205,11 @@ public class HibernateFormDAOImpl implements HibernateFormDAO {
 //		return result;
                 Forma forma = getForm(id);
         if (forma != null) {
-            session = HibernateUtil.getSessionFactory().getCurrentSession();
-            session.beginTransaction();
+            session = sessionFactory.getCurrentSession();
+           // session = HibernateUtil.getSessionFactory().getCurrentSession();
+        //    session.beginTransaction();
                 session.delete(forma);
-            session.getTransaction().commit();    
+        //    session.getTransaction().commit();    
         }
     }
 }

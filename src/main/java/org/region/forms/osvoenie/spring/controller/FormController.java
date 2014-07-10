@@ -150,7 +150,7 @@ public class FormController {
         try {
             formaServiceDAO.update(forma);
             String message = "FORm was successfully edited.";
-         //   modelAndView.addObject("message", message);
+            modelAndView.addObject("message", message);
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
         }

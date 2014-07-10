@@ -8,11 +8,12 @@ package org.region.forms.osvoenie.service;
 
 import java.sql.SQLException;
 import java.util.List;
-import javax.transaction.Transactional;
 import org.region.forms.osvoenie.form.dao.HibernateFormDAO;
 import org.region.forms.osvoenie.form.data.Forma;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -37,18 +38,19 @@ public class FormaServiceDAOImpl implements FormaServiceDAO {
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public List<Forma> getAllforms() {
         return formadao.getAllforms();
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED)
     public void remove(long id) {
         formadao.remove(id);
     }
 
     @Override
+    @Transactional
     public Forma getForm(long id) {
        return formadao.getForm(id);
     }   

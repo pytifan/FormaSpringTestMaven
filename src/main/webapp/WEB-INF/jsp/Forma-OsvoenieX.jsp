@@ -107,25 +107,6 @@
                 } catch (e) { alert(e); }
             }
         </script>
-        <script> function collectArr() {
-//                var columns = $('#dataTable1 thead th').map(function() {
-//                     /*This assumes that your headings are suitable to be used as
-//                      JavaScript object keys. If the headings contain characters 
-//                      that would be invalid, such as spaces or dashes, you should
-//                      use a regex here to strip those characters out.*/
-//                    return $(this).text(); });              
-                var tblinfo = [];
-                var $trs = $("#dataTable1 tr");
-                $trs.each(function(i){ //go through each row
-                  tblinfo[i] = [];
-                  $(this).children().each(function(j){ //go through each column
-                    tblinfo[i][j] = $(this).children('input, select').val();
-                   });
-                });
-                alert(tblinfo);
-                return tblinfo;
-            }
-        </script>
         <script type="text/javascript">
             function doSubmit(form) {
             document.forms[0].date.value = new Date().toLocaleString();
@@ -135,17 +116,13 @@
                     // window.location.reload(true);
                     // document.location.reload();
             }         
-            function doSubmit2() {
-            form.window.location.reload(true);
-                    window.location.reload(true);
-            }
-            function doSubmit3(form) {
+            function doSubmit2(form) {
                     form.action = "${pageContext.request.contextPath}/add/process";
             }
-            function doSubmit4(form) {
+            function doSubmit3(form) {
                     form.action = "${pageContext.request.contextPath}/edit/${forma.id}.html";
             }
-            function doSubmit5(form) {
+            function doSubmit4(form) {
                     form.action = "${pageContext.request.contextPath}/Calculate";
             }
         </script>
@@ -725,19 +702,19 @@
                             <option value="txt">txt</option>
                         </select>
                     </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
+                    <td>
                         <input type="hidden" name="date" value=""/>
-                        <input id="submitMe" type="submit"  onclick="doSubmit(form);" name="Save" value="Save Form"/>
-                        <input type="submit" name="Calculate" onclick="doSubmit5(form);" value="Calculate"/>
-                        <input type="submit" name="add" onclick="doSubmit3(form);" value="add"/>
-                        <input type="submit" name="Update" onclick="doSubmit4(form);" value="Update"/>
-                        <p> Destination:
-                            <input type="text" name="destination" value="/home/alexey/Загрузки"/>
-<!--                        <p> Name:
-                            <label><input type="file" class="filename" name="text-filename" id="text-filename" placeholder="a plain document"/>.txt</label>-->
+                        <input id="submitMe" type="submit"  onclick="doSubmit(form);" name="Save" value="Save Form In File"/>
                     </td>
+                </tr>
+                <tr><td></td><td></td>
+                    <td><input type="submit" name="add" onclick="doSubmit2(form);" value="Add"/></td>
+                </tr>
+                <tr><td></td><td></td>
+                    <td><input type="submit" name="Update" onclick="doSubmit3(form);" value="Update"/></td>
+                </tr>
+                <tr><td></td><td></td>
+                    <td><input type="submit" name="Calculate" onclick="doSubmit4(form);" value="Calculate"/></td>
                 </tr>
             </table>
             <p></p>
@@ -746,7 +723,8 @@
         <div id="PageFooter">
             </p>
 <a href="${pageContext.request.contextPath}/report/pdf">Download PDF</a><p>
-</p>
+</p>  Destination:
+                            <input type="text" name="destination" value="/home/alexey/Загрузки"/>
             <input type="file" id="files" name="file"/> Read bytes: 
             <span class="readBytesButtons">
                 <!--  <button data-startbyte="0" data-endbyte="4">1-5</button>

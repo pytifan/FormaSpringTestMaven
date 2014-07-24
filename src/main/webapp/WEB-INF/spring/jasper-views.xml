@@ -11,11 +11,16 @@
 
     <!--here all the url value should contains the valid path for the jrxml file-->
 
+<!--          
+    <bean id="pdfReport"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:forms-report.jrxml"
+          p:reportDataKey="T1" />-->
+
     <bean id="pdfReport"
           class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
           p:url="classpath:forms-report.jrxml"
           p:reportDataKey="datasource" />
-
 
     <bean id="xlsReport"
           class="org.springframework.web.servlet.view.jasperreports.JasperReportsXlsView"

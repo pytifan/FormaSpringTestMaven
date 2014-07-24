@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-<!--    <context-param>
-        <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>Development</param-value>
-    </context-param>-->
-        <listener>
+    <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
-<!--    <context-param>
-    <param-name>log4jConfigLocation</param-name>
-    <param-value>/resources/log4j.properties</param-value>
-</context-param>-->
+    <!--    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>/resources/log4j.properties</param-value>
+    </context-param>-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -21,6 +17,8 @@
     <filter>
         <filter-name>encoding-filter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        
+                <async-supported>true</async-supported> 
         <init-param>
             <param-name>encoding</param-name>
             <param-value>UTF-8</param-value>
@@ -34,7 +32,6 @@
         <filter-name>encoding-filter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -43,11 +40,7 @@
             <param-value>/WEB-INF/spring/dispatcher-servlet.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
+        <async-supported>true</async-supported>
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
@@ -56,11 +49,11 @@
     <!--- This is to show how to plug a DocumentView into a
     - "standard" Spring MVC application.-->
     <!--  <servlet-mapping>
-    <servlet-name>dispatcher</servlet-name>
-    <url-pattern>/spring/*</url-pattern>
-    <url-pattern>/FormaSpringTestMaven/WEB-INF/jsp/*</url-pattern>
-    <url-pattern>*.htm</url-pattern>
-  </servlet-mapping>-->
+      <servlet-name>dispatcher</servlet-name>
+      <url-pattern>/spring/*</url-pattern>
+      <url-pattern>/FormaSpringTestMaven/WEB-INF/jsp/*</url-pattern>
+      <url-pattern>*.htm</url-pattern>
+    </servlet-mapping>-->
     <!-- - Map all needed output formats-->
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
@@ -78,45 +71,17 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.txt</url-pattern>
     </servlet-mapping>
-   <!--   <servlet-mapping>
+    <!--   <servlet-mapping>
       <servlet-name>dispatcher</servlet-name>
       <url-pattern>*.rtf</url-pattern>
     </servlet-mapping>-->
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <!-- Welcome page -->
     <!--    <welcome-file-list>
         <welcome-file>redirect.jsp</welcome-file>
     </welcome-file-list>-->
-    <!-- Welcome page -->
-<!--    <welcome-file-list>
-        <welcome-file>newxhtml.xhtml</welcome-file>
-    </welcome-file-list>-->
-  
-  
-<!--   Change to "Production" when you are ready to deploy -->
-<!--  <context-param>
-    <param-name>javax.faces.PROJECT_STAGE</param-name>
-    <param-value>Production</param-value>
-  </context-param>-->
-<!--    JSF Mapping -->
-<!--  <servlet>
-    <servlet-name>facesServlet</servlet-name>
-    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>facesServlet</servlet-name>
-    <url-pattern>*.jsf</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>facesServlet</servlet-name>
-    <url-pattern>*.xhtml</url-pattern>
-  </servlet-mapping>-->
 </web-app>

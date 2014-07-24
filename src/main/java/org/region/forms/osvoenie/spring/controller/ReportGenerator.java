@@ -31,8 +31,8 @@ public class ReportGenerator extends AbstractDocumentGenerator {
             if (splitStr.length > 1) {
                 String keyFormap = splitStr[0].concat(".").concat(splitStr[2]);
                     if (splitStr[0].equals("T1")) { 
-                         System.out.println("keyFormap "+keyFormap);
-                         System.out.println("splitStr[0] "+splitStr[0]);
+                         System.out.println("keyFormap " + keyFormap);
+                         System.out.println("splitStr[0] " + splitStr[0]);
                         if (mapListList.containsKey(keyFormap)) {
                             ArrayList row = (ArrayList)mapListList.get(keyFormap);
                             row.add(request.getParameter(key));

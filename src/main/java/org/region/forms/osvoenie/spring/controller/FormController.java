@@ -6,17 +6,23 @@ import java.util.Map;
 import java.util.logging.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
+import org.region.forms.osvoenie.form.data.CalculationsData;
 import org.region.forms.osvoenie.form.data.Forma;
+import org.region.forms.osvoenie.form.data.Message;
+import org.region.forms.osvoenie.service.DeferredResultService;
 import org.region.forms.osvoenie.service.FormOsvoenieSomeService;
 import org.region.forms.osvoenie.service.FormaServiceDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -29,48 +35,52 @@ public class FormController {
 
     protected static Logger logger = Logger.getLogger("controller");
 
-    private final FormOsvoenieSomeService formOsvoenieSomeService;
-    // private final AvarageDiametersCalculator avarageDiametersCalculator;
+    private FormOsvoenieSomeService formOsvoenieSomeService;
 
-//    @Resource(name = "FormService")
-//    private FormService formService;
     @Autowired
     private FormaServiceDAO formaServiceDAO;
 
     @Autowired
     public FormController(FormOsvoenieSomeService formOsvoenieSomeService) {
         this.formOsvoenieSomeService = formOsvoenieSomeService;
-        //    this.avarageDiametersCalculator = avarageDiametersCalculator;
     }
-
     public FormController() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+     @Autowired
+  private DeferredResultService updateService;
 
-//  @Override
-//   protected ModelAndView onSubmit (Object command) throws Exception {
-//    Recipient recipient = (Recipient) command;
-//    return new ModelAndView("RecipientSuccess", "recipient", recipient).addObject("date", new Date());
-//  }
- 
-//    @RequestMapping(method = RequestMethod.GET)
-//    public ModelAndView CreateForm(Model model) {
-//        Forma forma = new Forma();
-//        model.addAttribute("forma", forma);
-//       // model.addAttribute(new Date());
-//       // return "Forma-OsvoenieX";
-//        return new ModelAndView ("Forma-OsvoenieX", "forma", forma).addObject("date", new Date());
-//    }
+  @RequestMapping(value = "/matchupdate/begin" + "", method = RequestMethod.GET)
+  @ResponseBody
+  public String start() {
+    updateService.subscribe();
+    return "OK";
+  }
+
+  @RequestMapping("/matchupdate/deferred")
+  @ResponseBody
+  public DeferredResult<Message> getUpdate() {
+
+    final DeferredResult<Message> result = new DeferredResult<Message>();
+    updateService.getUpdate(result);
+    return result;
+  }
     
     @RequestMapping(value="/add")
-    public ModelAndView addTeamPage() {
+    public ModelAndView addFormPage() {
         ModelAndView modelAndView = new ModelAndView("Forma-OsvoenieX");
         modelAndView.addObject("forma", new Forma());
         return modelAndView;
     }
     
+    @RequestMapping(value="/RecipientSuccess")
+    public ModelAndView calculationPage() {
+        ModelAndView modelAndView = new ModelAndView("RecipientSuccess");
+        modelAndView.addObject("RecipientSuccess", new CalculationsData());
+        return modelAndView;
+    }
+    
     @RequestMapping(value = "/add/process", params = "add", method = RequestMethod.POST)
-    //public String add(@ModelAttribute("forma") Forma forma, BindingResult result, SessionStatus sessionStatus) {
     public String addForm(Forma forma, BindingResult result, SessionStatus sessionStatus) {
         logger.debug("Received request to add new forma");
         if (result.hasErrors()) {
@@ -96,20 +106,25 @@ public class FormController {
 //        return "Forma-OsvoenieX";
 //    }
 
-    @RequestMapping(value = "/Calculate", params = "Calculate", method = RequestMethod.POST)
-    public String calculate(Forma forma, BindingResult result, SessionStatus status) {
+    @RequestMapping(value = "/RecepientSuccess/Calculate", params = "Calculate", method = RequestMethod.POST)
+    public String calculate(Map<String, Object> map, Forma forma,@ModelAttribute("RecipientSuccess") CalculationsData calculationsData, BindingResult result, SessionStatus status) {
+        ModelAndView modelAndView = new ModelAndView("RecipientSuccess");
+        modelAndView.addObject("calculationData", new CalculationsData());
         if (result.hasErrors()) {
             System.out.println("Calculate error");
-            return "Forma-OsvoenieX";
+            return "RecipientSuccess";
         } else {
             try {
-                this.formOsvoenieSomeService.doSmthing(forma);
-                this.formOsvoenieSomeService.solver_for_avarageDiams(forma);
+                this.formOsvoenieSomeService.doSmthing(forma, calculationsData);
+                System.out.println("calculationsData.getCalcMess(): " + calculationsData.getCalcMess());
+                map.put("calcMess", calculationsData.getCalcMess());
+                //this.formOsvoenieSomeService.solver_for_avarageDiams(forma);
+                //formaServiceDAO.saveCalculations(calculationsData);
             } catch (Exception ex) {
                 Logger.getLogger(FormController.class.getName()).log(null, Priority.ERROR, result, ex);
             }
             status.setComplete();
-            return "RecipientSuccess";
+            return "result";
         }
     }
 

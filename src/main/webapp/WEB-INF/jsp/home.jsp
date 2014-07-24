@@ -16,7 +16,8 @@
 <p>  
 ${message}<br>  
 <a href="${pageContext.request.contextPath}/add.html">Add new form</a><br>  
-<a href="${pageContext.request.contextPath}/listforms.html">Forms list</a><br>  
+<a href="${pageContext.request.contextPath}/listforms.html">Forms list</a><br>
+<a href="${pageContext.request.contextPath}/RecipientSuccess.html">RecipientSuccess</a><br>
 </p>
 <h1>
 Downloads:</h1><p>

@@ -7,6 +7,7 @@ package org.region.forms.osvoenie.service;
 
 import java.sql.SQLException;
 import java.util.List;
+import org.region.forms.osvoenie.form.data.CalculationsData;
 import org.region.forms.osvoenie.form.data.Forma;
 
 /**
@@ -17,11 +18,15 @@ public interface FormaServiceDAO {
 
     public void create(Forma newforma);
 
+    public void saveCalculations (CalculationsData calculationsData);
+    
     public Forma getForm(long id);
     
-    void update(Forma formaToUpdate) throws SQLException;
+    public void update(Forma formaToUpdate) throws SQLException;
 
-    List<Forma> getAllforms();
+    public List<Forma> getAllforms();
 
-    void remove(long id);
+    public void remove(long id);
+    
+    public List<Forma> testJReport();
 }

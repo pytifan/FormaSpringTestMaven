@@ -175,8 +175,7 @@
             1. Well Information – Информация о скважине<br/></h3>
         <h4 style="color: brown">
             1.1. Общие данные – General data </h4>
-        <!--    <form id="myForm">-->
-        <%-- <form:form method="POST" modelAttribute="forma" id="formid" commandName="forma">--%>
+        <!--    <form id="myForm">-->     <%-- <form:form method="POST" modelAttribute="forma" id="formid" commandName="forma">--%>
         <%-- <form:form id="myForm" modelAttribute="account" action="Forma-OsvoenieX.htm" method="post"> --%>
             <form:form method="POST" id="formid" commandName="forma">
             <table id="first">
@@ -184,7 +183,7 @@
                     <td>1. Field Name<br/>
                         Название бассейна (месторождения): </td>
                     <td>
-                      <form:input path="fieldName" id="fieldName" type="text" name="fieldName" size="35"/>
+                      <form:input path="fieldname" id="fieldname" type="text" name="fieldname" size="35"/>
                     </td>
                 </tr>
                 <tr>
@@ -772,7 +771,7 @@
                 }, false);
                         function  replacer(arr) {
                         //First Table
-                        document.getElementById('fieldName').value = arr[0].replace(new RegExp(/(fieldName=)(\w*)/), "$2"); //1
+                        document.getElementById('fieldname').value = arr[0].replace(new RegExp(/(fieldname=)(\w*)/), "$2"); //1
                                 document.getElementById('wellName').value = arr[1].replace(new RegExp(/(wellName=)(\w*)/), "$2"); //2
                                 document.getElementById('wellLocation').value = arr[2].replace(new RegExp(/(wellLocation=)(\w*)/), "$2"); //3
                                 document.getElementById('formationName').value = arr[3].replace(new RegExp(/(formationName=)(\w*)/), "$2"); //4

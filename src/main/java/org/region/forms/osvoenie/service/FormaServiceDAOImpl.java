@@ -9,6 +9,7 @@ package org.region.forms.osvoenie.service;
 import java.sql.SQLException;
 import java.util.List;
 import org.region.forms.osvoenie.form.dao.HibernateFormDAO;
+import org.region.forms.osvoenie.form.data.CalculationsData;
 import org.region.forms.osvoenie.form.data.Forma;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,13 @@ public class FormaServiceDAOImpl implements FormaServiceDAO {
        formadao.create(newforma);
     }
 
+    
+    @Override
+    @Transactional
+    public void saveCalculations(CalculationsData calculationsData) {
+        formadao.saveCalculations(calculationsData);
+    }
+    
     @Override
     @Transactional
     public void update(Forma formaToUpdate) throws SQLException {
@@ -54,4 +62,10 @@ public class FormaServiceDAOImpl implements FormaServiceDAO {
     public Forma getForm(long id) {
        return formadao.getForm(id);
     }   
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public List<Forma> testJReport() {
+        return formadao.testJReport();
+    }
 }

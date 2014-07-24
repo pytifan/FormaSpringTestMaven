@@ -25,7 +25,7 @@
         <c:forEach items="${forms}" var="forma">
             <tr>
                 <td align="center"><c:out value="${forma.id}"/></td>
-                <td align="center"><c:out value="${forma.fieldName}"/></td>
+                <td align="center"><c:out value="${forma.fieldname}"/></td>
                 <td align="center"><c:out value="${forma.wellName}"/></td>
                 <td align="center"><c:out value="${forma.desiredJobDate}"/></td>
                 <td align="center">

@@ -7,6 +7,7 @@ package org.region.forms.osvoenie.form.dao;
 
 import java.sql.SQLException;
 import java.util.List;
+import org.region.forms.osvoenie.form.data.CalculationsData;
 import org.region.forms.osvoenie.form.data.Forma;
 
 /**
@@ -20,6 +21,8 @@ public interface HibernateFormDAO {
      * @param newforma
      */
     public void create(Forma newforma);
+    
+    public void saveCalculations(CalculationsData calculationsData);
 
     public Forma getForm(long id);
     
@@ -30,14 +33,14 @@ public interface HibernateFormDAO {
      * //@return true, if changing was successful, false, if it fails
      * @throws SQLException
      */
-    void update(Forma formaToUpdate) throws SQLException;
+    public void update(Forma formaToUpdate) throws SQLException;
 
     /**
      * Find all forms in the database
      *
      * @return List<Forma> - List of all forms object in the database or null if connection fails
      */
-    List<Forma> getAllforms();
+    public List<Forma> getAllforms();
 
     /**
      * Remove form from database
@@ -45,5 +48,7 @@ public interface HibernateFormDAO {
      * @param form - form to remove
      * @return - true, if form was removed, false, if removing fails or there is no such form in the database
      */
-    void remove(long id);
+    public void remove(long id);
+    
+    public List<Forma> testJReport();
 }

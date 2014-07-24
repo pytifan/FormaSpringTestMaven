@@ -6,7 +6,6 @@ package org.region.forms.osvoenie.form.data;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.concurrent.atomic.AtomicLong;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +30,7 @@ public class Forma implements Serializable {
     
     /*Общие данные – General data*/
     @Column(name = "FIELDNAME")
-    private String fieldName;
+    private String fieldname;
     @Column(name = "WELLNAME")
     private String wellName;
     @Column(name = "WELLLOCATION")
@@ -354,20 +353,6 @@ public class Forma implements Serializable {
      */
     public void setId(long id) {
         this.id = id;
-    }
-
-    /**
-     * @return the fieldName
-     */
-    public String getFieldName() {
-        return fieldName;
-    }
-
-    /**
-     * @param fieldName the fieldName to set
-     */
-    public void setFieldName(String fieldName) {
-        this.fieldName = fieldName;
     }
 
     /**
@@ -2342,5 +2327,19 @@ public class Forma implements Serializable {
      */
     public void setWellAzimuth5(String WellAzimuth5) {
         this.WellAzimuth5 = WellAzimuth5;
+    }
+
+    /**
+     * @return the fieldname
+     */
+    public String getFieldname() {
+        return fieldname;
+    }
+
+    /**
+     * @param fieldname the fieldname to set
+     */
+    public void setFieldname(String fieldname) {
+        this.fieldname = fieldname;
     }
 }

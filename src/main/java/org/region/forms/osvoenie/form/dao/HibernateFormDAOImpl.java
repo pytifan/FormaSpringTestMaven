@@ -7,12 +7,12 @@ package org.region.forms.osvoenie.form.dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.region.forms.osvoenie.form.data.CalculationsData;
 import org.region.forms.osvoenie.form.data.Forma;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -84,6 +84,11 @@ public class HibernateFormDAOImpl implements HibernateFormDAO {
 //        return result;
     }
 
+    @Override
+    public void saveCalculations (CalculationsData calculationsData) {
+        sessionFactory.getCurrentSession().save(calculationsData);
+    }
+    
     @Override
     public List<Forma> getAllforms() {
         LOG.debug("Retrieving all forms");
@@ -174,7 +179,7 @@ public class HibernateFormDAOImpl implements HibernateFormDAO {
   //      session.beginTransaction();
         //Forma formaToUpdate = getForm(forma.getId());
         Forma formaToUpdate = (Forma) session.get(Forma.class, forma.getId());
-        formaToUpdate.setFieldName(forma.getFieldName());
+        formaToUpdate.setFieldname(forma.getFieldname());
         formaToUpdate.setWellName(forma.getWellName());
         formaToUpdate.setDesiredJobDate(forma.getDesiredJobDate());
         session.update(formaToUpdate);
@@ -211,5 +216,10 @@ public class HibernateFormDAOImpl implements HibernateFormDAO {
                 session.delete(forma);
         //    session.getTransaction().commit();    
         }
+    }
+
+    @Override
+    public List<Forma> testJReport() {
+           return (List<Forma>)sessionFactory.openSession().createQuery("from Forma").list();
     }
 }

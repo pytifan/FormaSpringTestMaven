@@ -6,6 +6,8 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx-3.1.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 <!--    xmlns:p="http://www.springframework.org/schema/p"-->
+<!-- Activates various annotations to be detected in bean classes -->
+<context:annotation-config />
     <!-- - POJOs labeled with the @Controller and @Service annotations are auto-detected.  -->
     <context:component-scan base-package="org.region.forms.osvoenie"/>
 <!-- Configures the @Controller programming model -->
@@ -140,5 +142,21 @@
     <!--  Resolves view names based on the names declared on the declared xml location
     All our Jasper views are declared inside the specified xml location.
     Take note of the ordering of this ViewResolver.-->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages"/>
+    </bean>
+    
+    	<mvc:view-controller path="deferredmatchupdate" view-name="/deferredmatchupdate" />
 
+
+	<!-- The config that loads the Match and reporters -->
+
+ 	<import resource="../matches.xml" />
+ 
+ 	<bean id="theQueue" class="java.util.concurrent.LinkedBlockingQueue"/>
+
+  	<bean id="BillSkyes" class="org.region.forms.osvoenie.form.data.MatchReporter">
+ 		<constructor-arg ref="the-match"/>
+ 		<constructor-arg ref="theQueue"/>
+ 	</bean>
 </beans>
